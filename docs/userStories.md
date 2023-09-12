@@ -1,0 +1,18 @@
+|                                                |                                                                                                                                                          |
+|------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **En tant qu'utilisateur non connecté**        | Je veux pouvoir accéder à l'application et voir la page d'accueil pour en apprendre davantage sur l'application.                                         |
+| ****                                           | Je veux pouvoir m'inscrire ou me connecter pour accéder à l'ensemble des fonctionnalités de l'application.                                               |
+| ****                                           |                                                                                                                                                          |
+| **En tant qu'utilisateur connecté (bénévole)** | Je veux pouvoir ajouter des articles à ma liste d'achats en spécifiant leur nom et leur prix.                                                            |
+| ****                                           | Je veux que l'application me suggère des noms d'articles et des prix si j'ai déjà ajouté des articles similaires dans le passé.                          |
+| ****                                           | Je veux pouvoir voir le total cumulé des prix de tous les articles que j'ai ajoutés à ma liste d'achats.                                                 |
+| ****                                           | Je veux pouvoir voir la liste complète de tous les articles que j'ai ajoutés à ma liste d'achats.                                                        |
+| ****                                           | Je veux pouvoir modifier le nom et le prix d'un article existant dans ma liste d'achats.                                                                 |
+| ****                                           | Je veux pouvoir supprimer un article de ma liste d'achats.                                                                                               |
+| ****                                           | Je veux pouvoir valider ma liste d'achats                                                                                                                |
+| ****                                           | Je veux pouvoir me déconnecter de mon compte                                                                                                             |
+| ****                                           |                                                                                                                                                          |
+| **En tant qu'administrateur**                  | Je veux pour effectuer les mêmes opérations qu'un utilisateur connecté                                                                                   |
+| ****                                           | Je veux avoir accès à toutes les listes d'achats créées par les utilisateurs et suivre les achats.                                                       |
+| ****                                           | Je veux pouvoir marquer une liste d'achats comme "payée" une fois que le paiment de celle-ci a été effectuée                                             |
+| ****                                           | Je veux pouvoir accéder à des statistiques sur les achats de l'association, y compris les dépenses totales et les articles les plus fréquemment achetés. |
