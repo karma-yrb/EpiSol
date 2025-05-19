@@ -1,0 +1,141 @@
+/* Styles pour AchatModal */
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.35) !important;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Correction pour forcer l'opacité du fond */
+}
+
+.achat-modal-container {
+  background: #fff;
+  padding: 2em;
+  border-radius: 14px;
+  min-width: 320px;
+  max-width: 400px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+  position: relative;
+  text-align: left;
+}
+
+.achat-modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.achat-modal-label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.achat-modal-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid #bbb;
+  font-size: 16px;
+}
+
+.achat-modal-hint {
+  font-size: 13px;
+  color: #888;
+  margin-top: 3px;
+  margin-left: 2px;
+}
+
+.achat-modal-dropdown-list {
+  position: absolute;
+  z-index: 10;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  max-height: 180px;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.achat-modal-dropdown-list li {
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.achat-modal-dropdown-list li.selected,
+.achat-modal-dropdown-list li:hover {
+  background: #e6f7ff;
+}
+
+.achat-modal-add-btn {
+  margin-top: 8px;
+  font-size: 15px;
+  color: #fff;
+  background: #1a7f1a;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+}
+
+.achat-modal-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.achat-modal-actions button {
+  flex: 1;
+  padding: 10px 0;
+  border-radius: 8px;
+  border: none;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.achat-modal-actions .add-btn {
+  background: #0071bc;
+  color: #fff;
+  font-weight: 600;
+}
+
+.achat-modal-actions .cancel-btn {
+  background: #eee;
+  color: #333;
+  font-weight: 500;
+}
+
+.achat-modal-error {
+  color: #c00;
+  background: #ffeaea;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+}
+
+.achat-modal-success {
+  color: #1a7f1a;
+  background: #e6ffe6;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+}

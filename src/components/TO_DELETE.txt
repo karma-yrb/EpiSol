@@ -1,0 +1,8 @@
+Supprimer les fichiers CSS suivants car ils sont obsolètes après harmonisation :
+- UserForm.css
+- EditUser.css
+- EditBeneficiaire.css
+- ManageBeneficiaire.css
+- Login.css
+
+Tous les styles de formulaires sont désormais dans UniForm.css.

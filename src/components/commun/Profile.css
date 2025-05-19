@@ -1,0 +1,19 @@
+.profile-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.profile-title .fa-user-circle {
+  color: #007bff;
+  font-size: 28px;
+}
+
+.page-centered-container {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 0;
+  padding-top: 18px;
+}

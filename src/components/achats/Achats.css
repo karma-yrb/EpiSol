@@ -1,0 +1,206 @@
+/* Styles pour Achats.js harmonisés */
+
+.achats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: #f9f9f9;
+  padding: 40px 0 60px 0;
+}
+
+.achats-title {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+}
+.achats-title-icon {
+  margin-right: 14px;
+  color: #1a7f1a;
+}
+
+.achats-main-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  padding: 2em;
+  text-align: center;
+}
+
+.achats-beneficiaire-section {
+  margin-bottom: 32px;
+}
+.achats-beneficiaire-label {
+  font-weight: 600;
+  font-size: 17px;
+  display: block;
+  margin-bottom: 10px;
+}
+.achats-beneficiaire-input-wrapper {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.achats-beneficiaire-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid #bbb;
+  font-size: 16px;
+}
+.achats-beneficiaire-dropdown {
+  position: absolute;
+  z-index: 10;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  max-height: 180px;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.achats-beneficiaire-dropdown li {
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+}
+.achats-beneficiaire-dropdown li.selected,
+.achats-beneficiaire-dropdown li:hover {
+  background: #e6f7ff;
+}
+.achats-beneficiaire-num {
+  color: #888;
+  font-size: 13px;
+}
+.achats-beneficiaire-selected {
+  margin-top: 10px;
+  color: #1a7f1a;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.achats-add-btn-wrapper {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.achats-add-btn {
+  background: #1a7f1a;
+  color: #fff;
+  font-weight: 700;
+  padding: 14px 32px;
+  font-size: 19px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.achats-add-btn i {
+  margin-right: 10px;
+}
+
+.achats-list-wrapper {
+  margin: 30px auto 0 auto;
+  max-width: 500px;
+}
+.achats-list-title {
+  font-size: 20px;
+  margin-bottom: 12px;
+  text-align: left;
+}
+.achats-list-table {
+  width: 100%;
+  background: #fafafa;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.achats-list-table th,
+.achats-list-table td {
+  padding: 10px;
+  text-align: center;
+}
+.achats-list-table th {
+  background: #f5f5f5;
+}
+.achats-list-table td {
+  border-bottom: 1px solid #eee;
+}
+.achats-list-table .achats-total-row td {
+  background: #f2f6fa;
+  font-size: 17px;
+  font-weight: 700;
+  color: #0071bc;
+  border-top: 2px solid #e0e0e0;
+}
+.achats-list-table .achats-total-row td:first-child {
+  border-radius: 0 0 0 8px;
+}
+.achats-list-table .achats-total-row td:last-child {
+  border-radius: 0 0 8px 0;
+}
+.achats-qty-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+}
+.achats-qty-btn.moins {
+  margin-right: 6px;
+  background: #fffbe6;
+  border: 1px solid #e6a700;
+  color: #e6a700;
+}
+.achats-qty-btn.plus {
+  margin-right: 8px;
+  background: #e6ffe6;
+  border: 1px solid #1a7f1a;
+  color: #1a7f1a;
+}
+.achats-delete-btn {
+  background: #ffeaea;
+  border: 1px solid #c00;
+  color: #c00;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+}
+.achats-info {
+  color: #888;
+  font-size: 15px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.achats-info i {
+  margin-right: 8px;
+}
+
+@media (max-width: 600px) {
+  .achats-main-card {
+    padding: 1em;
+  }
+  .achats-title {
+    font-size: 1.3rem;
+  }
+}

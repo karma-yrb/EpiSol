@@ -1,0 +1,220 @@
+/* Menu burger et navigation responsive */
+.nav-burger {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1002;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.nav-burger .bar {
+  width: 28px;
+  height: 4px;
+  background: #333;
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.nav-burger.open .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-burger.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.nav-burger.open .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 0;
+  background: #fff;
+  overflow: hidden;
+  z-index: 1001;
+  transition: width 0.3s, box-shadow 0.3s;
+  box-shadow: none;
+  pointer-events: none;
+  opacity: 0;
+}
+.nav-menu.open {
+  width: 80vw;
+  max-width: 320px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+  pointer-events: auto;
+  opacity: 1;
+}
+.nav-menu ul {
+  list-style: none;
+  padding: 80px 24px 0 24px;
+  margin: 0;
+}
+.nav-menu li {
+  margin-bottom: 2rem;
+}
+.nav-menu a {
+  color: #333;
+  font-size: 1.3rem;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.nav-menu li.active a {
+  color: #007bff;
+  font-weight: 700;
+}
+
+/* Overlay mobile */
+.nav-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: 1000;
+}
+
+/* Grand écran : menu latéral discret */
+@media (min-width: 900px) {
+  .nav-menu {
+    width: 0 !important;
+    max-width: 220px !important;
+    height: auto;
+    top: 1rem;
+    left: 1rem;
+    border-radius: 12px;
+    box-shadow: none;
+    transition: width 0.3s, height 0.3s, box-shadow 0.3s;
+    padding-bottom: 1rem;
+    pointer-events: none;
+    opacity: 0;
+  }
+  .nav-menu.open {
+    width: 220px !important;
+    max-width: 220px !important;
+    height: auto !important;
+    min-height: 180px;
+    background: #fff;
+    z-index: 1001;
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.08);
+    pointer-events: auto;
+    opacity: 1;
+  }
+  .nav-menu a span {
+    display: inline;
+  }
+  .nav-menu a i {
+    margin-right: 8px !important;
+  }
+  .nav-burger {
+    display: flex;
+  }
+  .nav-overlay {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-menu a span {
+    display: none;
+  }
+  .nav-menu a i {
+    margin-right: 0 !important;
+  }
+}
+
+.nav-home-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5em;
+  width: 22px;
+  height: 22px;
+}
+
+.user-menu-wrapper {
+  position: absolute;
+  top: 18px;
+  right: 32px;
+  z-index: 1002;
+}
+.user-menu-btn {
+  background: none;
+  border: none;
+  color: #0071bc;
+  font-size: 2.1em;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0.1em 0.2em;
+  transition: background 0.15s;
+}
+.user-menu-btn:hover {
+  background: #eaf4ff;
+}
+.user-dropdown-menu {
+  position: absolute;
+  top: 2.7em;
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  min-width: 170px;
+  padding: 0.5em 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  z-index: 1003;
+  animation: fadeInMenu 0.18s;
+}
+@keyframes fadeInMenu {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.user-dropdown-menu a,
+.user-dropdown-menu button {
+  background: none;
+  border: none;
+  color: #222;
+  text-align: left;
+  font-size: 1.08em;
+  padding: 0.7em 1.2em;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.13s, color 0.13s;
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+}
+.user-dropdown-menu a:hover,
+.user-dropdown-menu button:hover {
+  background: #f2f6fa;
+  color: #0071bc;
+}
+.logout-btn {
+  color: #c00;
+  font-weight: 600;
+}
+.logout-btn:hover {
+  background: #ffeaea;
+  color: #a00;
+}
+@media (max-width: 700px) {
+  .user-menu-wrapper {
+    right: 12px;
+    top: 12px;
+  }
+  .user-dropdown-menu {
+    min-width: 120px;
+    font-size: 0.98em;
+  }
+}

@@ -1,0 +1,63 @@
+/* Styles pour le modal de gestion */
+.modal-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.18);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gestion-modal-container {
+  background: #fff;
+  padding: 2.5em 2em;
+  border-radius: 14px;
+  min-width: 280px;
+  max-width: 340px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+  position: relative;
+  text-align: center;
+}
+.gestion-modal-title {
+  font-size: 22px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+.gestion-modal-links {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.gestion-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  font-size: 18px;
+  border-radius: 8px;
+  background: #f5f5f5;
+  color: #333;
+  border: 1px solid #bbb;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.gestion-btn:hover {
+  background: #eaf4ff;
+  color: #0071bc;
+}
+.gestion-modal-close {
+  margin-top: 24px;
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.gestion-modal-close:hover {
+  background: #ddd;
+}

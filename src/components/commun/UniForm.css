@@ -1,0 +1,305 @@
+/* Formulaires harmonisés - style unique pour tous les formulaires (utilisateurs, bénéficiaires, profil, login) */
+
+.uni-form-container,
+.create-user-form,
+.create-beneficiaire-form,
+.edit-user-form,
+.edit-beneficiaire-form,
+.uni-form,
+form.uni-form {
+  max-width: 420px;
+  width: auto;
+  margin: 2rem auto;
+  padding: 2rem 1.5rem;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.uni-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.uni-form label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #333;
+  text-align: left !important;
+  display: block;
+  width: 100%;
+}
+
+.uni-form input,
+.uni-form select {
+  padding: 0.7em;
+  font-size: 1.05em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  transition: border 0.2s;
+  width: 100% !important;
+  box-sizing: border-box;
+  display: block;
+}
+
+.uni-form input:focus,
+.uni-form select:focus {
+  border: 1.5px solid #0071bc;
+  outline: none;
+}
+
+.uni-form button[type="submit"] {
+  padding: 0.9em;
+  font-size: 1.1em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 0.5em;
+  transition: background 0.2s;
+}
+
+.uni-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.uni-form .password-field-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  gap: 0.5em;
+}
+
+.uni-form .password-input {
+  flex: 1 1 auto;
+  padding-right: 2.5em;
+  width: 100% !important;
+  min-width: 0;
+}
+
+.uni-form .fa-eye,
+.uni-form .fa-eye-slash {
+  position: absolute;
+  right: 0.7em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3em;
+  color: #0071bc;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.uni-form .fa-eye:hover,
+.uni-form .fa-eye-slash:hover {
+  color: #005999;
+}
+
+.uni-form .form-help {
+  font-size: 0.9em;
+  color: #555;
+  margin-top: -0.7em;
+  margin-bottom: 0.7em;
+  text-align: left;
+}
+
+.uni-form .form-error {
+  color: #c00;
+  font-size: 0.98em;
+  margin-top: 0.5em;
+}
+
+.uni-form .form-success {
+  color: #1a8a1a;
+  font-size: 0.98em;
+  margin-top: 0.5em;
+}
+
+.page-centered-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  background: #f9f9f9;
+  position: relative;
+  z-index: 1;
+  padding-top: 60px; /* espace pour le menu burger */
+}
+
+.page-centered-container h1 {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+}
+
+@media (max-width: 700px), (max-width: 600px) {
+  .page-centered-container {
+    margin-top: 40px !important;
+  }
+  .page-centered-container h1 {
+    margin-top: 8px !important;
+    padding-top: 8px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-centered-container {
+    padding-top: 80px;
+    margin-top: 40px;
+  }
+  .page-centered-container h1 {
+    font-size: 1.3rem;
+    padding: 0.5em 0.5em;
+  }
+}
+
+@media (max-width: 700px) {
+  .uni-form-container {
+    max-width: 98vw;
+  }
+}
+
+.produits-table {
+  width: 80%;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.produits-table th, .produits-table td {
+  padding: 1em 0.7em;
+  text-align: left;
+  font-size: 1.08em;
+}
+.produits-table th {
+  background: #f2f6fa;
+  color: #0071bc;
+  font-weight: 700;
+  border-bottom: 2px solid #e0e0e0;
+}
+.produits-table tr:not(:last-child) td {
+  border-bottom: 1px solid #f0f0f0;
+}
+.produits-table tr:hover {
+  background: #f7fbff;
+}
+@media (max-width: 700px) {
+  .produits-table {
+    font-size: 0.98em;
+    max-width: 98vw;
+  }
+  .produits-table th, .produits-table td {
+    padding: 0.7em 0.3em;
+  }
+}
+
+.add-produit-btn {
+  margin-left: 24px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5em 1.1em;
+  font-size: 1em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.add-produit-btn:hover {
+  background: #0056b3;
+}
+
+.edit-btn, .delete-btn {
+  background: none;
+  border: none;
+  color: #0071bc;
+  font-size: 1.1em;
+  margin: 0 0.3em;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0.3em 0.5em;
+  transition: background 0.15s, color 0.15s;
+}
+.edit-btn:hover {
+  background: #eaf4ff;
+  color: #0056b3;
+}
+.delete-btn {
+  color: #c00;
+}
+.delete-btn:hover {
+  background: #ffeaea;
+  color: #a00;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+}
+.form-buttons button {
+  height: 44px;
+  min-width: 0;
+  padding: 0 1.5em;
+  border-radius: 8px;
+  border: none;
+  font-size: 17px;
+  cursor: pointer;
+  font-weight: 600;
+  width: auto;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+.form-buttons button[type="submit"] {
+  background: #0071bc;
+  color: #fff;
+  margin-top: 0 !important;
+}
+.form-buttons .cancel-btn {
+  background: #eee;
+  color: #333;
+  font-weight: 500;
+}
+.form-buttons .cancel-btn:hover {
+  background: #bbb;
+}
+
+.base-modal-container {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+  position: relative;
+  text-align: left;
+  min-width: 320px;
+  max-width: 400px;
+  padding: 2em;
+}
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.35) !important;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
