@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './UniForm.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+
 function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -47,7 +49,7 @@ function Login({ onLogin }) {
     }
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:3001/login', {
+      const res = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
