@@ -44,5 +44,5 @@
     "cross-env": "^7.0.3"
   },
   "proxy": "http://localhost:3001",
-  "homepage": "https://karma-yrb.github.io/EpiSol"
+  "homepage": "https://episol.yade-services.fr/"
 }
