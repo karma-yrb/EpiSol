@@ -1,13 +1,15 @@
 // Fonctions utilitaires d'accès à l'API des catégories
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+
 export async function fetchCategories() {
-  const res = await fetch('/categories');
+  const res = await fetch(`${API_BASE_URL}/categories`);
   if (!res.ok) throw new Error('Erreur lors du chargement des catégories');
   return await res.json();
 }
 
 export async function addCategory(nom) {
-  const res = await fetch('/categories', {
+  const res = await fetch(`${API_BASE_URL}/categories`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ nom })
@@ -17,7 +19,7 @@ export async function addCategory(nom) {
 }
 
 export async function updateCategory(id, nom) {
-  const res = await fetch(`/categories/${id}`, {
+  const res = await fetch(`${API_BASE_URL}/categories/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ nom })
@@ -27,7 +29,7 @@ export async function updateCategory(id, nom) {
 }
 
 export async function deleteCategory(id) {
-  const res = await fetch(`/categories/${id}`, { method: 'DELETE' });
+  const res = await fetch(`${API_BASE_URL}/categories/${id}`, { method: 'DELETE' });
   if (!res.ok) {
     let msg = 'Erreur lors de la suppression.';
     let data = null;
