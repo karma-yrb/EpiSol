@@ -39,7 +39,7 @@ function NavMenu({ user }) {
             <li key={link.to} className={location.pathname === link.to ? 'active' : ''}>
               <Link to={link.to} onClick={() => setOpen(false)}>
                 <i className={`fa ${link.icon}`} aria-hidden="true" style={{fontSize: '1.3em', marginRight: isMobile ? 0 : 8}}></i>
-                {!isMobile && <span>{link.label}</span>}
+                <span>{link.label}</span>
               </Link>
             </li>
           ))}
