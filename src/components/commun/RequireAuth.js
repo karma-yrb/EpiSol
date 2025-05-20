@@ -4,10 +4,10 @@ import { Navigate } from 'react-router-dom';
 function RequireAuth({ children }) {
   const token = localStorage.getItem('token');
 
-  // Redirect to Access Denied for unauthenticated users
+  // Redirige vers /login pour les utilisateurs non connectés
   if (!token) {
-    console.warn('Utilisateur non connecté, redirection vers /access-denied');
-    return <Navigate to="/access-denied" replace />;
+    console.warn('Utilisateur non connecté, redirection vers /login');
+    return <Navigate to="/login" replace />;
   }
 
   // Allow mock-token for development purposes
