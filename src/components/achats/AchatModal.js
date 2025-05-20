@@ -129,7 +129,18 @@ function AchatModal({
           categorie_id
         })
       });
-      if (!res.ok) throw new Error("Erreur lors de la création du produit");
+      if (!res.ok) {
+        let errorMsg = `Erreur lors de la création du produit (status: ${res.status})`;
+        try {
+          const errorData = await res.json();
+          if (errorData && errorData.error) errorMsg += `: ${errorData.error}`;
+        } catch (e) {
+          // ignore JSON parse error
+        }
+        setAddProduitError(errorMsg);
+        console.error('[AchatModal] Création produit échouée:', errorMsg);
+        return;
+      }
       const produitCree = await res.json();
       setAddProduitSuccess("Produit créé avec succès !");
       setTimeout(() => {
