@@ -88,7 +88,7 @@
 @media (min-width: 900px) {
   .nav-menu {
     width: 0 !important;
-    max-width: 220px !important;
+    max-width: 250px !important;
     height: auto;
     top: 1rem;
     left: 1rem;
@@ -100,8 +100,8 @@
     opacity: 0;
   }
   .nav-menu.open {
-    width: 220px !important;
-    max-width: 220px !important;
+    width: 250px !important;
+    max-width: 250px !important;
     height: auto !important;
     min-height: 180px;
     background: #fff;
