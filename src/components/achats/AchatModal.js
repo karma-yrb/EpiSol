@@ -40,7 +40,7 @@ function AchatModal({
   // Récupère les catégories à l'ouverture du modal d'ajout produit
   useEffect(() => {
     if (showAddProduit) {
-      fetch('/categories')
+      fetch(`${API_BASE_URL}/categories`)
         .then(res => res.json())
         .then(data => setCategories(Array.isArray(data) ? data : []))
         .catch(() => setCategories([]));
@@ -119,7 +119,7 @@ function AchatModal({
         setAddProduitError("Veuillez choisir une catégorie.");
         return;
       }
-      const res = await fetch('/produits', {
+      const res = await fetch(`${API_BASE_URL}/produits`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

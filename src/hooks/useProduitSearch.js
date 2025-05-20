@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+
 /**
  * Hook personnalisé pour la recherche de produits avec dropdown et navigation clavier.
  * @returns {Object} Tous les états et handlers nécessaires à la recherche produit.
@@ -16,7 +18,7 @@ export function useProduitSearch() {
   useEffect(() => {
     if (produitSearch.length >= 3) {
       setProduitLoading(true);
-      fetch(`/produits?search=${encodeURIComponent(produitSearch)}`)
+      fetch(`${API_BASE_URL}/produits?search=${encodeURIComponent(produitSearch)}`)
         .then(res => res.json())
         .then(data => {
           setProduitResults(data);
