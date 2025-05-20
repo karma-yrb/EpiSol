@@ -31,6 +31,7 @@ function ManageProduits() {
       })
       .then(data => {
         setCategories(Array.isArray(data) ? data : []);
+        setNotif({ type: '', message: '' }); // Efface la notif d'erreur si succès
       })
       .catch((err) => {
         setCategories([]);
