@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 
 /**
  * Hook personnalisé pour la recherche de bénéficiaires avec dropdown et navigation clavier.
@@ -14,7 +15,7 @@ export function useBeneficiaireSearch() {
   const [highlighted, setHighlighted] = useState(-1);
 
   useEffect(() => {
-    fetch('/beneficiaires')
+    fetch(`${API_BASE_URL}/beneficiaires`)
       .then(res => res.json())
       .then(data => setBeneficiaires(data));
   }, []);
