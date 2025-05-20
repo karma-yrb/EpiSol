@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 import AjoutProduitModal from '../produits/AjoutProduitModal';
 import './AchatModal.css';
 
