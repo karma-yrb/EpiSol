@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Achats.css';
 import AchatModal from './AchatModal';
-import { addAchat } from '../../api/achatsApi';
+import { addAchat as addAchatApi } from '../../api/achatsApi';
 import { useBeneficiaireSearch } from '../../hooks/useBeneficiaireSearch';
 import { useAchatList } from '../../hooks/useAchatList';
 import { useProduitSearch } from '../../hooks/useProduitSearch';
@@ -98,7 +98,7 @@ function Achats() {
     }));
     console.log('[Achats] handleSaveAchats - payload envoyé:', { beneficiaire_id: selectedB.id, lignes });
     try {
-      const response = await addAchat(selectedB.id, lignes);
+      const response = await addAchatApi(selectedB.id, lignes);
       console.log('[Achats] handleSaveAchats - réponse API:', response);
       resetAchatList();
       setSaveSuccess(true);
