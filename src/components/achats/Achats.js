@@ -223,16 +223,17 @@ function Achats() {
             <button className="main-action-btn" style={{marginTop:24}} onClick={handleSaveAchats}>
               <i className="fa fa-save"></i> Enregistrer les achats
             </button>
-            {saveSuccess && (
-              <div className="notification success" style={{marginTop:16}}>
-                <i className="fa fa-check-circle"></i> Achats enregistrés avec succès !
-              </div>
-            )}
-            {saveError && (
-              <div className="notification error" style={{marginTop:16}}>
-                <i className="fa fa-exclamation-circle"></i> {saveError}
-              </div>
-            )}
+          </div>
+        )}
+        {/* Notifications globales */}
+        {saveSuccess && (
+          <div className="notification success" style={{marginTop:16}}>
+            <i className="fa fa-check-circle"></i> Achats enregistrés avec succès !
+          </div>
+        )}
+        {saveError && (
+          <div className="notification error" style={{marginTop:16}}>
+            <i className="fa fa-exclamation-circle"></i> {saveError}
           </div>
         )}
       </div>
