@@ -64,9 +64,22 @@ function App() {
                 <Route path="/beneficiaires" element={<ManageBeneficiaire />} />
                 <Route path="/beneficiaires/add" element={<EditBeneficiaire />} />
                 <Route path="/beneficiaires/edit/:id" element={<EditBeneficiaire />} />
-                <Route path="/users" element={<ManageUsers userConnected={user} />} />
-                <Route path="/users/add" element={<EditUser />} />
-                <Route path="/users/edit/:id" element={<EditUser />} />
+                {/* ADMIN ONLY: Gestion des utilisateurs */}
+                <Route path="/users" element={
+                  <RequireAuth requiredRole="admin">
+                    <ManageUsers userConnected={user} />
+                  </RequireAuth>
+                } />
+                <Route path="/users/add" element={
+                  <RequireAuth requiredRole="admin">
+                    <EditUser />
+                  </RequireAuth>
+                } />
+                <Route path="/users/edit/:id" element={
+                  <RequireAuth requiredRole="admin">
+                    <EditUser />
+                  </RequireAuth>
+                } />
                 <Route path="/produits" element={<ManageProduits />} />
                 <Route path="/categories-management" element={<ManageCategories />} />
                 <Route path="/achats" element={<Achats />} />

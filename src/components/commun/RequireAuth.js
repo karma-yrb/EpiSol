@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-function RequireAuth({ children }) {
+function RequireAuth({ children, requiredRole }) {
   const token = localStorage.getItem('token');
 
   // Redirige vers /login pour les utilisateurs non connectés
@@ -28,6 +28,11 @@ function RequireAuth({ children }) {
     if (isExpired) {
       console.warn('Token expiré, redirection vers /login');
       return <Navigate to="/login" replace />;
+    }
+    // Vérifie le rôle si nécessaire
+    if (requiredRole && payload.role !== requiredRole) {
+      console.warn(`Accès refusé : rôle requis = ${requiredRole}, rôle utilisateur = ${payload.role}`);
+      return <Navigate to="/access-denied" replace />;
     }
   } catch (error) {
     console.error('Erreur lors de la validation du token :', error);
