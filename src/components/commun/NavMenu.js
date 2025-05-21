@@ -4,7 +4,7 @@ import './NavMenu.css';
 
 const NAV_LINKS = [
   { to: '/', icon: 'fa-home', label: 'Accueil' },
-  { to: '/users', icon: 'fa-users', label: 'Utilisateurs' },
+  { to: '/users', icon: 'fa-users', label: 'Utilisateurs', adminOnly: true },
   { to: '/beneficiaires', icon: 'fa-address-book', label: 'Bénéficiaires' },
   { to: '/produits', icon: 'fa-shopping-basket', label: 'Produits' }, // icône panier pour produits
   { to: '/achats', icon: 'fa-shopping-cart', label: 'Nouvel achat' }, // Lien explicite vers la page d'ajout d'achats
@@ -18,6 +18,19 @@ function NavMenu({ user }) {
 
   // Détecte si mobile (largeur < 900px)
   const isMobile = window.innerWidth < 900;
+
+  // Décoder le token pour obtenir le rôle
+  let userRole = null;
+  const token = localStorage.getItem('token');
+  if (token && token !== 'mock-token') {
+    try {
+      const parts = token.split('.');
+      if (parts.length === 3) {
+        const payload = JSON.parse(atob(parts[1]));
+        userRole = payload.role;
+      }
+    } catch {}
+  }
 
   return (
     <>
@@ -35,7 +48,10 @@ function NavMenu({ user }) {
         aria-label="Menu principal"
       >
         <ul>
-          {NAV_LINKS.filter(link => link.to !== '/profile').map(link => (
+          {NAV_LINKS.filter(link => {
+            if (link.adminOnly && userRole !== 'admin') return false;
+            return true;
+          }).map(link => (
             <li key={link.to} className={location.pathname === link.to ? 'active' : ''}>
               <Link to={link.to} onClick={() => setOpen(false)}>
                 <i className={`fa ${link.icon}`} aria-hidden="true" style={{fontSize: '1.3em', marginRight: isMobile ? 0 : 8}}></i>
