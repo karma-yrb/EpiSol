@@ -158,6 +158,12 @@ function AchatModal({
     }
   };
 
+  // Log pour debug filtrage produits dans le modal
+  useEffect(() => {
+    console.log('[AchatModal] produitSearch:', produitSearch);
+    console.log('[AchatModal] produitResults:', produitResults);
+  }, [produitSearch, produitResults]);
+
   if (!show) return null;
 
   return (
