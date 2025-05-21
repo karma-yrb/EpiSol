@@ -196,6 +196,45 @@
   margin-right: 8px;
 }
 
+.icon-blue {
+  color: #007bff;
+}
+.icon-red {
+  color: #c00;
+}
+.icon-sm {
+  font-size: 1.1em;
+}
+.icon-lg {
+  font-size: 1.75em;
+}
+.mr-8 {
+  margin-right: 8px;
+}
+.ml-4 {
+  margin-left: 4px;
+}
+.centered-text {
+  text-align: center;
+}
+.achats-list-search-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+.achats-list-search-input {
+  padding: 7px 12px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-size: 15px;
+  min-width: 180px;
+}
+.sortable-col {
+  cursor: pointer;
+  user-select: none;
+}
+
 @media (max-width: 600px) {
   .achats-main-card {
     padding: 1em;

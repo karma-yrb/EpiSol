@@ -5,8 +5,8 @@ function CategoryRow({ cat, editId, editValue, setEditValue, handleEdit, handleE
     <tr>
       <td>
         {editId === cat.id ? (
-          <form style={{display:'flex',gap:8,alignItems:'center'}} onSubmit={e => {e.preventDefault(); handleEditSubmit(cat.id);}}>
-            <input value={editValue} onChange={e => setEditValue(e.target.value)} style={{width: '140px'}} autoFocus />
+          <form className="category-row-form-row" onSubmit={e => {e.preventDefault(); handleEditSubmit(cat.id);}}>
+            <input value={editValue} onChange={e => setEditValue(e.target.value)} className="category-row-input" autoFocus />
             <button type="submit" className="save-button" title="Enregistrer"><i className="fa fa-check"></i></button>
             <button type="button" className="cancel-button" onClick={() => setEditId(null)} title="Annuler"><i className="fa fa-times"></i></button>
           </form>
@@ -14,7 +14,7 @@ function CategoryRow({ cat, editId, editValue, setEditValue, handleEdit, handleE
           cat.nom
         )}
       </td>
-      <td style={{display:'flex',gap:8,alignItems:'center',justifyContent:'center'}}>
+      <td className="actions-cell">
         <button className="edit-button" title="Éditer" onClick={() => handleEdit(cat.id, cat.nom)}>
           <i className="fa fa-edit"></i>
         </button>

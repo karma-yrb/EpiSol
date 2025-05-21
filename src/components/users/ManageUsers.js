@@ -61,11 +61,11 @@ function ManageUsers({ userConnected }) {
   return (
     <div className="page-centered-container">
       <h1>
-        <i className="fa fa-user" style={{color:'#007bff',fontSize:28}}></i>
+        <i className="fa fa-user icon-blue icon-lg mr-8"></i>
         Gestion des utilisateurs
       </h1>
       <Link to="/users/add">
-        <button className="create-button"><i className="fa fa-plus" style={{marginRight:6}}></i>Ajouter un utilisateur</button>
+        <button className="create-button"><i className="fa fa-plus mr-6"></i>Ajouter un utilisateur</button>
       </Link>
       <table className="produits-table">
         <thead>
@@ -76,7 +76,7 @@ function ManageUsers({ userConnected }) {
             <tr key={user.id}>
               <td>{user.nom}</td>
               <td>{user.prenom}</td>
-              <td style={{display:'flex',gap:8,alignItems:'center',justifyContent:'center'}}>
+              <td className="actions-cell">
                 <Link to={`/users/edit/${user.id}`} className="edit-link">
                   <button className="edit-button" title="Éditer">
                     <i className="fa fa-edit"></i>
@@ -105,7 +105,7 @@ function ManageUsers({ userConnected }) {
           confirmLabel="Supprimer"
           cancelLabel="Annuler"
           title="Confirmer la suppression de l'utilisateur ?"
-          icon={<i className="fa fa-exclamation-triangle" style={{color:'#c00',marginRight:8}}></i>}
+          icon={<i className="fa fa-exclamation-triangle icon-red mr-8"></i>}
         />
       )}
     </div>

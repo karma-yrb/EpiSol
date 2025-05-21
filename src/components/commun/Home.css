@@ -112,6 +112,48 @@ button:hover {
   text-decoration: none;
 }
 
+.home-btns {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.main-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 28px 38px;
+  font-size: 22px;
+  border-radius: 16px;
+  border: none;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.main-action-btn i {
+  font-size: 38px;
+}
+
+.home-btn-green {
+  background: #1a7f1a;
+  color: #fff;
+}
+.home-btn-green:hover {
+  background: #146614;
+}
+
+.home-btn-blue {
+  background: #0071bc;
+  color: #fff;
+}
+.home-btn-blue:hover {
+  background: #005a8c;
+}
+
 @media (max-width: 600px) {
   .home-btns {
     flex-direction: column !important;

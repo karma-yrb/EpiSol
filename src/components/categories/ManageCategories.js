@@ -105,11 +105,11 @@ function ManageCategories() {
   return (
     <div className="page-centered-container">
       <h1>
-        <i className="fa fa-tags" style={{color:'#007bff',fontSize:28}}></i>
+        <i className="fa fa-tags icon-blue icon-lg mr-8"></i>
         Gestion des catégories
       </h1>
       {editId !== 'add' && (
-        <button className="create-button" onClick={() => setEditId('add')}><i className="fa fa-plus" style={{marginRight:6}}></i>Ajouter une catégorie</button>
+        <button className="create-button" onClick={() => setEditId('add')}><i className="fa fa-plus mr-6"></i>Ajouter une catégorie</button>
       )}
       {editId === 'add' && (
         <CategoryAddForm

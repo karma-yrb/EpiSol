@@ -223,6 +223,38 @@ form.uni-form {
   background: #ddd;
 }
 
+.icon-blue {
+  color: #007bff;
+}
+.icon-lg {
+  font-size: 1.75em;
+}
+.mr-8 {
+  margin-right: 8px;
+}
+.mr-6 {
+  margin-right: 6px;
+}
+
+.category-add-form-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 16px 0;
+}
+.category-add-input {
+  width: 180px;
+}
+
+.category-row-form-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.category-row-input {
+  width: 140px;
+}
+
 @media (max-width: 700px), (max-width: 600px) {
   /* Suppression du padding-top et margin-top sur .page-centered-container pour harmonisation UI */
   .page-centered-container h1 {

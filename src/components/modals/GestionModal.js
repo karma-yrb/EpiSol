@@ -19,7 +19,7 @@ function GestionModal({ show, onClose, navigate }) {
         <GestionLink icon="fa-address-book" label="Bénéficiaires" to="/beneficiaires" onClose={onClose} navigate={navigate} />
         <GestionLink icon="fa-shopping-basket" label="Produits" to="/produits" onClose={onClose} navigate={navigate} />
         <GestionLink icon="fa-tags" label="Catégories" to="/categories-management" onClose={onClose} navigate={navigate} />
-        <GestionLink icon="fa-list-alt" label="Achats" to="/liste-achats" onClose={onClose} navigate={navigate} />
+        <GestionLink icon="fa-list-alt" label="Historique des achats" to="/liste-achats" onClose={onClose} navigate={navigate} />
       </div>
       <button className="gestion-modal-close" onClick={onClose}>Fermer</button>
     </BaseModal>

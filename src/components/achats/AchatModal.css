@@ -139,3 +139,42 @@
   font-size: 15px;
   text-align: center;
 }
+
+.icon-red {
+  color: #c00;
+}
+.icon-green {
+  color: #217346;
+}
+.icon-gray {
+  color: #888;
+}
+.mr-6 {
+  margin-right: 6px;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+.centered-text {
+  text-align: center;
+}
+.achat-details-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+}
+.achat-details-export-btns {
+  display: flex;
+  gap: 10px;
+}
+.achat-details-close-btn {
+  background: #eee;
+  color: #333;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+.achat-details-close-btn:hover {
+  background: #ddd;
+  color: #111;
+}

@@ -176,17 +176,15 @@ function ManageProduits() {
   return (
     <div className="page-centered-container">
       {/* Un seul h1 harmonisé */}
-      <h1 className="page-title"><i className="fa fa-shopping-basket" style={{color:'#007bff',fontSize:28,marginRight:8}}></i>Gestion des produits</h1>
-      <div className="page-header-bar">
-        {/* SUPPRESSION DU MENU NAVIGATION ICI */}
-      </div>
+      <h1 className="page-title"><i className="fa fa-shopping-basket icon-blue icon-lg mr-8"></i>Gestion des produits</h1>
+      <div className="page-header-bar"></div>
       <div className="produits-filtres">
         <div className="produits-btn-group">
           <button onClick={handleAdd} className="add-produit-btn" title="Ajouter un produit">
-            <i className="fa fa-plus"></i> Ajouter un produit
+            <i className="fa fa-plus mr-6"></i> Ajouter un produit
           </button>
           <button type="button" className="produits-categories-btn special" onClick={()=>navigate('/categories-management')}>
-            <i className="fa fa-tags" style={{marginRight:6}}></i>Gérer les catégories
+            <i className="fa fa-tags mr-6"></i>Gérer les catégories
           </button>
         </div>
         <input
@@ -239,11 +237,11 @@ function ManageProduits() {
           confirmLabel="Supprimer"
           cancelLabel="Annuler"
           title="Confirmer la suppression du produit ?"
-          icon={<i className="fa fa-exclamation-triangle" style={{color:'#c00',marginRight:8}}></i>}
+          icon={<i className="fa fa-exclamation-triangle icon-red mr-8"></i>}
         />
       )}
       {loading ? (
-        <div className="loading"><i className="fa fa-spinner fa-spin"></i> Chargement...</div>
+        <div className="loading centered-text"><i className="fa fa-spinner fa-spin"></i> Chargement...</div>
       ) : (
         <table className="produits-table">
           <thead>
@@ -260,19 +258,17 @@ function ManageProduits() {
                 <td>{p.nom}</td>
                 <td>{p.categorie}</td>
                 <td>{Number(p.prix).toFixed(2)}</td>
-                <td>
-                  <div style={{display:'flex',gap:8,justifyContent:'center',alignItems:'center'}}>
-                    <button
-                      className="edit-btn"
-                      title="Éditer"
-                      onClick={() => handleEdit(p.id)}
-                    >
-                      <i className="fa fa-edit" aria-hidden="true"></i>
-                    </button>
-                    <button className="delete-btn" title="Supprimer" onClick={() => handleDelete(p.id)}>
-                      <i className="fa fa-trash"></i>
-                    </button>
-                  </div>
+                <td className="actions-cell">
+                  <button
+                    className="edit-btn"
+                    title="Éditer"
+                    onClick={() => handleEdit(p.id)}
+                  >
+                    <i className="fa fa-edit"></i>
+                  </button>
+                  <button className="delete-btn" title="Supprimer" onClick={() => handleDelete(p.id)}>
+                    <i className="fa fa-trash"></i>
+                  </button>
                 </td>
               </tr>
             ))}

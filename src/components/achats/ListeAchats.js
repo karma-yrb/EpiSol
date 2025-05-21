@@ -107,43 +107,43 @@ function ListeAchats() {
 
   return (
     <div className="page-centered-container">
-      <h1 className="page-title"><i className="fa fa-list-alt" style={{color:'#007bff',fontSize:28,marginRight:8}}></i>Historique des achats</h1>
+      <h1 className="page-title"><i className="fa fa-list-alt icon-blue icon-lg mr-8"></i>Historique des achats</h1>
       {notif.message && (
         <div className={`notification ${notif.type}`}>{notif.message}</div>
       )}
       {loading ? (
-        <div className="loading"><i className="fa fa-spinner fa-spin"></i> Chargement...</div>
+        <div className="loading centered-text"><i className="fa fa-spinner fa-spin"></i> Chargement...</div>
       ) : (
         <>
-        <div style={{display:'flex',gap:16,marginBottom:12,alignItems:'center'}}>
+        <div className="achats-list-search-row">
           <input
             type="text"
             placeholder="Recherche globale..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            style={{padding:'7px 12px',borderRadius:6,border:'1px solid #bbb',fontSize:15,minWidth:180}}
+            className="achats-list-search-input"
           />
         </div>
         <table className="produits-table achats-list-table">
           <thead>
             <tr>
-              <th style={{cursor:'pointer'}} onClick={() => handleSort('date_achat')}>
+              <th className="sortable-col" onClick={() => handleSort('date_achat')}>
                 Date
                 {sortCol === 'date_achat' && (
-                  <i className={`fa fa-caret-${sortDir === 'asc' ? 'up' : 'down'}`} style={{marginLeft:4}}></i>
+                  <i className={`fa fa-caret-${sortDir === 'asc' ? 'up' : 'down'} icon-sm ml-4`}></i>
                 )}
               </th>
-              <th style={{cursor:'pointer'}} onClick={() => handleSort('beneficiaire')}>
+              <th className="sortable-col" onClick={() => handleSort('beneficiaire')}>
                 Bénéficiaire
                 {sortCol === 'beneficiaire' && (
-                  <i className={`fa fa-caret-${sortDir === 'asc' ? 'up' : 'down'}`} style={{marginLeft:4}}></i>
+                  <i className={`fa fa-caret-${sortDir === 'asc' ? 'up' : 'down'} icon-sm ml-4`}></i>
                 )}
               </th>
               <th>Quantité</th>
-              <th style={{cursor:'pointer'}} onClick={() => handleSort('total')}>
+              <th className="sortable-col" onClick={() => handleSort('total')}>
                 Total (€)
                 {sortCol === 'total' && (
-                  <i className={`fa fa-caret-${sortDir === 'asc' ? 'up' : 'down'}`} style={{marginLeft:4}}></i>
+                  <i className={`fa fa-caret-${sortDir === 'asc' ? 'up' : 'down'} icon-sm ml-4`}></i>
                 )}
               </th>
               <th>Actions</th>
@@ -157,10 +157,10 @@ function ListeAchats() {
                 <td>{Array.isArray(a.lignes) ? a.lignes.reduce((sum, l) => sum + (l.quantite || 0), 0) : (typeof a.quantite === 'number' ? a.quantite : '')}</td>
                 <td>{Number(a.total).toFixed(2)}</td>
                 <td>
-                  <button className="edit-btn" title="Détails" onClick={() => handleDetails(a.id)}>
+                  <button className="edit-btn" title="Détails">
                     <i className="fa fa-eye"></i>
                   </button>
-                  <button className="delete-btn" title="Supprimer" onClick={() => handleDelete(a.id)}>
+                  <button className="delete-btn" title="Supprimer">
                     <i className="fa fa-trash"></i>
                   </button>
                 </td>
@@ -180,7 +180,7 @@ function ListeAchats() {
           confirmLabel="Supprimer"
           cancelLabel="Annuler"
           title="Supprimer l'achat ?"
-          icon={<i className="fa fa-exclamation-triangle" style={{color:'#c00',marginRight:8}}></i>}
+          icon={<i className="fa fa-exclamation-triangle icon-red mr-8"></i>}
         />
       )}
       {/* Modal de détails */}

@@ -88,11 +88,11 @@ function ManageBeneficiaire() {
   return (
     <div className="page-centered-container">
       <h1>
-        <i className="fa fa-users" style={{color:'#007bff',fontSize:28}}></i>
+        <i className="fa fa-users icon-blue icon-lg mr-8"></i>
         Gestion des bénéficiaires
       </h1>
       <Link to="/beneficiaires/add">
-        <button className="create-button"><i className="fa fa-plus" style={{marginRight:6}}></i>Ajouter un bénéficiaire</button>
+        <button className="create-button"><i className="fa fa-plus mr-6"></i>Ajouter un bénéficiaire</button>
       </Link>
       <table className="produits-table">
         <thead>
@@ -103,7 +103,7 @@ function ManageBeneficiaire() {
             <tr key={ben.id}>
               <td>{ben.nom}</td>
               <td>{ben.prenom}</td>
-              <td style={{display:'flex',gap:8,alignItems:'center',justifyContent:'center'}}>
+              <td className="actions-cell">
                 <Link to={`/beneficiaires/edit/${ben.id}`} className="edit-link">
                   <button className="edit-button" title="Éditer">
                     <i className="fa fa-edit"></i>
@@ -132,7 +132,7 @@ function ManageBeneficiaire() {
           confirmLabel="Supprimer"
           cancelLabel="Annuler"
           title="Confirmer la suppression du bénéficiaire ?"
-          icon={<i className="fa fa-exclamation-triangle" style={{color:'#c00',marginRight:8}}></i>}
+          icon={<i className="fa fa-exclamation-triangle icon-red mr-8"></i>}
         />
       )}
     </div>

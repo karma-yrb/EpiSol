@@ -303,3 +303,25 @@ form.uni-form {
   align-items: center;
   justify-content: center;
 }
+
+.icon-blue {
+  color: #007bff;
+}
+.icon-red {
+  color: #c00;
+}
+.icon-lg {
+  font-size: 1.75em;
+}
+.mr-8 {
+  margin-right: 8px;
+}
+.mr-6 {
+  margin-right: 6px;
+}
+.actions-cell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}

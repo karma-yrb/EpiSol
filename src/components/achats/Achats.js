@@ -226,6 +226,7 @@ function Achats() {
           </div>
         )}
         {/* Notifications globales */}
+        {console.log('[DEBUG] saveSuccess:', saveSuccess, 'saveError:', saveError)}
         {saveSuccess && (
           <div className="notification success" style={{marginTop:16}}>
             <i className="fa fa-check-circle"></i> Achats enregistrés avec succès !

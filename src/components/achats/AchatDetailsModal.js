@@ -40,10 +40,10 @@ function AchatDetailsModal({ show, details, loading, onClose }) {
       <div className="achat-modal-container" onClick={e => e.stopPropagation()}>
         <div className="achat-modal-title">Détail de l'achat</div>
         {loading ? (
-          <div style={{textAlign:'center'}}><i className="fa fa-spinner fa-spin"></i> Chargement...</div>
+          <div className="centered-text"><i className="fa fa-spinner fa-spin"></i> Chargement...</div>
         ) : details ? (
           <>
-            <div style={{marginBottom:10}}>
+            <div className="mb-10">
               <b>Bénéficiaire :</b> {details.beneficiaire_nom} {details.beneficiaire_prenom}<br/>
               <b>Date :</b> {details.date_achat ? formatDateFR(details.date_achat) : ''}<br/>
               <b>Total :</b> {Number(details.total).toFixed(2)} €<br/>
@@ -69,20 +69,20 @@ function AchatDetailsModal({ show, details, loading, onClose }) {
                 ))}
               </tbody>
             </table>
-            <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginTop:18}}>
-              <div style={{display:'flex', gap:10}}>
+            <div className="achat-details-actions-row">
+              <div className="achat-details-export-btns">
                 <button className="main-action-btn" onClick={handleExportPDF} title="Exporter en PDF">
-                  <i className="fa fa-file-pdf-o" style={{color:'#c00'}}></i>
+                  <i className="fa fa-file-pdf-o icon-red"></i>
                 </button>
                 <button className="main-action-btn" onClick={handleExportXLS} title="Exporter en XLS">
-                  <i className="fa fa-file-excel-o" style={{color:'#217346'}}></i>
+                  <i className="fa fa-file-excel-o icon-green"></i>
                 </button>
                 <button className="main-action-btn" onClick={handleExportExcel} title="Exporter en Excel">
-                  <i className="fa fa-file-excel-o" style={{color:'#217346'}}></i>
+                  <i className="fa fa-file-excel-o icon-green"></i>
                 </button>
               </div>
-              <button className="main-action-btn" onClick={onClose} style={{background:'#eee',color:'#333'}} title="Fermer">
-                <i className="fa fa-times" style={{color:'#888',marginRight:6}}></i>Fermer
+              <button className="main-action-btn achat-details-close-btn" onClick={onClose} title="Fermer">
+                <i className="fa fa-times icon-gray mr-6"></i>Fermer
               </button>
             </div>
           </>
