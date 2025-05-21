@@ -9,13 +9,23 @@ export async function fetchAchats() {
 }
 
 export async function addAchat(beneficiaire_id, lignes) {
-  const res = await fetch(`${API_BASE_URL}/achats`, {
+  const url = `${API_BASE_URL}/achats`;
+  const payload = { beneficiaire_id, lignes };
+  console.log('[achatsApi] POST', url, payload);
+  const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ beneficiaire_id, lignes })
+    body: JSON.stringify(payload)
   });
+  let data;
+  try {
+    data = await res.json();
+  } catch (e) {
+    data = null;
+  }
+  console.log('[achatsApi] Réponse:', res.status, data);
   if (!res.ok) throw new Error('Erreur lors de l\'enregistrement des achats');
-  return await res.json();
+  return data;
 }
 
 // Ajoutez d'autres fonctions si besoin (updateAchat, deleteAchat, etc.)

@@ -26,6 +26,16 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script>
+      // Si on vient d'une redirection 404.html, on restaure l'URL d'origine
+      if (window.location.search.includes('redirectedFrom404')) {
+        var originalPath = sessionStorage.getItem('originalPath');
+        if (originalPath) {
+          window.history.replaceState({}, '', originalPath);
+          sessionStorage.removeItem('originalPath');
+        }
+      }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

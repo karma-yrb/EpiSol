@@ -86,14 +86,20 @@ function Achats() {
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [saveError, setSaveError] = useState("");
   const handleSaveAchats = async () => {
-    if (!selectedB || achatList.length === 0) return;
+    console.log('[Achats] handleSaveAchats - bouton cliqué');
+    if (!selectedB || achatList.length === 0) {
+      console.log('[Achats] handleSaveAchats - conditions non remplies', { selectedB, achatList });
+      return;
+    }
     const lignes = achatList.map(a => ({
       produit_id: a.produit.id,
       quantite: a.quantite,
       prix_unitaire: a.prix
     }));
+    console.log('[Achats] handleSaveAchats - payload envoyé:', { beneficiaire_id: selectedB.id, lignes });
     try {
-      await addAchat(selectedB.id, lignes);
+      const response = await addAchat(selectedB.id, lignes);
+      console.log('[Achats] handleSaveAchats - réponse API:', response);
       resetAchatList();
       setSaveSuccess(true);
       setSaveError("");
@@ -101,6 +107,7 @@ function Achats() {
     } catch (err) {
       setSaveError("Erreur lors de l'enregistrement des achats.");
       setTimeout(() => setSaveError(""), 3000);
+      console.error('[Achats] handleSaveAchats - erreur:', err);
     }
   };
 

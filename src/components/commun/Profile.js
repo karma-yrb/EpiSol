@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './UniForm.css';
 import './Profile.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+
 function Profile() {
   const [user, setUser] = useState({ nom: '', prenom: '', email: '', username: '' });
   const [currentPassword, setCurrentPassword] = useState('');
@@ -25,7 +27,7 @@ function Profile() {
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
       const userId = payload.id;
-      fetch(`http://localhost:3001/api/users/${userId}`)
+      fetch(`${API_BASE_URL}/api/users/${userId}`)
         .then((response) => response.json())
         .then((data) => setUser(data))
         .catch(() => navigate('/access-denied'));
@@ -68,7 +70,7 @@ function Profile() {
         const token = localStorage.getItem('token');
         const payload = JSON.parse(atob(token.split('.')[1]));
         const userId = payload.id;
-        const response = await fetch('http://localhost:3001/login', {
+        const response = await fetch(`${API_BASE_URL}/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username: user.username, password: currentPassword })
@@ -78,7 +80,7 @@ function Profile() {
           setLoading(false);
           return;
         }
-        const updateRes = await fetch(`http://localhost:3001/api/users/${userId}`, {
+        const updateRes = await fetch(`${API_BASE_URL}/api/users/${userId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ ...user, password: newPassword })
@@ -101,7 +103,7 @@ function Profile() {
         const token = localStorage.getItem('token');
         const payload = JSON.parse(atob(token.split('.')[1]));
         const userId = payload.id;
-        const updateRes = await fetch(`http://localhost:3001/api/users/${userId}`, {
+        const updateRes = await fetch(`${API_BASE_URL}/api/users/${userId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(user)
