@@ -11,6 +11,8 @@ function EditUser() {
     nom: '',
     prenom: '',
     email: '',
+    username: '',
+    password: '',
     role: ''
   });
 
@@ -18,7 +20,9 @@ function EditUser() {
     const fetchUserId = id || userId; // Utilise l'ID de l'utilisateur connecté si aucun ID n'est fourni
     console.log('Fetching user with ID:', fetchUserId); // Vérifie l'ID utilisé
 
-    fetch(`http://localhost:3001/api/users/${fetchUserId}`) // Correction de l'URL pour inclure le préfixe /api
+    // Utilise l'URL de l'API en production si disponible
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+    fetch(`${apiUrl}/users/${fetchUserId}`)
       .then((response) => {
         console.log('Response status:', response.status); // Vérifie le statut de la réponse
         if (!response.ok) {
@@ -27,8 +31,8 @@ function EditUser() {
         return response.json();
       })
       .then((data) => {
-        console.log('Fetched user data:', data); // Vérifie les données récupérées
-        setUser(data);
+        // Fusionne les données reçues avec l'état initial pour garantir tous les champs
+        setUser(prev => ({ ...prev, ...data }));
       })
       .catch((error) => {
         console.error('Erreur lors de la récupération de l\'utilisateur :', error);
@@ -39,7 +43,8 @@ function EditUser() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const method = id ? 'PUT' : 'POST';
-    const url = id ? `http://localhost:3001/users/${id}` : 'http://localhost:3001/users';
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+    const url = id ? `${apiUrl}/users/${id}` : `${apiUrl}/users`;
 
     fetch(url, {
       method,
