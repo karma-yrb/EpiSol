@@ -5,6 +5,7 @@ import './ManageCategories.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import CategoryAddForm from './CategoryAddForm';
 import CategoryTable from './CategoryTable';
+import ActionIconButton from '../commun/ActionIconButton';
 import { fetchCategories, addCategory, updateCategory, deleteCategory } from '../../api/categoriesApi';
 
 function ManageCategories() {
@@ -139,7 +140,7 @@ function ManageCategories() {
           confirmLabel="Supprimer"
           cancelLabel="Annuler"
           title="Confirmer la suppression ?"
-          icon={<i className="fa fa-exclamation-triangle" style={{color:'#c00',marginRight:8}}></i>}
+          icon={<i className="fa fa-exclamation-triangle icon-red icon-action mr-8"></i>}
         />
       )}
     </div>

@@ -4,6 +4,7 @@ import '../commun/UniForm.css';
 import './ManageUsers.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import { fetchUsers, deleteUser } from '../../api/usersApi';
+import ActionIconButton from '../commun/ActionIconButton';
 
 function ManageUsers({ userConnected }) {
   const [users, setUsers] = useState([]);
@@ -78,13 +79,9 @@ function ManageUsers({ userConnected }) {
               <td>{user.prenom}</td>
               <td className="actions-cell">
                 <Link to={`/users/edit/${user.id}`} className="edit-link">
-                  <button className="edit-button" title="Éditer">
-                    <i className="fa fa-edit"></i>
-                  </button>
+                  <ActionIconButton type="edit" title="Éditer" onClick={e => e.stopPropagation()} />
                 </Link>
-                <button className="delete-button" onClick={() => { setUserToDelete(user.id); setShowDeleteModal(true); }} title="Supprimer">
-                  <i className="fa fa-trash"></i>
-                </button>
+                <ActionIconButton type="delete" title="Supprimer" onClick={() => { setUserToDelete(user.id); setShowDeleteModal(true); }} />
               </td>
             </tr>
           ))}
@@ -105,7 +102,7 @@ function ManageUsers({ userConnected }) {
           confirmLabel="Supprimer"
           cancelLabel="Annuler"
           title="Confirmer la suppression de l'utilisateur ?"
-          icon={<i className="fa fa-exclamation-triangle icon-red mr-8"></i>}
+          icon={<i className="fa fa-exclamation-triangle icon-red icon-action mr-8"></i>}
         />
       )}
     </div>

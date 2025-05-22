@@ -1,0 +1,56 @@
+/* Styles dédiés aux boutons d'action (ActionIconButton) */
+.action-icon-btn {
+  border: none;
+  border-radius: 6px; /* carré avec coins légèrement arrondis */
+  width: 2.4em;
+  height: 2.4em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  margin: 0 2px;
+  padding: 0;
+  outline: none;
+}
+.action-icon-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.icon-action {
+  color: #fff !important;
+  font-size: 1.15em;
+  width: 1.7em;
+  height: 1.7em;
+  min-width: 1.7em;
+  min-height: 1.7em;
+  max-width: 1.7em;
+  max-height: 1.7em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+.bg-blue {
+  background: #007bff;
+}
+.bg-red {
+  background: #c00;
+}
+.bg-green {
+  background: #28a745;
+}
+.bg-grey {
+  background: #6c757d;
+}
+.bg-orange {
+  background: #fd7e14;
+}
+.bg-cyan {
+  background: #17a2b8;
+}
+.action-icon-btn:hover:not(:disabled) {
+  filter: brightness(1.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+}

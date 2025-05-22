@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Achats.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import AchatDetailsModal from './AchatDetailsModal';
+import ActionIconButton from '../commun/ActionIconButton';
 import { fetchAchats, deleteAchat, fetchAchatDetails } from '../../api/achatsHistoriqueApi';
 
 function ListeAchats() {
@@ -157,12 +158,17 @@ function ListeAchats() {
                 <td>{Array.isArray(a.lignes) ? a.lignes.reduce((sum, l) => sum + (l.quantite || 0), 0) : (typeof a.quantite === 'number' ? a.quantite : '')}</td>
                 <td>{Number(a.total).toFixed(2)}</td>
                 <td>
-                  <button className="edit-btn" title="Détails">
-                    <i className="fa fa-eye"></i>
-                  </button>
-                  <button className="delete-btn" title="Supprimer">
-                    <i className="fa fa-trash"></i>
-                  </button>
+                  <ActionIconButton
+                    type="view"
+                    title="Détails"
+                    onClick={() => handleDetails(a.id)}
+                    style={{ marginRight: 4 }}
+                  />
+                  <ActionIconButton
+                    type="delete"
+                    title="Supprimer"
+                    onClick={() => handleDelete(a.id)}
+                  />
                 </td>
               </tr>
             ))}
@@ -180,7 +186,7 @@ function ListeAchats() {
           confirmLabel="Supprimer"
           cancelLabel="Annuler"
           title="Supprimer l'achat ?"
-          icon={<i className="fa fa-exclamation-triangle icon-red mr-8"></i>}
+          icon={<i className="fa fa-exclamation-triangle icon-red icon-action mr-8"></i>}
         />
       )}
       {/* Modal de détails */}

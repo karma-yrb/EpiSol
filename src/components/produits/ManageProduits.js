@@ -4,6 +4,7 @@ import '../commun/UniForm.css';
 import './ManageProduits.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import { fetchProduits, addProduit, updateProduit, deleteProduit } from '../../api/produitsApi';
+import ActionIconButton from '../commun/ActionIconButton';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 
@@ -259,16 +260,8 @@ function ManageProduits() {
                 <td>{p.categorie}</td>
                 <td>{Number(p.prix).toFixed(2)}</td>
                 <td className="actions-cell">
-                  <button
-                    className="edit-btn"
-                    title="Éditer"
-                    onClick={() => handleEdit(p.id)}
-                  >
-                    <i className="fa fa-edit"></i>
-                  </button>
-                  <button className="delete-btn" title="Supprimer" onClick={() => handleDelete(p.id)}>
-                    <i className="fa fa-trash"></i>
-                  </button>
+                  <ActionIconButton type="edit" title="Éditer" onClick={() => handleEdit(p.id)} />
+                  <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(p.id)} />
                 </td>
               </tr>
             ))}

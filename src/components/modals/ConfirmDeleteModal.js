@@ -11,7 +11,7 @@ function ConfirmDeleteModal({
   confirmLabel = 'Supprimer',
   cancelLabel = 'Annuler',
   title = 'Confirmer la suppression ?',
-  icon = <i className="fa fa-exclamation-triangle" style={{color:'#c00',marginRight:8}}></i>,
+  icon = <i className="fa fa-exclamation-triangle icon-action" style={{color:'#c00',marginRight:8}}></i>,
   successColor = 'green',
   errorColor = '#c00',
 }) {

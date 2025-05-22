@@ -325,3 +325,23 @@ form.uni-form {
   align-items: center;
   justify-content: center;
 }
+.icon-action {
+  width: 1.7em;
+  height: 1.7em;
+  min-width: 1.7em;
+  min-height: 1.7em;
+  max-width: 1.7em;
+  max-height: 1.7em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15em;
+  vertical-align: middle;
+}
+
+/* Boutons d'action harmonisés */
+/*
+Retiré :
+.action-icon-btn, .action-icon-btn:disabled, .icon-action, .bg-blue, .bg-red, .bg-green, .bg-grey, .bg-orange, .action-icon-btn:hover:not(:disabled)
+Ces styles sont maintenant dans ActionIconButton.css
+*/

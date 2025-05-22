@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../commun/UniForm.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import { fetchBeneficiaires, deleteBeneficiaire } from '../../api/beneficiairesApi';
+import ActionIconButton from '../commun/ActionIconButton';
 
 function ManageBeneficiaire() {
   const [beneficiaires, setBeneficiaires] = useState([]);
@@ -105,13 +106,9 @@ function ManageBeneficiaire() {
               <td>{ben.prenom}</td>
               <td className="actions-cell">
                 <Link to={`/beneficiaires/edit/${ben.id}`} className="edit-link">
-                  <button className="edit-button" title="Éditer">
-                    <i className="fa fa-edit"></i>
-                  </button>
+                  <ActionIconButton type="edit" title="Éditer" onClick={e => e.stopPropagation()} />
                 </Link>
-                <button className="delete-button" onClick={() => { setBeneficiaireToDelete(ben.id); setShowDeleteModal(true); }} title="Supprimer">
-                  <i className="fa fa-trash"></i>
-                </button>
+                <ActionIconButton type="delete" title="Supprimer" onClick={() => { setBeneficiaireToDelete(ben.id); setShowDeleteModal(true); }} />
               </td>
             </tr>
           ))}
@@ -132,7 +129,7 @@ function ManageBeneficiaire() {
           confirmLabel="Supprimer"
           cancelLabel="Annuler"
           title="Confirmer la suppression du bénéficiaire ?"
-          icon={<i className="fa fa-exclamation-triangle icon-red mr-8"></i>}
+          icon={<i className="fa fa-exclamation-triangle icon-red icon-action mr-8"></i>}
         />
       )}
     </div>
