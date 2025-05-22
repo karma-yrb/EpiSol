@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import BeneficiaireForm from './BeneficiaireForm';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+
 function EditBeneficiaire() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ function EditBeneficiaire() {
   useEffect(() => {
     if (id) {
       // Fetch beneficiary data by ID for editing
-      fetch(`http://localhost:3001/beneficiaires/${id}`)
+      fetch(`${API_BASE_URL}/beneficiaires/${id}`)
         .then((response) => response.json())
         .then((data) => {
           console.log('Données reçues du backend pour édition :', data);
@@ -56,8 +58,8 @@ function EditBeneficiaire() {
     console.log('Données envoyées au backend :', dataToSend);
 
     const url = id
-      ? `http://localhost:3001/beneficiaires/${id}`
-      : 'http://localhost:3001/beneficiaires';
+      ? `${API_BASE_URL}/beneficiaires/${id}`
+      : `${API_BASE_URL}/beneficiaires`;
     const method = id ? 'PUT' : 'POST';
 
     fetch(url, {
