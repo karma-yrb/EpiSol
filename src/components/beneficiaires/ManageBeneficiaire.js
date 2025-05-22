@@ -4,6 +4,8 @@ import '../commun/UniForm.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import { fetchBeneficiaires, deleteBeneficiaire } from '../../api/beneficiairesApi';
 import ActionIconButton from '../commun/ActionIconButton';
+import SortableTable from '../commun/SortableTable';
+import '../commun/SortableTable.css';
 
 function ManageBeneficiaire() {
   const [beneficiaires, setBeneficiaires] = useState([]);
@@ -86,6 +88,20 @@ function ManageBeneficiaire() {
     }
   }, [deleteStatus, deleteMsg]);
 
+  // Colonnes pour le tableau triable
+  const columns = [
+    { label: 'Nom', key: 'nom', sortable: true },
+    { label: 'Prénom', key: 'prenom', sortable: true },
+    { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
+      <>
+        <Link to={`/beneficiaires/edit/${row.id}`} className="edit-link">
+          <ActionIconButton type="edit" title="Éditer" onClick={e => e.stopPropagation()} />
+        </Link>
+        <ActionIconButton type="delete" title="Supprimer" onClick={() => { setBeneficiaireToDelete(row.id); setShowDeleteModal(true); }} />
+      </>
+    ) },
+  ];
+
   return (
     <div className="page-centered-container">
       <h1>
@@ -95,25 +111,11 @@ function ManageBeneficiaire() {
       <Link to="/beneficiaires/add">
         <button className="create-button"><i className="fa fa-plus mr-6"></i>Ajouter un bénéficiaire</button>
       </Link>
-      <table className="produits-table">
-        <thead>
-          <tr><th>Nom</th><th>Prénom</th><th>Actions</th></tr>
-        </thead>
-        <tbody>
-          {beneficiaires.map(ben => (
-            <tr key={ben.id}>
-              <td>{ben.nom}</td>
-              <td>{ben.prenom}</td>
-              <td className="actions-cell">
-                <Link to={`/beneficiaires/edit/${ben.id}`} className="edit-link">
-                  <ActionIconButton type="edit" title="Éditer" onClick={e => e.stopPropagation()} />
-                </Link>
-                <ActionIconButton type="delete" title="Supprimer" onClick={() => { setBeneficiaireToDelete(ben.id); setShowDeleteModal(true); }} />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <SortableTable
+        columns={columns}
+        data={beneficiaires}
+        initialSort={{ col: 'nom', dir: 'asc' }}
+      />
       {notif.message && (
         <div className={`notification ${notif.type}`}>
           <i className={`fa fa-${notif.type==='success'?'check-circle':'exclamation-circle'}`}></i> {notif.message}

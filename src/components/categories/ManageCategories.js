@@ -4,7 +4,7 @@ import '../commun/UniForm.css';
 import './ManageCategories.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import CategoryAddForm from './CategoryAddForm';
-import CategoryTable from './CategoryTable';
+import SortableTable from '../commun/SortableTable';
 import ActionIconButton from '../commun/ActionIconButton';
 import { fetchCategories, addCategory, updateCategory, deleteCategory } from '../../api/categoriesApi';
 
@@ -103,6 +103,14 @@ function ManageCategories() {
     }
   }, [notif]);
 
+  // Colonnes pour le tableau triable
+  const columns = [
+    { label: 'Nom', key: 'nom', sortable: true },
+    { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
+      <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(row.id)} />
+    ) },
+  ];
+
   return (
     <div className="page-centered-container">
       <h1>
@@ -120,15 +128,10 @@ function ManageCategories() {
           onCancel={() => { setEditId(null); setNewCat(''); }}
         />
       )}
-      <CategoryTable
-        categories={categories}
-        editId={editId}
-        editValue={editValue}
-        setEditValue={setEditValue}
-        handleEdit={handleEdit}
-        handleEditSubmit={handleEditSubmit}
-        setEditId={setEditId}
-        handleDelete={handleDelete}
+      <SortableTable
+        columns={columns}
+        data={categories}
+        initialSort={{ col: 'nom', dir: 'asc' }}
       />
       {showDeleteModal && (
         <ConfirmDeleteModal

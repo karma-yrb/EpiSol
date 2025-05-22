@@ -5,6 +5,8 @@ import './ManageProduits.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import { fetchProduits, addProduit, updateProduit, deleteProduit } from '../../api/produitsApi';
 import ActionIconButton from '../commun/ActionIconButton';
+import SortableTable from '../commun/SortableTable';
+import '../commun/SortableTable.css';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 
@@ -171,6 +173,19 @@ function ManageProduits() {
     return matchSearch;
   });
 
+  // Colonnes pour le tableau triable
+  const columns = [
+    { label: 'Nom', key: 'nom', sortable: true },
+    { label: 'Catégorie', key: 'categorie', sortable: true },
+    { label: 'Prix (€)', key: 'prix', sortable: true, render: row => Number(row.prix).toFixed(2) },
+    { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
+      <>
+        <ActionIconButton type="edit" title="Éditer" onClick={() => handleEdit(row.id)} />
+        <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(row.id)} />
+      </>
+    ) },
+  ];
+
   // Détection mobile (largeur < 900px)
   const isMobile = window.innerWidth < 900;
 
@@ -244,29 +259,11 @@ function ManageProduits() {
       {loading ? (
         <div className="loading centered-text"><i className="fa fa-spinner fa-spin"></i> Chargement...</div>
       ) : (
-        <table className="produits-table">
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Catégorie</th>
-              <th>Prix (€)</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {produitsFiltres.map((p) => (
-              <tr key={p.id}>
-                <td>{p.nom}</td>
-                <td>{p.categorie}</td>
-                <td>{Number(p.prix).toFixed(2)}</td>
-                <td className="actions-cell">
-                  <ActionIconButton type="edit" title="Éditer" onClick={() => handleEdit(p.id)} />
-                  <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(p.id)} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <SortableTable
+          columns={columns}
+          data={produitsFiltres}
+          initialSort={{ col: 'nom', dir: 'asc' }}
+        />
       )}
     </div>
   );
