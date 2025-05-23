@@ -50,7 +50,7 @@ function Login({ onLogin }) {
     setLoading(true);
     try {
       console.log('API_BASE_URL used for login:', API_BASE_URL); // LOG POUR DEBUG
-      const res = await fetch(`${API_BASE_URL}/login`, {
+      const res = await fetch(`${API_BASE_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
