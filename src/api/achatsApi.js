@@ -3,13 +3,13 @@
 const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 
 export async function fetchAchats() {
-  const res = await fetch(`${API_BASE_URL}/achats`);
+  const res = await fetch(`${API_BASE_URL}/api/achats`);
   if (!res.ok) throw new Error('Erreur lors du chargement des achats');
   return await res.json();
 }
 
 export async function addAchat(beneficiaire_id, lignes) {
-  const url = `${API_BASE_URL}/achats`;
+  const url = `${API_BASE_URL}/api/achats`;
   const payload = { beneficiaire_id, lignes };
   console.log('[achatsApi] POST', url, payload);
   const res = await fetch(url, {

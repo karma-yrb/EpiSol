@@ -3,13 +3,13 @@
 const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 
 export async function fetchCategories() {
-  const res = await fetch(`${API_BASE_URL}/categories`);
+  const res = await fetch(`${API_BASE_URL}/api/categories`);
   if (!res.ok) throw new Error('Erreur lors du chargement des catégories');
   return await res.json();
 }
 
 export async function addCategory(nom) {
-  const res = await fetch(`${API_BASE_URL}/categories`, {
+  const res = await fetch(`${API_BASE_URL}/api/categories`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ nom })
@@ -19,7 +19,7 @@ export async function addCategory(nom) {
 }
 
 export async function updateCategory(id, nom) {
-  const res = await fetch(`${API_BASE_URL}/categories/${id}`, {
+  const res = await fetch(`${API_BASE_URL}/api/categories/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ nom })
@@ -29,7 +29,7 @@ export async function updateCategory(id, nom) {
 }
 
 export async function deleteCategory(id) {
-  const res = await fetch(`${API_BASE_URL}/categories/${id}`, { method: 'DELETE' });
+  const res = await fetch(`${API_BASE_URL}/api/categories/${id}`, { method: 'DELETE' });
   if (!res.ok) {
     let msg = 'Erreur lors de la suppression.';
     let data = null;
