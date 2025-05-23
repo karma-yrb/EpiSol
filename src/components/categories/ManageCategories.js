@@ -107,7 +107,10 @@ function ManageCategories() {
   const columns = [
     { label: 'Nom', key: 'nom', sortable: true },
     { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
-      <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(row.id)} />
+      <div style={{display:'flex',flexDirection:'row',alignItems:'center',gap:8,justifyContent:'center'}}>
+        <ActionIconButton type="edit" title="Éditer" onClick={() => handleEdit(row.id, row.nom)} />
+        <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(row.id)} />
+      </div>
     ) },
   ];
 
