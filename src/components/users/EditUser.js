@@ -21,8 +21,10 @@ function EditUser() {
     console.log('Fetching user with ID:', fetchUserId); // Vérifie l'ID utilisé
 
     // Utilise l'URL de l'API en production si disponible
-    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
-    fetch(`${apiUrl}/users/${fetchUserId}`)
+    const apiUrl = process.env.REACT_APP_API_URL || '';
+    const fullUrl = `${apiUrl}/api/users/${fetchUserId}`;
+    console.log('API URL utilisée:', fullUrl);
+    fetch(fullUrl)
       .then((response) => {
         console.log('Response status:', response.status); // Vérifie le statut de la réponse
         if (!response.ok) {
@@ -43,8 +45,8 @@ function EditUser() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const method = id ? 'PUT' : 'POST';
-    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
-    const url = id ? `${apiUrl}/users/${id}` : `${apiUrl}/users`;
+    const apiUrl = process.env.REACT_APP_API_URL || '';
+    const url = id ? `${apiUrl}/api/users/${id}` : `${apiUrl}/api/users`;
 
     fetch(url, {
       method,
