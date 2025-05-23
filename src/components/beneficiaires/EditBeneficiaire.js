@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import BeneficiaireForm from './BeneficiaireForm';
-
-const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+import { fetchBeneficiaire, updateBeneficiaire, addBeneficiaire } from '../../api/beneficiairesApi';
 
 function EditBeneficiaire() {
   const { id } = useParams();
@@ -22,11 +21,9 @@ function EditBeneficiaire() {
   useEffect(() => {
     if (id) {
       // Fetch beneficiary data by ID for editing
-      fetch(`${API_BASE_URL}/beneficiaires/${id}`)
-        .then((response) => response.json())
+      fetchBeneficiaire(id)
         .then((data) => {
           console.log('Données reçues du backend pour édition :', data);
-          // Correction : mapping date_naissance -> dateNaissance au format YYYY-MM-DD
           setFormData({
             ...data,
             dateNaissance: data.date_naissance ? new Date(data.date_naissance).toISOString().slice(0, 10) : '',
@@ -44,10 +41,8 @@ function EditBeneficiaire() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrorMsg('');
-    // Correction : toujours envoyer la date au format YYYY-MM-DD
     let dataToSend = { ...formData };
     if (dataToSend.dateNaissance) {
-      // Si déjà au bon format, on garde, sinon on convertit
       if (!/^\d{4}-\d{2}-\d{2}$/.test(dataToSend.dateNaissance)) {
         const d = new Date(dataToSend.dateNaissance);
         if (!isNaN(d.getTime())) {
@@ -56,46 +51,19 @@ function EditBeneficiaire() {
       }
     }
     console.log('Données envoyées au backend :', dataToSend);
-
-    const url = id
-      ? `${API_BASE_URL}/beneficiaires/${id}`
-      : `${API_BASE_URL}/beneficiaires`;
-    const method = id ? 'PUT' : 'POST';
-
-    fetch(url, {
-      method,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(dataToSend),
-    })
-      .then(async (response) => {
-        if (response.ok) {
-          alert(id ? 'Bénéficiaire mis à jour avec succès !' : 'Bénéficiaire créé avec succès !');
-          navigate('/beneficiaires');
-        } else {
-          let msg = 'Erreur lors de la soumission du formulaire.';
-          let data = null;
-          const contentType = response.headers.get('content-type');
-          if (contentType && contentType.includes('application/json')) {
-            try {
-              data = await response.json();
-              if (data.error && data.error.toLowerCase().includes('numéro de bénéficiaire')) {
-                msg = "Le numéro de bénéficiaire est déjà utilisé. Veuillez en choisir un autre.";
-              } else if (data.error) {
-                msg = data.error;
-              }
-            } catch (e) {
-              // JSON mal formé
-            }
-          }
-          console.log('Message d\'erreur à afficher :', msg);
-          setErrorMsg(msg);
-          // Scroll en haut pour afficher l'erreur
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    const submitPromise = id
+      ? updateBeneficiaire(id, dataToSend)
+      : addBeneficiaire(dataToSend);
+    submitPromise
+      .then(() => {
+        alert(id ? 'Bénéficiaire mis à jour avec succès !' : 'Bénéficiaire créé avec succès !');
+        navigate('/beneficiaires');
       })
-      .catch((error) => {
-        setErrorMsg('Erreur réseau ou serveur.');
-        console.error('Erreur :', error);
+      .catch(async (error) => {
+        let msg = 'Erreur lors de la soumission du formulaire.';
+        if (error && error.message) msg = error.message;
+        setErrorMsg(msg);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
   };
 
