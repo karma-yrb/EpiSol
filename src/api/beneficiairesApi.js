@@ -8,9 +8,35 @@ export async function fetchBeneficiaires() {
   return await res.json();
 }
 
+export async function fetchBeneficiaire(id) {
+  const res = await fetch(`${API_BASE_URL}/api/beneficiaires/${id}`);
+  if (!res.ok) throw new Error('Erreur lors du chargement du bénéficiaire');
+  return await res.json();
+}
+
+export async function addBeneficiaire(data) {
+  const res = await fetch(`${API_BASE_URL}/api/beneficiaires`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  if (!res.ok) throw new Error('Erreur lors de l\'ajout du bénéficiaire');
+  return await res.json();
+}
+
+export async function updateBeneficiaire(id, data) {
+  const res = await fetch(`${API_BASE_URL}/api/beneficiaires/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  if (!res.ok) throw new Error('Erreur lors de la modification du bénéficiaire');
+  return await res.json();
+}
+
 export async function deleteBeneficiaire(id) {
   const res = await fetch(`${API_BASE_URL}/api/beneficiaires/${id}`, { method: 'DELETE' });
-  if (!res.ok) throw new Error('Erreur lors de la suppression');
+  if (!res.ok) throw new Error('Erreur lors de la suppression du bénéficiaire');
   return true;
 }
 
