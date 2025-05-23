@@ -41,7 +41,7 @@ function AchatModal({
   // Récupère les catégories à l'ouverture du modal d'ajout produit
   useEffect(() => {
     if (showAddProduit) {
-      fetch(`${API_BASE_URL}/categories`)
+      fetch(`${API_BASE_URL}/api/categories`)
         .then(res => res.json())
         .then(data => setCategories(Array.isArray(data) ? data : []))
         .catch(() => setCategories([]));

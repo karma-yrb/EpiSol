@@ -29,7 +29,7 @@ function ManageProduits() {
 
   // Récupère toutes les catégories
   useEffect(() => {
-    fetch(`${API_BASE_URL}/categories`)
+    fetch(`${API_BASE_URL}/api/categories`)
       .then(res => {
         if (!res.ok) throw new Error('Erreur lors du chargement des catégories');
         return res.json();
