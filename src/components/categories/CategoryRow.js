@@ -1,4 +1,5 @@
 import React from 'react';
+import ActionIconButton from '../commun/ActionIconButton';
 
 function CategoryRow({ cat, editId, editValue, setEditValue, handleEdit, handleEditSubmit, setEditId, handleDelete }) {
   return (
@@ -15,20 +16,14 @@ function CategoryRow({ cat, editId, editValue, setEditValue, handleEdit, handleE
       <td className="actions-cell">
         {editId === cat.id ? (
           <>
-            <button type="submit" className="save-button" title="Enregistrer" form="cat-edit-form"><i className="fa fa-check"></i></button>
-            <button type="button" className="cancel-button" onClick={() => setEditId(null)} title="Annuler"><i className="fa fa-times"></i></button>
-            <button className="delete-button" onClick={() => handleDelete(cat.id)} title="Supprimer">
-              <i className="fa fa-trash"></i>
-            </button>
+            <ActionIconButton type="save" title="Enregistrer" onClick={() => handleEditSubmit(cat.id)} />
+            <ActionIconButton type="custom" icon="fa-times" title="Annuler" onClick={() => setEditId(null)} />
+            <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(cat.id)} />
           </>
         ) : (
           <>
-            <button className="edit-button" title="Éditer" onClick={() => handleEdit(cat.id, cat.nom)}>
-              <i className="fa fa-edit"></i>
-            </button>
-            <button className="delete-button" onClick={() => handleDelete(cat.id)} title="Supprimer">
-              <i className="fa fa-trash"></i>
-            </button>
+            <ActionIconButton type="edit" title="Éditer" onClick={() => handleEdit(cat.id, cat.nom)} />
+            <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(cat.id)} />
           </>
         )}
       </td>
