@@ -93,12 +93,12 @@ function ManageBeneficiaire() {
     { label: 'Nom', key: 'nom', sortable: true },
     { label: 'Prénom', key: 'prenom', sortable: true },
     { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
-      <>
+      <div className="actions-cell">
         <Link to={`/beneficiaires/edit/${row.id}`} className="edit-link">
           <ActionIconButton type="edit" title="Éditer" onClick={e => e.stopPropagation()} />
         </Link>
         <ActionIconButton type="delete" title="Supprimer" onClick={() => { setBeneficiaireToDelete(row.id); setShowDeleteModal(true); }} />
-      </>
+      </div>
     ) },
   ];
 
