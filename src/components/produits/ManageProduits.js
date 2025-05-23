@@ -179,10 +179,10 @@ function ManageProduits() {
     { label: 'Catégorie', key: 'categorie', sortable: true },
     { label: 'Prix (€)', key: 'prix', sortable: true, render: row => Number(row.prix).toFixed(2) },
     { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
-      <>
+      <div style={{display:'flex',flexDirection:'row',alignItems:'center',gap:8,justifyContent:'center'}}>
         <ActionIconButton type="edit" title="Éditer" onClick={() => handleEdit(row.id)} />
         <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(row.id)} />
-      </>
+      </div>
     ) },
   ];
 
