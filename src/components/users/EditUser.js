@@ -63,15 +63,13 @@ function EditUser() {
         <i className="fa fa-user"></i>
         {id ? 'Modifier' : 'Ajouter'} un utilisateur
       </h1>
-      <form className="uni-form-container" onSubmit={handleSubmit}>
-        <div className="uni-form">
+      <form onSubmit={handleSubmit}>
           <UserForm
             formData={user}
             handleChange={(e) => setUser({ ...user, [e.target.name]: e.target.value })}
             id={id}
           />
           <button type="submit">{id ? 'Mettre à jour' : 'Créer'}</button>
-        </div>
       </form>
     </div>
   );
