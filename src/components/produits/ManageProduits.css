@@ -285,13 +285,6 @@ select {
   }
 }
 
-.uni-form,
-form.uni-form {
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .modal-bg {
   position: fixed;
   top: 0;

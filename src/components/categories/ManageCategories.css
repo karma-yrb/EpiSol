@@ -78,13 +78,6 @@ form button[type="submit"]:hover {
   background: #158a15;
 }
 
-.uni-form,
-form.uni-form {
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .produits-table {
   width: 80%;
   max-width: 600px;
