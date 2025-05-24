@@ -235,6 +235,21 @@
   user-select: none;
 }
 
+/* Réduction de la taille des boutons d'action dans la table d'historique des achats */
+.achats-list-table .action-icon-btn {
+  width: 1.9em;
+  height: 1.9em;
+}
+.achats-list-table .icon-action {
+  font-size: 1em;
+  width: 1.3em;
+  height: 1.3em;
+  min-width: 1.3em;
+  min-height: 1.3em;
+  max-width: 1.3em;
+  max-height: 1.3em;
+}
+
 @media (max-width: 600px) {
   .achats-main-card {
     padding: 1em;
