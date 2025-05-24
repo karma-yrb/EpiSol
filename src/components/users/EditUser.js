@@ -69,6 +69,7 @@ function EditUser() {
           handleChange={(e) => setUser({ ...user, [e.target.name]: e.target.value })}
           id={id}
         />
+        <button type="submit">{id ? 'Mettre à jour' : 'Créer'}</button>
       </form>
     </div>
   );

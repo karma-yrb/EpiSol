@@ -54,9 +54,6 @@ function UserForm({ formData, handleChange, id, hidePasswordField }) {
         </select>
 
         {/* Le bouton submit n'est plus affiché ici si utilisé dans le profil */}
-        {!hidePasswordField && (
-          <button type="submit">{id ? 'Mettre à jour' : 'Créer'}</button>
-        )}
       </div>
     </div>
   );
