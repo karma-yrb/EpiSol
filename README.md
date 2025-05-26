@@ -1,3 +1,12 @@
+# CONSIGNE IA (rappel permanent)
+Après chaque modification de code dans ce projet (frontend ou backend),
+proposer systématiquement :
+- git add
+- git commit
+- git push
+- et un déploiement
+Ceci est une consigne permanente pour l'ensemble du projet.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
