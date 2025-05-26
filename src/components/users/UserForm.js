@@ -29,7 +29,6 @@ function UserForm({ formData, handleChange, id, hidePasswordField }) {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              required
               autoComplete="new-password"
               className="password-input"
             />
