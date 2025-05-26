@@ -53,12 +53,16 @@ function EditBeneficiaire() {
       adresse: formData.adresse || ''
     };
     if (dataToSend.date_naissance) {
+      // Log pour vérifier le format avant conversion
+      console.log('Format date_naissance avant conversion:', dataToSend.date_naissance);
       if (!/^\d{4}-\d{2}-\d{2}$/.test(dataToSend.date_naissance)) {
         const d = new Date(dataToSend.date_naissance);
         if (!isNaN(d.getTime())) {
           dataToSend.date_naissance = d.toISOString().slice(0, 10);
         }
       }
+      // Log pour vérifier le format après conversion
+      console.log('Format date_naissance envoyé au backend:', dataToSend.date_naissance);
     }
     console.log('handleSubmit - Données envoyées au backend:', dataToSend); // LOG DEBUG
     const submitPromise = id
