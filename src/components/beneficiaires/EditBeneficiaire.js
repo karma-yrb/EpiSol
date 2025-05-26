@@ -48,19 +48,19 @@ function EditBeneficiaire() {
       numero: formData.numero || '',
       telephone: formData.telephone || '',
       email: formData.email || '',
-      date_naissance: formData.dateNaissance || '', // snake_case pour le backend
+      dateNaissance: '', // camelCase pour le backend
       ville: formData.ville || '',
       adresse: formData.adresse || ''
     };
-    if (dataToSend.date_naissance) {
+    if (formData.dateNaissance) {
       // On envoie la date au format ISO complet (YYYY-MM-DDTHH:mm:ss.sssZ)
       const d = new Date(formData.dateNaissance);
       if (!isNaN(d.getTime())) {
-        dataToSend.date_naissance = d.toISOString();
+        dataToSend.dateNaissance = d.toISOString();
       } else {
-        dataToSend.date_naissance = formData.dateNaissance;
+        dataToSend.dateNaissance = formData.dateNaissance;
       }
-      console.log('Format date_naissance envoyé au backend:', dataToSend.date_naissance);
+      console.log('Format dateNaissance envoyé au backend:', dataToSend.dateNaissance);
     }
     console.log('handleSubmit - Données envoyées au backend:', dataToSend); // LOG DEBUG
     const submitPromise = id
