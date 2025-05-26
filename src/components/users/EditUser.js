@@ -15,6 +15,7 @@ function EditUser() {
     password: '',
     role: ''
   });
+  const [successMsg, setSuccessMsg] = useState('');
 
   useEffect(() => {
     const fetchUserId = id || userId; // Utilise l'ID de l'utilisateur connecté si aucun ID n'est fourni
@@ -53,8 +54,18 @@ function EditUser() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(user),
     })
-      .then(() => navigate('/users'))
-      .catch((error) => console.error('Erreur lors de l\'enregistrement de l\'utilisateur :', error));
+      .then((response) => {
+        if (!response.ok) throw new Error('Erreur lors de la mise à jour');
+        return response.json();
+      })
+      .then(() => {
+        setSuccessMsg('Informations utilisateur mises à jour avec succès.');
+        setTimeout(() => navigate('/users'), 1200);
+      })
+      .catch((error) => {
+        console.error('Erreur lors de l\'enregistrement de l\'utilisateur :', error);
+        alert('Erreur lors de la mise à jour.');
+      });
   };
 
   return (
@@ -64,6 +75,11 @@ function EditUser() {
         {id ? 'Modifier' : 'Ajouter'} un utilisateur
       </h1>
       <form className="uni-form uni-form-container" onSubmit={handleSubmit}>
+        {successMsg && (
+          <div className="form-success" style={{marginBottom:12}}>
+            <i className="fa fa-check-circle" style={{marginRight:6}}></i> {successMsg}
+          </div>
+        )}
         <UserForm
           formData={user}
           handleChange={(e) => setUser({ ...user, [e.target.name]: e.target.value })}
