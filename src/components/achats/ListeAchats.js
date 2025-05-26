@@ -97,7 +97,13 @@ function ListeAchats() {
       label: 'Quantité',
       key: 'quantite',
       sortable: false,
-      render: row => Array.isArray(row.lignes) ? row.lignes.reduce((sum, l) => sum + (l.quantite || 0), 0) : (typeof row.quantite === 'number' ? row.quantite : '')
+      render: row => {
+        let val = Array.isArray(row.lignes)
+          ? row.lignes.reduce((sum, l) => sum + (l.quantite || 0), 0)
+          : (typeof row.quantite === 'number' ? row.quantite : '');
+        console.log('DEBUG Quantité - row:', row, 'val:', val);
+        return val;
+      }
     },
     {
       label: 'Total (€)',
