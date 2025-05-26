@@ -101,7 +101,7 @@ function AchatDetailsModal({ show, details, loading, onClose }) {
                 className="bg-grey"
                 onClick={onClose}
               >
-                Fermer
+                <span style={{marginLeft:8}}>Fermer</span>
               </ActionIconButton>
             </div>
           </>
