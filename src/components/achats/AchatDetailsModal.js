@@ -1,5 +1,6 @@
 import React from 'react';
 import './AchatModal.css';
+import ActionIconButton from '../commun/ActionIconButton';
 
 function AchatDetailsModal({ show, details, loading, onClose }) {
   if (!show) return null;
@@ -71,19 +72,37 @@ function AchatDetailsModal({ show, details, loading, onClose }) {
             </table>
             <div className="achat-details-actions-row">
               <div className="achat-details-export-btns">
-                <button className="main-action-btn" onClick={handleExportPDF} title="Exporter en PDF">
-                  <i className="fa fa-file-pdf-o icon-red"></i>
-                </button>
-                <button className="main-action-btn" onClick={handleExportXLS} title="Exporter en XLS">
-                  <i className="fa fa-file-excel-o icon-green"></i>
-                </button>
-                <button className="main-action-btn" onClick={handleExportExcel} title="Exporter en Excel">
-                  <i className="fa fa-file-excel-o icon-green"></i>
-                </button>
+                <ActionIconButton
+                  type="custom"
+                  icon="fa-file-pdf-o"
+                  title="Exporter en PDF"
+                  className="bg-red"
+                  onClick={handleExportPDF}
+                />
+                <ActionIconButton
+                  type="custom"
+                  icon="fa-file-excel-o"
+                  title="Exporter en XLS"
+                  className="bg-green"
+                  onClick={handleExportXLS}
+                />
+                <ActionIconButton
+                  type="custom"
+                  icon="fa-file-excel-o"
+                  title="Exporter en Excel"
+                  className="bg-green"
+                  onClick={handleExportExcel}
+                />
               </div>
-              <button className="main-action-btn achat-details-close-btn" onClick={onClose} title="Fermer">
-                <i className="fa fa-times icon-gray mr-6"></i>Fermer
-              </button>
+              <ActionIconButton
+                type="custom"
+                icon="fa-times"
+                title="Fermer"
+                className="bg-grey"
+                onClick={onClose}
+              >
+                Fermer
+              </ActionIconButton>
             </div>
           </>
         ) : (
