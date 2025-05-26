@@ -41,9 +41,17 @@ function EditBeneficiaire() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrorMsg('');
-    // On ne garde que les champs attendus côté backend
-    let { nom, prenom, numero, telephone, email, dateNaissance, ville, adresse } = formData;
-    let dataToSend = { nom, prenom, numero, telephone, email, dateNaissance, ville, adresse };
+    // Nettoyage strict : on ne garde que les champs attendus côté backend
+    const dataToSend = {
+      nom: formData.nom || '',
+      prenom: formData.prenom || '',
+      numero: formData.numero || '',
+      telephone: formData.telephone || '',
+      email: formData.email || '',
+      dateNaissance: formData.dateNaissance || '',
+      ville: formData.ville || '',
+      adresse: formData.adresse || ''
+    };
     if (dataToSend.dateNaissance) {
       if (!/^\d{4}-\d{2}-\d{2}$/.test(dataToSend.dateNaissance)) {
         const d = new Date(dataToSend.dateNaissance);
