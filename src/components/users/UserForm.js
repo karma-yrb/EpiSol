@@ -21,7 +21,7 @@ function UserForm({ formData, handleChange, id, hidePasswordField }) {
       {/* On masque le champ mot de passe si hidePasswordField est true */}
       {!hidePasswordField && (
         <>
-          <label htmlFor="password">Mot de passe *</label>
+          <label htmlFor="password">{id ? 'Changer le mot de passe' : 'Mot de passe *'}</label>
           <div className="password-field-wrapper">
             <input
               id="password"
