@@ -60,6 +60,7 @@ function EditBeneficiaire() {
         }
       }
     }
+    console.log('handleSubmit - Données envoyées au backend:', dataToSend); // LOG DEBUG
     const submitPromise = id
       ? updateBeneficiaire(id, dataToSend)
       : addBeneficiaire(dataToSend);
