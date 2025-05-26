@@ -68,6 +68,12 @@ function EditUser() {
       });
   };
 
+  useEffect(() => {
+    if (successMsg) {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+  }, [successMsg]);
+
   return (
     <div className="page-centered-container">
       <h1 className="profile-title">
@@ -75,17 +81,17 @@ function EditUser() {
         {id ? 'Modifier' : 'Ajouter'} un utilisateur
       </h1>
       <form className="uni-form uni-form-container" onSubmit={handleSubmit}>
-        {successMsg && (
-          <div className="form-success" style={{marginBottom:12}}>
-            <i className="fa fa-check-circle" style={{marginRight:6}}></i> {successMsg}
-          </div>
-        )}
         <UserForm
           formData={user}
           handleChange={(e) => setUser({ ...user, [e.target.name]: e.target.value })}
           id={id}
         />
         <button type="submit">{id ? 'Mettre à jour' : 'Créer'}</button>
+        {successMsg && (
+          <div className="form-success" style={{marginTop:18, textAlign:'center'}}>
+            <i className="fa fa-check-circle" style={{marginRight:6}}></i> {successMsg}
+          </div>
+        )}
       </form>
     </div>
   );
