@@ -100,7 +100,7 @@ function ListeAchats() {
       render: row => {
         let val = Array.isArray(row.lignes)
           ? row.lignes.reduce((sum, l) => sum + (l.quantite || 0), 0)
-          : (typeof row.quantite === 'number' ? row.quantite : '');
+          : (row.quantite ? Number(row.quantite) : '');
         console.log('DEBUG Quantité - row:', row, 'val:', val);
         return val;
       }
