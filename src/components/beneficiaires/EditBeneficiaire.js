@@ -17,6 +17,7 @@ function EditBeneficiaire() {
     adresse: ''
   });
   const [errorMsg, setErrorMsg] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
 
   useEffect(() => {
     if (id) {
@@ -41,6 +42,7 @@ function EditBeneficiaire() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrorMsg('');
+    setSuccessMsg('');
     // Nettoyage strict : on ne garde que les champs attendus côté backend
     const dataToSend = {
       nom: formData.nom || '',
@@ -68,8 +70,10 @@ function EditBeneficiaire() {
       : addBeneficiaire(dataToSend);
     submitPromise
       .then(() => {
-        alert(id ? 'Bénéficiaire mis à jour avec succès !' : 'Bénéficiaire créé avec succès !');
-        navigate('/beneficiaires');
+        setSuccessMsg(id ? 'Bénéficiaire mis à jour avec succès !' : 'Bénéficiaire créé avec succès !');
+        setTimeout(() => {
+          navigate('/beneficiaires');
+        }, 1200);
       })
       .catch((error) => {
         let msg = 'Erreur lors de la soumission du formulaire.';
@@ -88,6 +92,11 @@ function EditBeneficiaire() {
       {errorMsg && (
         <div className="notification error" style={{marginBottom:16}}>
           <i className="fa fa-exclamation-circle"></i> {errorMsg}
+        </div>
+      )}
+      {successMsg && (
+        <div className="notification success" style={{marginBottom:16}}>
+          <i className="fa fa-check-circle"></i> {successMsg}
         </div>
       )}
       <BeneficiaireForm
