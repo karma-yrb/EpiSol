@@ -50,6 +50,10 @@
 .bg-cyan {
   background: #17a2b8;
 }
+.bg-excel {
+  background: #217346 !important; /* Vert Excel officiel */
+  color: #fff !important;
+}
 .action-icon-btn:hover:not(:disabled) {
   filter: brightness(1.08);
   box-shadow: 0 2px 8px rgba(0,0,0,0.13);
