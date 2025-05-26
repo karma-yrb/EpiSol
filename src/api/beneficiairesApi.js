@@ -30,7 +30,14 @@ export async function updateBeneficiaire(id, data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   });
-  if (!res.ok) throw new Error('Erreur lors de la modification du bénéficiaire');
+  let errorData;
+  if (!res.ok) {
+    try {
+      errorData = await res.json();
+    } catch (e) {}
+    const msg = errorData && errorData.error ? errorData.error : 'Erreur lors de la modification du bénéficiaire';
+    throw new Error(msg);
+  }
   return await res.json();
 }
 

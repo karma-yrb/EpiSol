@@ -50,7 +50,6 @@ function EditBeneficiaire() {
         }
       }
     }
-    console.log('Données envoyées au backend :', dataToSend);
     const submitPromise = id
       ? updateBeneficiaire(id, dataToSend)
       : addBeneficiaire(dataToSend);
@@ -59,7 +58,7 @@ function EditBeneficiaire() {
         alert(id ? 'Bénéficiaire mis à jour avec succès !' : 'Bénéficiaire créé avec succès !');
         navigate('/beneficiaires');
       })
-      .catch(async (error) => {
+      .catch((error) => {
         let msg = 'Erreur lors de la soumission du formulaire.';
         if (error && error.message) msg = error.message;
         setErrorMsg(msg);
