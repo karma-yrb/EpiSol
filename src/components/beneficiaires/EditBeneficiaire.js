@@ -94,17 +94,17 @@ function EditBeneficiaire() {
           <i className="fa fa-exclamation-circle"></i> {errorMsg}
         </div>
       )}
-      {successMsg && (
-        <div className="notification success" style={{marginBottom:16}}>
-          <i className="fa fa-check-circle"></i> {successMsg}
-        </div>
-      )}
       <BeneficiaireForm
         formData={formData}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         id={id}
       />
+      {successMsg && (
+        <div className="notification success" style={{marginTop:16, marginBottom:16}}>
+          <i className="fa fa-check-circle"></i> {successMsg}
+        </div>
+      )}
     </div>
   );
 }
