@@ -88,7 +88,7 @@ function AchatDetailsModal({ show, details, loading, onClose }) {
                 />
                 <ActionIconButton
                   type="custom"
-                  icon="fa-file-excel"
+                  icon="fa-file-excel-o"
                   title="Exporter en Excel"
                   className="bg-excel"
                   onClick={handleExportExcel}
