@@ -249,6 +249,19 @@
   max-width: 1.3em;
   max-height: 1.3em;
 }
+.achats-list-table .actions-cell {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+@media (max-width: 700px) {
+  .achats-list-table .actions-cell {
+    flex-direction: row !important;
+    gap: 8px;
+  }
+}
 
 @media (max-width: 600px) {
   .achats-main-card {
