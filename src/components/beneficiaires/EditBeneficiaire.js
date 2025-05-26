@@ -48,15 +48,15 @@ function EditBeneficiaire() {
       numero: formData.numero || '',
       telephone: formData.telephone || '',
       email: formData.email || '',
-      dateNaissance: formData.dateNaissance || '',
+      date_naissance: formData.dateNaissance || '', // snake_case pour le backend
       ville: formData.ville || '',
       adresse: formData.adresse || ''
     };
-    if (dataToSend.dateNaissance) {
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(dataToSend.dateNaissance)) {
-        const d = new Date(dataToSend.dateNaissance);
+    if (dataToSend.date_naissance) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(dataToSend.date_naissance)) {
+        const d = new Date(dataToSend.date_naissance);
         if (!isNaN(d.getTime())) {
-          dataToSend.dateNaissance = d.toISOString().slice(0, 10);
+          dataToSend.date_naissance = d.toISOString().slice(0, 10);
         }
       }
     }
