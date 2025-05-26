@@ -1,0 +1,7 @@
+A corriger :
+1. https://episol.yade-services.fr/users/edit/2 : le bouton "mettre à jour" ne fonctionne pas
+2. https://episol.yade-services.fr/liste-achats : la page ne se charge plus
+3. https://episol.yade-services.fr/liste-achats : les boutons qui apparaissent au clic sur visualisation sont trop gros
+4. https://episol.yade-services.fr/beneficiaires/edit/3 : "Erreur lors de la modification du bénéficiaire"
+5. les tris sur les colonnes de tableau on disparus sauf dans https://episol.yade-services.fr/produits
+6. https://episol.yade-services.fr/achats : ne fonctionne plus
