@@ -120,7 +120,7 @@ function AchatModal({
         setAddProduitError("Veuillez choisir une catégorie.");
         return;
       }
-      const res = await fetch(`${API_BASE_URL}/produits`, {
+      const res = await fetch(`${API_BASE_URL}/api/produits`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
