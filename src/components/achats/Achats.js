@@ -220,7 +220,11 @@ function Achats() {
                 </tr>
               </tbody>
             </table>
-            <button className="main-action-btn" style={{marginTop:24}} onClick={handleSaveAchats}>
+            <button 
+              className="main-action-btn bg-blue enreg-achats-btn"
+              style={{marginTop:24, width:'100%', maxWidth:400, display:'block', marginLeft:'auto', marginRight:'auto', fontSize:'1.1rem', padding:'12px 0'}} 
+              onClick={handleSaveAchats}
+            >
               <i className="fa fa-save"></i> Enregistrer les achats
             </button>
           </div>

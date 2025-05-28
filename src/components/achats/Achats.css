@@ -113,6 +113,25 @@
   margin-right: 10px;
 }
 
+.enreg-achats-btn {
+  background: #007bff !important;
+  color: #fff !important;
+  border-radius: 10px;
+  font-weight: 700;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
+  font-size: 1.1rem;
+  padding: 12px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  border: none;
+  transition: background 0.15s;
+}
+.enreg-achats-btn:hover {
+  background: #005bb5 !important;
+}
+
 .achats-list-wrapper {
   margin: 30px auto 0 auto;
   max-width: 500px;
