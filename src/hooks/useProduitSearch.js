@@ -18,7 +18,7 @@ export function useProduitSearch() {
   useEffect(() => {
     if (produitSearch.length >= 3) {
       setProduitLoading(true);
-      fetch(`${API_BASE_URL}/produits?search=${encodeURIComponent(produitSearch)}`)
+      fetch(`${API_BASE_URL}/api/produits?search=${encodeURIComponent(produitSearch)}`)
         .then(res => res.json())
         .then(data => {
           setProduitResults(data);
