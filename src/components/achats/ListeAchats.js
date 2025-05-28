@@ -96,7 +96,7 @@ function ListeAchats() {
     {
       label: 'Quantité',
       key: 'quantite',
-      sortable: false,
+      sortable: true,
       render: row => {
         let val = Array.isArray(row.lignes)
           ? row.lignes.reduce((sum, l) => sum + (l.quantite || 0), 0)
