@@ -15,9 +15,9 @@ export function useBeneficiaireSearch() {
   const [highlighted, setHighlighted] = useState(-1);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/beneficiaires`)
+    fetch(`${API_BASE_URL}/api/beneficiaires`)
       .then(res => res.json())
-      .then(data => setBeneficiaires(data));
+      .then(data => setBeneficiaires(Array.isArray(data) ? data : []));
   }, []);
 
   useEffect(() => {
