@@ -35,25 +35,30 @@ export const UserProvider = ({ children }) => {
   }
 
   useEffect(() => {
+    let lastToken = localStorage.getItem('token');
     const checkToken = () => {
       const token = localStorage.getItem('token');
-      if (token && isTokenValid(token)) {
-        setIsLoggedIn(true);
-        try {
-          const decodedToken = jwtDecode(token);
-          setTokenData(normalizeTokenData(decodedToken));
-        } catch (e) {
+      if (token !== lastToken) {
+        lastToken = token;
+        if (token && isTokenValid(token)) {
+          setIsLoggedIn(true);
+          try {
+            const decodedToken = jwtDecode(token);
+            setTokenData(normalizeTokenData(decodedToken));
+          } catch (e) {
+            setTokenData(null);
+          }
+        } else {
+          setIsLoggedIn(false);
           setTokenData(null);
         }
-      } else {
-        setIsLoggedIn(false);
-        setTokenData(null);
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
+    const interval = setInterval(checkToken, 500);
+    // Appel initial
     checkToken();
-    window.addEventListener('storage', checkToken);
-    return () => window.removeEventListener('storage', checkToken);
+    return () => clearInterval(interval);
   }, []);
 
   return (
