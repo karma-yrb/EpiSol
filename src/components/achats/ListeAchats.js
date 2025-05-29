@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { UserAuthContext } from '../../contexts/UserAuthProvider';
+import React, { useEffect, useState } from 'react';
 import './Achats.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import AchatDetailsModal from './AchatDetailsModal';
