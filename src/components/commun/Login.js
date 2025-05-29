@@ -74,6 +74,23 @@ function Login({ onLogin }) {
 
   return (
     <div className="uni-form-container">
+      <div className="login-warning" style={{
+        background: '#fffbe6',
+        color: '#856404',
+        border: '1px solid #ffeeba',
+        borderRadius: 4,
+        padding: '10px 16px',
+        marginBottom: 16,
+        fontSize: 15,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 8
+      }}>
+        <i className="fa fa-info-circle" style={{fontSize: 18}} />
+        <span>
+          <b>Note :</b> La première connexion peut prendre quelques secondes supplémentaires, le temps que le serveur démarre.
+        </span>
+      </div>
       <form onSubmit={handleSubmit} className="uni-form">
         <label htmlFor="username">Nom d'utilisateur</label>
         <input
