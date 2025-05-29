@@ -3,12 +3,12 @@ import './AchatModal.css';
 import ActionIconButton from '../commun/ActionIconButton';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 
 function AchatDetailsModal({ show, details, loading, onClose }) {
   if (!show) return null;
 
-  // Fonctions d'export simples (mock, à remplacer par une vraie logique si besoin)
+  // Export PDF corrigé : utiliser autoTable(doc, ...)
   const handleExportPDF = () => {
     if (!details || !details.lignes) return;
     const doc = new jsPDF();
@@ -17,7 +17,7 @@ function AchatDetailsModal({ show, details, loading, onClose }) {
     doc.text(`Date : ${details.date_achat ? formatDateFR(details.date_achat) : ''}`, 14, 30);
     doc.text(`Total : ${Number(details.total).toFixed(2)} €`, 14, 38);
     doc.text(`Quantité totale : ${quantiteTotale}`, 14, 46);
-    doc.autoTable({
+    autoTable(doc, {
       startY: 54,
       head: [['Produit', 'Quantité', 'Prix unitaire', 'Sous-total']],
       body: details.lignes.map(l => [
@@ -30,6 +30,7 @@ function AchatDetailsModal({ show, details, loading, onClose }) {
     });
     doc.save(`achat_${details.id || 'details'}.pdf`);
   };
+  // Export XLSX (Excel)
   const handleExportXLS = () => {
     if (!details || !details.lignes) return;
     const ws = XLSX.utils.json_to_sheet(details.lignes.map(l => ({
@@ -41,9 +42,6 @@ function AchatDetailsModal({ show, details, loading, onClose }) {
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Achats');
     XLSX.writeFile(wb, `achat_${details.id || 'details'}.xlsx`);
-  };
-  const handleExportExcel = () => {
-    alert('Export Excel non implémenté (démo)');
   };
 
   // Calcul quantité totale
@@ -115,13 +113,6 @@ function AchatDetailsModal({ show, details, loading, onClose }) {
                   title="Exporter en XLS"
                   className="bg-xls"
                   onClick={handleExportXLS}
-                />
-                <ActionIconButton
-                  type="custom"
-                  icon="fa-file-excel-o"
-                  title="Exporter en Excel"
-                  className="bg-excel"
-                  onClick={handleExportExcel}
                 />
               </div>
               <ActionIconButton
