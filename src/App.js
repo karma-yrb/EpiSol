@@ -16,6 +16,7 @@ import ManageProduits from './components/produits/ManageProduits';
 import ManageCategories from './components/categories/ManageCategories';
 import Achats from './components/achats/Achats';
 import ListeAchats from './components/achats/ListeAchats';
+import UserLogsPage from './components/users/UserLogsPage';
 
 // Initialize navigate using useNavigate
 function App() {
@@ -78,6 +79,11 @@ function App() {
                 <Route path="/users/edit/:id" element={
                   <RequireAuth requiredRole="admin">
                     <EditUser />
+                  </RequireAuth>
+                } />
+                <Route path="/users/:id/logs" element={
+                  <RequireAuth requiredRole="admin">
+                    <UserLogsPage />
                   </RequireAuth>
                 } />
                 <Route path="/produits" element={<ManageProduits />} />
