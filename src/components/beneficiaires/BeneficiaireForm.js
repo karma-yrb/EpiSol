@@ -33,8 +33,8 @@ function BeneficiaireForm({ formData, handleChange, handleSubmit, id }) {
         type="number"
         name="discount"
         min="0"
-        max="100"
-        step="0.01"
+        max="90"
+        step="1"
         value={formData.discount ?? 50}
         onChange={handleChange}
         required
