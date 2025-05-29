@@ -17,6 +17,7 @@ import ManageCategories from './components/categories/ManageCategories';
 import Achats from './components/achats/Achats';
 import ListeAchats from './components/achats/ListeAchats';
 import UserLogsPage from './components/users/UserLogsPage';
+import Stocks from './components/stocks/Stocks';
 
 // Initialize navigate using useNavigate
 function App() {
@@ -90,6 +91,7 @@ function App() {
                 <Route path="/categories-management" element={<ManageCategories />} />
                 <Route path="/achats" element={<Achats />} />
                 <Route path="/liste-achats" element={<ListeAchats />} />
+                <Route path="/stocks" element={<Stocks />} />
                 {/* Ajoutez ici d'autres routes protégées si besoin */}
               </Routes>
             </RequireAuth>

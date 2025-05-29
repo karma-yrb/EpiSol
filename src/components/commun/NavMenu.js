@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { to: '/produits', icon: 'fa-shopping-basket', label: 'Produits' }, // icône panier pour produits
   { to: '/achats', icon: 'fa-shopping-cart', label: 'Nouvel achat' }, // Lien explicite vers la page d'ajout d'achats
   { to: '/liste-achats', icon: 'fa-list-alt', label: 'Liste achats' }, // Ajout historique achats
+  { to: '/stocks', icon: 'fa-archive', label: 'Stocks' }, // Lien gestion des stocks
 ];
 
 function NavMenu({ user }) {
