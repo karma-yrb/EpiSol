@@ -14,4 +14,10 @@ export async function deleteUser(id) {
   return true;
 }
 
+export async function fetchUserLogs(userId) {
+  const res = await fetch(`${API_BASE_URL}/api/users/${userId}/logs`);
+  if (!res.ok) throw new Error('Erreur lors du chargement des logs utilisateur');
+  return await res.json();
+}
+
 // Ajoutez d'autres fonctions si besoin (addUser, updateUser, etc.)
