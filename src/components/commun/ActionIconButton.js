@@ -21,7 +21,8 @@ const ICONS = {
 
 function ActionIconButton({ type = 'edit', onClick, title, icon, className = '', disabled = false, ...props }) {
   const iconClass = icon || ICONS[type]?.icon || 'fa-question-circle';
-  const bgClass = ICONS[type]?.bg || 'bg-grey';
+  // Si type=custom, n'applique pas de bg par défaut, laisse la classe passée
+  const bgClass = type === 'custom' ? '' : (ICONS[type]?.bg || 'bg-grey');
   return (
     <button
       className={`action-icon-btn ${bgClass} ${className}`.trim()}
