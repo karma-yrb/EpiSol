@@ -3,12 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../commun/UniForm.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import { fetchBeneficiaires, deleteBeneficiaire } from '../../api/beneficiairesApi';
+import { fetchAchats } from '../../api/achatsApi';
 import ActionIconButton from '../commun/ActionIconButton';
 import SortableTable from '../commun/SortableTable';
 import '../commun/SortableTable.css';
 
 function ManageBeneficiaire() {
   const [beneficiaires, setBeneficiaires] = useState([]);
+  const [achats, setAchats] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [beneficiaireToDelete, setBeneficiaireToDelete] = useState(null);
   const [notif, setNotif] = useState({ type: '', message: '' });
@@ -58,6 +60,9 @@ function ManageBeneficiaire() {
     fetchBeneficiaires()
       .then((data) => setBeneficiaires(data))
       .catch((error) => console.error('Erreur lors de la récupération des bénéficiaires :', error));
+    fetchAchats()
+      .then((data) => setAchats(data))
+      .catch((error) => console.error('Erreur lors de la récupération des achats :', error));
   }, [navigate]);
 
   const confirmDelete = async () => {
@@ -88,11 +93,24 @@ function ManageBeneficiaire() {
     }
   }, [deleteStatus, deleteMsg]);
 
+  // Calcul du nombre de passages (achats) par bénéficiaire
+  const passagesByBenef = {};
+  achats.forEach(a => {
+    if (a.beneficiaire_nom && a.beneficiaire_prenom) {
+      const key = `${a.beneficiaire_nom}|||${a.beneficiaire_prenom}`;
+      passagesByBenef[key] = (passagesByBenef[key] || 0) + 1;
+    }
+  });
+
   // Colonnes pour le tableau triable
   const columns = [
     { label: 'Nom', key: 'nom', sortable: true },
     { label: 'Prénom', key: 'prenom', sortable: true },
     { label: 'Rabais (%)', key: 'discount', sortable: true, render: row => (row.discount !== undefined ? Math.round(Number(row.discount)) : 50) },
+    { label: 'Passages', key: 'passages', sortable: true, render: row => {
+      const key = `${row.nom}|||${row.prenom}`;
+      return passagesByBenef[key] || 0;
+    } },
     { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
       <div className="actions-cell">
         <Link to={`/beneficiaires/edit/${row.id}`} className="edit-link">
