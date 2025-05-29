@@ -277,8 +277,22 @@
 }
 @media (max-width: 700px) {
   .achats-list-table .actions-cell {
-    flex-direction: row !important;
+    flex-direction: column !important;
     gap: 8px;
+    width: 100%;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  .achats-list-table .actions-cell .action-icon-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 0 8px 0 !important;
+    display: flex;
+    justify-content: center;
+  }
+  .achats-list-table .actions-cell .action-icon-btn:last-child {
+    margin-bottom: 0 !important;
   }
 }
 
