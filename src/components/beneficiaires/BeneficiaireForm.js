@@ -28,6 +28,19 @@ function BeneficiaireForm({ formData, handleChange, handleSubmit, id }) {
       <label>Adresse</label>
       <input type="text" name="adresse" value={formData.adresse} onChange={handleChange} />
 
+      <label>Rabais (%)</label>
+      <input
+        type="number"
+        name="discount"
+        min="0"
+        max="100"
+        step="0.01"
+        value={formData.discount ?? 50}
+        onChange={handleChange}
+        required
+        placeholder="Ex: 50"
+      />
+
       <button type="submit">{id ? 'Mettre à jour' : 'Créer'}</button>
     </form>
   );

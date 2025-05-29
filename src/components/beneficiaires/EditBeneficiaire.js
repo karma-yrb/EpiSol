@@ -14,7 +14,8 @@ function EditBeneficiaire() {
     email: '',
     dateNaissance: '',
     ville: '',
-    adresse: ''
+    adresse: '',
+    discount: 50
   });
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
@@ -28,6 +29,7 @@ function EditBeneficiaire() {
           setFormData({
             ...data,
             dateNaissance: data.date_naissance ? new Date(data.date_naissance).toISOString().slice(0, 10) : '',
+            discount: data.discount !== undefined ? data.discount : 50
           });
         })
         .catch((error) => console.error('Erreur lors de la récupération des données :', error));
@@ -52,7 +54,8 @@ function EditBeneficiaire() {
       email: formData.email || '',
       dateNaissance: '', // camelCase pour le backend
       ville: formData.ville || '',
-      adresse: formData.adresse || ''
+      adresse: formData.adresse || '',
+      discount: formData.discount !== undefined ? Number(formData.discount) : 50
     };
     if (formData.dateNaissance) {
       // On envoie la date au format ISO complet (YYYY-MM-DDTHH:mm:ss.sssZ)

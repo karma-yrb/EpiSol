@@ -92,6 +92,7 @@ function ManageBeneficiaire() {
   const columns = [
     { label: 'Nom', key: 'nom', sortable: true },
     { label: 'Prénom', key: 'prenom', sortable: true },
+    { label: 'Rabais (%)', key: 'discount', sortable: true, render: row => (row.discount !== undefined ? Number(row.discount).toFixed(2) + ' %' : '50 %') },
     { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
       <div className="actions-cell">
         <Link to={`/beneficiaires/edit/${row.id}`} className="edit-link">
