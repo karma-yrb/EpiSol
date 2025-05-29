@@ -121,21 +121,22 @@ function ListeAchats() {
       key: 'actions',
       sortable: false,
       render: row => (
-        <>
+        <div className="actions-cell">
           <ActionIconButton
             type="view"
             title="Détails"
             onClick={() => handleDetails(row.id)}
-            style={{ marginRight: 4 }}
+            style={{ marginRight: 4, width: '100%' }}
           />
           {isAdmin && (
             <ActionIconButton
               type="delete"
               title="Supprimer"
               onClick={() => handleDelete(row.id)}
+              style={{ width: '100%' }}
             />
           )}
-        </>
+        </div>
       )
     }
   ];
