@@ -111,6 +111,15 @@ function Achats() {
     }
   };
 
+  // --- Rabais bénéficiaire ---
+  const [applyDiscount, setApplyDiscount] = useState(true); // coché par défaut
+  const discountValue = selectedB && typeof selectedB.discount === 'number' ? selectedB.discount : 50;
+
+  // Calcul du total avec ou sans rabais
+  const totalSansRabais = achatList.reduce((sum, a) => sum + a.quantite * a.prix, 0);
+  const montantRabais = applyDiscount ? totalSansRabais * (discountValue / 100) : 0;
+  const totalAvecRabais = totalSansRabais - montantRabais;
+
   return (
     <div className="page-centered-container">
       <h1 className="achats-title">
@@ -184,6 +193,25 @@ function Achats() {
         {achatList.length > 0 && (
           <div className="achats-list-wrapper">
             <h2 className="achats-list-title">Achats en cours</h2>
+            <div style={{marginBottom: 12}}>
+              {selectedB && (
+                <label className="switch-label" style={{display:'flex',alignItems:'center',gap:10,cursor:'pointer',userSelect:'none'}}>
+                  <span style={{fontWeight:500}}>
+                    {applyDiscount
+                      ? `${discountValue}% appliqués`
+                      : `Appliquer les ${discountValue}% du bénéficiaire`}
+                  </span>
+                  <span className="switch">
+                    <input
+                      type="checkbox"
+                      checked={applyDiscount}
+                      onChange={e => setApplyDiscount(e.target.checked)}
+                    />
+                    <span className="slider round"></span>
+                  </span>
+                </label>
+              )}
+            </div>
             <table className="produits-table achats-list-table">
               <thead>
                 <tr>
@@ -208,11 +236,29 @@ function Achats() {
                     </td>
                   </tr>
                 ))}
-                {/* Ligne de total */}
+                {/* Ligne de total original barré : affichée seulement si rabais appliqué */}
+                {applyDiscount && (
+                  <tr className="achats-total-row">
+                    <td colSpan={2} style={{ fontWeight: 700, textAlign: 'right' }}>Total initial</td>
+                    <td style={{ fontWeight: 700, textDecoration:'line-through', color:'#888' }}>
+                      {totalSansRabais.toFixed(2)} €
+                    </td>
+                    <td></td>
+                  </tr>
+                )}
+                {/* Ligne de rabais */}
+                {applyDiscount && (
+                  <tr className="achats-total-row">
+                    <td colSpan={2} style={{ fontWeight: 700, textAlign: 'right' }}>Rabais</td>
+                    <td style={{ fontWeight: 700, color:'#1a7f1a' }}>- {montantRabais.toFixed(2)} €</td>
+                    <td></td>
+                  </tr>
+                )}
+                {/* Ligne de total après rabais */}
                 <tr className="achats-total-row">
-                  <td colSpan={2} style={{ fontWeight: 700, textAlign: 'right' }}>Total</td>
-                  <td style={{ fontWeight: 700 }}>
-                    {achatList.reduce((sum, a) => sum + a.quantite * a.prix, 0).toFixed(2)} €
+                  <td colSpan={2} style={{ fontWeight: 700, textAlign: 'right' }}>Total à payer</td>
+                  <td style={{ fontWeight: 700, color:'#0071bc' }}>
+                    {totalAvecRabais.toFixed(2)} €
                   </td>
                   <td style={{ fontWeight: 700, color: '#0071bc' }}>
                     {achatList.reduce((sum, a) => sum + a.quantite, 0)} produit{achatList.reduce((sum, a) => sum + a.quantite, 0) > 1 ? 's' : ''}

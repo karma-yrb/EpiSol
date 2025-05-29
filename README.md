@@ -4,7 +4,7 @@ proposer systématiquement :
 - git add
 - git commit
 - git push
-- un déploiement npm run deploy
+- un déploiement avec 'npm run deploy'
 Ceci est une consigne permanente pour l'ensemble du projet.
 
 > Note : Par défaut, toutes les commandes (git, npm, etc.) sont à exécuter dans le dossier `frontend/` sauf indication contraire.
