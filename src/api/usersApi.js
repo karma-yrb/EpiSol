@@ -20,4 +20,10 @@ export async function fetchUserLogs(userId) {
   return await res.json();
 }
 
+export async function fetchUserInfo(id) {
+  const res = await fetch(`${API_BASE_URL}/api/users/${id}`);
+  if (!res.ok) throw new Error('Erreur lors du chargement des infos utilisateur');
+  return await res.json();
+}
+
 // Ajoutez d'autres fonctions si besoin (addUser, updateUser, etc.)
