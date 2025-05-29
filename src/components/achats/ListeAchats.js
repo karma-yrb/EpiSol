@@ -133,7 +133,6 @@ function ListeAchats() {
               type="delete"
               title="Supprimer"
               onClick={() => handleDelete(row.id)}
-              style={{ width: '100%' }}
             />
           )}
         </div>
