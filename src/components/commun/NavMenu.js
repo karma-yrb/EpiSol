@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './NavMenu.css';
+import { isAdminFromToken } from '../../utils/auth';
 
 const NAV_LINKS = [
   { to: '/', icon: 'fa-home', label: 'Accueil' },
@@ -19,18 +20,7 @@ function NavMenu({ user }) {
   // Détecte si mobile (largeur < 900px)
   const isMobile = window.innerWidth < 900;
 
-  // Décoder le token pour obtenir le rôle
-  let userRole = null;
-  const token = localStorage.getItem('token');
-  if (token && token !== 'mock-token') {
-    try {
-      const parts = token.split('.');
-      if (parts.length === 3) {
-        const payload = JSON.parse(atob(parts[1]));
-        userRole = payload.role;
-      }
-    } catch {}
-  }
+  const isAdmin = isAdminFromToken();
 
   return (
     <>
@@ -49,7 +39,7 @@ function NavMenu({ user }) {
       >
         <ul>
           {NAV_LINKS.filter(link => {
-            if (link.adminOnly && userRole !== 'admin') return false;
+            if (link.adminOnly && !isAdmin) return false;
             return true;
           }).map(link => (
             <li key={link.to} className={location.pathname === link.to ? 'active' : ''}>

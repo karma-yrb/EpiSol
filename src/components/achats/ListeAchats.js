@@ -6,23 +6,12 @@ import AchatDetailsModal from './AchatDetailsModal';
 import ActionIconButton from '../commun/ActionIconButton';
 import SortableTable from '../commun/SortableTable';
 import { fetchAchats, deleteAchat, fetchAchatDetails } from '../../api/achatsHistoriqueApi';
+import { isAdminFromToken } from '../../utils/auth';
 
 function ListeAchats() {
-  // Décodage direct du token comme dans le menu pour la détection admin
-  let userRole = null;
-  const token = localStorage.getItem('token');
-  if (token && token !== 'mock-token') {
-    try {
-      const parts = token.split('.');
-      if (parts.length === 3) {
-        const payload = JSON.parse(atob(parts[1]));
-        userRole = payload.role;
-      }
-    } catch {}
-  }
-  const isAdmin = userRole === 'admin';
+  const isAdmin = isAdminFromToken();
   // DEBUG
-  console.log('[ListeAchats] userRole:', userRole, 'isAdmin:', isAdmin);
+  console.log('[ListeAchats] isAdmin:', isAdmin);
 
   const [achats, setAchats] = useState([]);
   const [loading, setLoading] = useState(true);
