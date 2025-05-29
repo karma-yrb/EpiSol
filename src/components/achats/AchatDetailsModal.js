@@ -1,16 +1,46 @@
 import React from 'react';
 import './AchatModal.css';
 import ActionIconButton from '../commun/ActionIconButton';
+import * as XLSX from 'xlsx';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 function AchatDetailsModal({ show, details, loading, onClose }) {
   if (!show) return null;
 
   // Fonctions d'export simples (mock, à remplacer par une vraie logique si besoin)
   const handleExportPDF = () => {
-    alert('Export PDF non implémenté (démo)');
+    if (!details || !details.lignes) return;
+    const doc = new jsPDF();
+    doc.text(`Détail de l'achat`, 14, 14);
+    doc.text(`Bénéficiaire : ${details.beneficiaire_nom} ${details.beneficiaire_prenom || ''}`, 14, 22);
+    doc.text(`Date : ${details.date_achat ? formatDateFR(details.date_achat) : ''}`, 14, 30);
+    doc.text(`Total : ${Number(details.total).toFixed(2)} €`, 14, 38);
+    doc.text(`Quantité totale : ${quantiteTotale}`, 14, 46);
+    doc.autoTable({
+      startY: 54,
+      head: [['Produit', 'Quantité', 'Prix unitaire', 'Sous-total']],
+      body: details.lignes.map(l => [
+        l.produit_nom,
+        l.quantite,
+        Number(l.prix_unitaire).toFixed(2) + ' €',
+        (l.quantite * l.prix_unitaire).toFixed(2) + ' €'
+      ]),
+      styles: { fontSize: 10 }
+    });
+    doc.save(`achat_${details.id || 'details'}.pdf`);
   };
   const handleExportXLS = () => {
-    alert('Export XLS non implémenté (démo)');
+    if (!details || !details.lignes) return;
+    const ws = XLSX.utils.json_to_sheet(details.lignes.map(l => ({
+      'Produit': l.produit_nom,
+      'Quantité': l.quantite,
+      'Prix unitaire': Number(l.prix_unitaire).toFixed(2),
+      'Sous-total': (l.quantite * l.prix_unitaire).toFixed(2)
+    })));
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Achats');
+    XLSX.writeFile(wb, `achat_${details.id || 'details'}.xlsx`);
   };
   const handleExportExcel = () => {
     alert('Export Excel non implémenté (démo)');
