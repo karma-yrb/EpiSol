@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { UserAuthContext } from '../../contexts/UserAuthProvider';
 import './Achats.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import AchatDetailsModal from './AchatDetailsModal';
@@ -7,6 +8,9 @@ import SortableTable from '../commun/SortableTable';
 import { fetchAchats, deleteAchat, fetchAchatDetails } from '../../api/achatsHistoriqueApi';
 
 function ListeAchats() {
+  const { tokenData } = useContext(UserAuthContext);
+  const isAdmin = !!tokenData?.is_admin;
+
   const [achats, setAchats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deleteId, setDeleteId] = useState(null);
@@ -123,11 +127,13 @@ function ListeAchats() {
             onClick={() => handleDetails(row.id)}
             style={{ marginRight: 4 }}
           />
-          <ActionIconButton
-            type="delete"
-            title="Supprimer"
-            onClick={() => handleDelete(row.id)}
-          />
+          {isAdmin && (
+            <ActionIconButton
+              type="delete"
+              title="Supprimer"
+              onClick={() => handleDelete(row.id)}
+            />
+          )}
         </>
       )
     }
