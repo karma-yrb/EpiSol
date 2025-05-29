@@ -86,7 +86,7 @@ function ManageUsers({ userConnected }) {
                   <ActionIconButton type="edit" title="Éditer" onClick={e => e.stopPropagation()} />
                 </Link>
                 <ActionIconButton type="delete" title="Supprimer" onClick={() => { setUserToDelete(user.id); setShowDeleteModal(true); }} />
-                <ActionIconButton type="view" title="Voir logs" onClick={() => window.open(`/users/${user.id}/logs`, '_blank')} />
+                <ActionIconButton type="view" title="Voir logs" onClick={() => window.location.href = `/users/${user.id}/logs`} />
               </td>
             </tr>
           ))}
