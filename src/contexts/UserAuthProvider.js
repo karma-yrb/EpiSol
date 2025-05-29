@@ -25,6 +25,15 @@ export const UserProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [tokenData, setTokenData] = useState(null);
 
+  // Helper to normalize is_admin to boolean
+  function normalizeTokenData(data) {
+    if (!data) return data;
+    return {
+      ...data,
+      is_admin: (data.is_admin === true || data.is_admin === 1 || data.is_admin === '1' || data.is_admin === 'true')
+    };
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token !== null && isTokenValid(token)) {
@@ -32,7 +41,7 @@ export const UserProvider = ({ children }) => {
       setIsLoggedIn(true);
       try {
         const decodedToken = jwtDecode(token);
-        setTokenData(decodedToken);
+        setTokenData(normalizeTokenData(decodedToken));
       } catch (e) {
         setTokenData(null);
       }
