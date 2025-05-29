@@ -9,7 +9,10 @@ import { fetchAchats, deleteAchat, fetchAchatDetails } from '../../api/achatsHis
 
 function ListeAchats() {
   const { tokenData } = useContext(UserAuthContext);
-  const isAdmin = !!tokenData?.is_admin;
+  // Correction : accepte true, 1, '1', 'true' pour l'admin
+  const isAdmin = tokenData && (tokenData.is_admin === true || tokenData.is_admin === 1 || tokenData.is_admin === '1' || tokenData.is_admin === 'true');
+  // DEBUG
+  console.log('[ListeAchats] tokenData:', tokenData, 'isAdmin:', isAdmin);
 
   const [achats, setAchats] = useState([]);
   const [loading, setLoading] = useState(true);
