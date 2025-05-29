@@ -104,12 +104,21 @@ function ManageBeneficiaire() {
 
   // Colonnes pour le tableau triable
   const columns = [
+    { label: 'Numéro bénéficiaire', key: 'numero', sortable: true },
     { label: 'Nom', key: 'nom', sortable: true },
     { label: 'Prénom', key: 'prenom', sortable: true },
     { label: 'Rabais (%)', key: 'discount', sortable: true, render: row => (row.discount !== undefined ? Math.round(Number(row.discount)) : 50) },
     { label: 'Passages', key: 'passages', sortable: true, render: row => {
       const key = `${row.nom}|||${row.prenom}`;
-      return passagesByBenef[key] || 0;
+      return <>
+        {passagesByBenef[key] || 0}
+        <i
+          className="fa fa-eye icon-action passages-eye"
+          title="Voir les achats de ce bénéficiaire"
+          tabIndex={0}
+          onClick={() => navigate(`/liste-achats?beneficiaire=${encodeURIComponent(row.nom + ' ' + row.prenom)}`)}
+        />
+      </>;
     } },
     { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
       <div className="actions-cell">

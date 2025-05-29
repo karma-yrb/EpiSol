@@ -360,3 +360,13 @@ input:focus + .slider {
 input:checked + .slider:before {
   transform: translateX(20px);
 }
+
+/* Styles spécifiques pour l'icône œil dans les passages */
+.passages-eye {
+  color: #007bff !important;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.passages-eye:hover {
+  color: #0056b3 !important;
+}
