@@ -8,11 +8,21 @@ import SortableTable from '../commun/SortableTable';
 import { fetchAchats, deleteAchat, fetchAchatDetails } from '../../api/achatsHistoriqueApi';
 
 function ListeAchats() {
-  const { tokenData } = useContext(UserAuthContext);
-  // Correction : accepte true, 1, '1', 'true' pour l'admin
-  const isAdmin = tokenData && (tokenData.is_admin === true || tokenData.is_admin === 1 || tokenData.is_admin === '1' || tokenData.is_admin === 'true');
+  // Décodage direct du token comme dans le menu pour la détection admin
+  let userRole = null;
+  const token = localStorage.getItem('token');
+  if (token && token !== 'mock-token') {
+    try {
+      const parts = token.split('.');
+      if (parts.length === 3) {
+        const payload = JSON.parse(atob(parts[1]));
+        userRole = payload.role;
+      }
+    } catch {}
+  }
+  const isAdmin = userRole === 'admin';
   // DEBUG
-  console.log('[ListeAchats] tokenData:', tokenData, 'isAdmin:', isAdmin);
+  console.log('[ListeAchats] userRole:', userRole, 'isAdmin:', isAdmin);
 
   const [achats, setAchats] = useState([]);
   const [loading, setLoading] = useState(true);
