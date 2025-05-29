@@ -256,17 +256,29 @@
 
 /* Réduction de la taille des boutons d'action dans la table d'historique des achats */
 .achats-list-table .action-icon-btn {
-  width: 1.9em;
-  height: 1.9em;
+  width: 2.4em !important;
+  height: 2.4em !important;
+  min-width: 2.4em !important;
+  min-height: 2.4em !important;
+  max-width: 2.4em !important;
+  max-height: 2.4em !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 2px;
+  padding: 0;
 }
 .achats-list-table .icon-action {
-  font-size: 1em;
-  width: 1.3em;
-  height: 1.3em;
-  min-width: 1.3em;
-  min-height: 1.3em;
-  max-width: 1.3em;
-  max-height: 1.3em;
+  font-size: 1.15em !important;
+  width: 1.7em !important;
+  height: 1.7em !important;
+  min-width: 1.7em !important;
+  min-height: 1.7em !important;
+  max-width: 1.7em !important;
+  max-height: 1.7em !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .achats-list-table .actions-cell {
   display: flex !important;
