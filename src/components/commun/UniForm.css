@@ -204,6 +204,20 @@ form.uni-form {
     padding: 0.7em 0.3em;
   }
 }
+@media (max-width: 393px) {
+  .produits-table {
+    width: 100vw;
+    max-width: 100vw;
+    font-size: 0.93em;
+    border-radius: 0;
+    margin: 0 -8px;
+    box-shadow: none;
+  }
+  .produits-table th, .produits-table td {
+    padding: 0.5em 0.2em;
+    font-size: 0.93em;
+  }
+}
 
 .add-produit-btn {
   margin-left: 24px;
