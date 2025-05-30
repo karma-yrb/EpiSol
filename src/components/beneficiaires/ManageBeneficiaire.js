@@ -107,7 +107,7 @@ function ManageBeneficiaire() {
   // Colonnes pour le tableau triable
   const columns = [
     { label: '#', key: 'numero', sortable: true },
-    { label: 'Prénom Nom', key: 'prenomNom', sortable: true, render: row => `${row.prenom} ${row.nom}` },
+    { label: 'Bénéficiaire', key: 'prenomNom', sortable: true, render: row => `${row.prenom} ${row.nom}` },
     { label: 'Rabais (%)', key: 'discount', sortable: true, render: row => (row.discount !== undefined ? Math.round(Number(row.discount)) : 50) },
     { label: 'Passages', key: 'passages', sortable: true, render: row => {
       const key = `${row.nom}|||${row.prenom}`;
