@@ -113,6 +113,32 @@
   margin-right: 10px;
 }
 
+.achats-save-btn {
+  background: #0071bc;
+  color: #fff;
+  font-weight: 700;
+  padding: 14px 32px;
+  font-size: 19px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: 24px auto 0 auto;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.achats-save-btn i {
+  margin-right: 10px;
+}
+.achats-save-btn:hover {
+  background: #005fa3;
+}
+
 .achats-list-wrapper {
   margin: 30px auto 0 auto;
   max-width: 500px;
