@@ -1,12 +1,36 @@
-.passages-eye-benef {
-  color: #0071bc !important;
-  cursor: pointer;
-  margin-left: 10px;
-  font-size: 18px;
+/* CSS spécifique pour les bénéficiaires si nécessaire */
+
+/* Override pour l'icône œil des bénéficiaires - doit être bleu sur fond blanc */
+.fa-eye.icon-action.passages-eye {
+  color: #1565c0 !important; /* bleu foncé */
+  opacity: 1 !important;
+  background: none !important;
+  font-size: 18px !important;
   vertical-align: middle;
   transition: color 0.15s;
+  cursor: pointer;
 }
-.passages-eye-benef:hover, .passages-eye-benef:focus {
-  color: #249cff !important;
-  outline: none;
+
+.fa-eye.icon-action.passages-eye:hover {
+  color: #42a5f5 !important; /* bleu clair au survol */
+}
+
+/* Classes pour les notifications */
+.notification-error {
+  margin-bottom: 16px;
+}
+
+.notification-success {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+/* Classes pour remplacer les styles inline des notifications */
+.beneficiaire-notification-error {
+  margin-bottom: 16px;
+}
+
+.beneficiaire-notification-success {
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
