@@ -113,25 +113,6 @@
   margin-right: 10px;
 }
 
-.enreg-achats-btn {
-  background: #007bff !important;
-  color: #fff !important;
-  border-radius: 10px;
-  font-weight: 700;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  display: block;
-  font-size: 1.1rem;
-  padding: 12px 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  border: none;
-  transition: background 0.15s;
-}
-.enreg-achats-btn:hover {
-  background: #005bb5 !important;
-}
-
 .achats-list-wrapper {
   margin: 30px auto 0 auto;
   max-width: 500px;
@@ -215,27 +196,6 @@
   margin-right: 8px;
 }
 
-.icon-blue {
-  color: #007bff;
-}
-.icon-red {
-  color: #c00;
-}
-.icon-sm {
-  font-size: 1.1em;
-}
-.icon-lg {
-  font-size: 1.75em;
-}
-.mr-8 {
-  margin-right: 8px;
-}
-.ml-4 {
-  margin-left: 4px;
-}
-.centered-text {
-  text-align: center;
-}
 .achats-list-search-row {
   display: flex;
   gap: 16px;
@@ -249,129 +209,6 @@
   font-size: 15px;
   min-width: 180px;
 }
-.sortable-col {
-  cursor: pointer;
-  user-select: none;
-}
-
-/* Réduction de la taille des boutons d'action dans la table d'historique des achats */
-.achats-list-table .action-icon-btn {
-  width: 2.4em !important;
-  height: 2.4em !important;
-  min-width: 2.4em !important;
-  min-height: 2.4em !important;
-  max-width: 2.4em !important;
-  max-height: 2.4em !important;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 2px;
-  padding: 0;
-}
-.achats-list-table .icon-action {
-  font-size: 1.15em !important;
-  width: 1.7em !important;
-  height: 1.7em !important;
-  min-width: 1.7em !important;
-  min-height: 1.7em !important;
-  max-width: 1.7em !important;
-  max-height: 1.7em !important;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.achats-list-table .actions-cell {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center;
-  gap: 8px;
-  justify-content: center;
-}
-@media (max-width: 700px) {
-  .achats-list-table .actions-cell {
-    flex-direction: column !important;
-    gap: 0;
-    width: 100%;
-    align-items: stretch;
-    justify-content: stretch;
-  }
-  .achats-list-table .actions-cell .action-icon-btn {
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    margin: 0 0 8px 0 !important;
-    display: flex;
-    justify-content: center;
-  }
-  .achats-list-table .actions-cell .action-icon-btn:last-child {
-    margin-bottom: 0 !important;
-  }
-}
-
-@media (max-width: 600px) {
-  .achats-main-card {
-    padding: 1em;
-  }
-  .achats-title {
-    font-size: 1.3rem;
-  }
-}
-
-/* Interrupteur switch pour la checkbox rabais */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 44px;
-  height: 24px;
-}
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .3s;
-  border-radius: 24px;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: .3s;
-  border-radius: 50%;
-}
-input:checked + .slider {
-  background-color: #1a7f1a;
-}
-input:focus + .slider {
-  box-shadow: 0 0 1px #1a7f1a;
-}
-input:checked + .slider:before {
-  transform: translateX(20px);
-}
-
-/* Styles spécifiques pour l'icône œil dans les passages */
-.passages-eye {
-  color: #007bff !important;
-  cursor: pointer;
-  transition: color 0.15s;
-}
-.passages-eye:hover {
-  color: #0056b3 !important;
-}
-
-/* Style pour le bouton supprimer les filtres dans ListeAchats */
 .clear-filters-btn {
   background: #eee;
   color: #333;
@@ -404,9 +241,16 @@ input:checked + .slider:before {
   font-weight: 500;
   display: inline;
 }
-
+@media (max-width: 600px) {
+  .achats-main-card {
+    padding: 1em;
+  }
+  .achats-title {
+    font-size: 1.3rem;
+  }
+}
 @media (max-width: 700px) {
-  .achats-list-search-row, .achats-list-search-row {
+  .achats-list-search-row {
     flex-direction: column;
     gap: 8px;
     align-items: stretch;
