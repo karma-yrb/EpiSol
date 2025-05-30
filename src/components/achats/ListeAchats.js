@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import './Achats.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import AchatDetailsModal from './AchatDetailsModal';
+import { getApiUrl } from '../../utils/apiUtils';
 
 function ListeAchats() {
   const [achats, setAchats] = useState([]);
@@ -30,7 +31,7 @@ function ListeAchats() {
   }, [location.search]);
 
   useEffect(() => {
-    fetch('/api/achats')
+    fetch(getApiUrl('/api/achats'))
       .then(res => res.json())
       .then(data => setAchats(Array.isArray(data) ? data : []))
       .finally(() => setLoading(false));
