@@ -80,7 +80,7 @@ function ListeAchats() {
     setDetailsLoading(true);
     setDetails(null);
     try {
-      const res = await fetch(`/api/achats/${id}`);
+      const res = await fetch(getApiUrl(`/api/achats/${id}`));
       if (!res.ok) throw new Error();
       const data = await res.json();
       setDetails(data);
