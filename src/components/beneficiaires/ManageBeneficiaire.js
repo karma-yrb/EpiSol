@@ -115,12 +115,15 @@ function ManageBeneficiaire() {
       return (
         <>
           <span className="passages-count">{passages}</span>
-          <i
-            className="fa fa-eye icon-action passages-eye"
-            title="Voir les achats de ce bénéficiaire"
-            tabIndex={0}
-            onClick={() => navigate(`/liste-achats?beneficiaireId=${row.id}&beneficiaireNom=${encodeURIComponent(row.nom)}&beneficiairePrenom=${encodeURIComponent(row.prenom)}`)}
-          />
+          {passages > 0 && (
+            <i
+              className="fa fa-eye icon-action passages-eye"
+              title="Voir les achats de ce bénéficiaire"
+              tabIndex={0}
+              style={{opacity:1, pointerEvents:'auto', cursor:'pointer', color:'#007bff'}}
+              onClick={() => navigate(`/liste-achats?beneficiaireId=${row.id}&beneficiaireNom=${encodeURIComponent(row.nom)}&beneficiairePrenom=${encodeURIComponent(row.prenom)}`)}
+            />
+          )}
         </>
       );
     } },

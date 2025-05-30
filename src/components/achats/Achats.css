@@ -262,3 +262,10 @@
     height: 36px;
   }
 }
+.fa-eye.icon-action.passages-eye {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  color: #007bff !important;
+  transition: none !important;
+}
