@@ -8,6 +8,7 @@ import ActionIconButton from '../commun/ActionIconButton';
 import SortableTable from '../commun/SortableTable';
 import '../commun/SortableTable.css';
 import { postData } from '../../utils/apiUtils';
+import './ManageBeneficiaire.css';
 
 function ManageBeneficiaire() {
   const [beneficiaires, setBeneficiaires] = useState([]);
@@ -117,11 +118,16 @@ function ManageBeneficiaire() {
           <span className="passages-count">{passages}</span>
           {passages > 0 && (
             <i
-              className="fa fa-eye icon-action passages-eye"
+              className="fa fa-eye passages-eye-blue"
               title="Voir les achats de ce bénéficiaire"
               tabIndex={0}
-              style={{opacity:1, pointerEvents:'auto', cursor:'pointer', color:'#007bff'}}
+              role="button"
               onClick={() => navigate(`/liste-achats?beneficiaireId=${row.id}&beneficiaireNom=${encodeURIComponent(row.nom)}&beneficiairePrenom=${encodeURIComponent(row.prenom)}`)}
+              onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  navigate(`/liste-achats?beneficiaireId=${row.id}&beneficiaireNom=${encodeURIComponent(row.nom)}&beneficiairePrenom=${encodeURIComponent(row.prenom)}`);
+                }
+              }}
             />
           )}
         </>

@@ -1,0 +1,12 @@
+.passages-eye-benef {
+  color: #0071bc !important;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 18px;
+  vertical-align: middle;
+  transition: color 0.15s;
+}
+.passages-eye-benef:hover, .passages-eye-benef:focus {
+  color: #249cff !important;
+  outline: none;
+}
