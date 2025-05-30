@@ -232,8 +232,10 @@ function ListeAchats() {
                 <td>{Array.isArray(a.lignes) ? a.lignes.reduce((sum, l) => sum + (l.quantite || 0), 0) : (typeof a.quantite === 'number' ? a.quantite : '')}</td>
                 <td>{Number(a.total).toFixed(2)}</td>
                 <td>
-                  <ActionIconButton type="view" title="Détails" onClick={() => handleDetails(a.id)} />
-                  <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(a.id)} />
+                  <div className="actions-cell">
+                    <ActionIconButton type="view" title="Détails" onClick={() => handleDetails(a.id)} />
+                    <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(a.id)} />
+                  </div>
                 </td>
               </tr>
             ))}
