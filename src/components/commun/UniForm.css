@@ -261,8 +261,8 @@ form.uni-form {
   font-size: 17px;
   cursor: pointer;
   font-weight: 600;
-  width: auto;
-  flex: 0 0 auto;
+  width: 50%;
+  flex: 1 1 0;
   box-sizing: border-box;
 }
 .form-buttons button[type="submit"] {
@@ -277,6 +277,26 @@ form.uni-form {
 }
 .form-buttons .cancel-btn:hover {
   background: #bbb;
+}
+@media (max-width: 700px) {
+  .form-buttons {
+    flex-direction: row !important;
+    gap: 14px !important;
+  }
+  .form-buttons button {
+    width: 50%;
+    flex: 1 1 0;
+  }
+}
+@media (max-width: 600px) {
+  .form-buttons {
+    flex-direction: row !important;
+    gap: 14px !important;
+  }
+  .form-buttons button {
+    width: 50%;
+    flex: 1 1 0;
+  }
 }
 
 .base-modal-container {
@@ -337,6 +357,21 @@ form.uni-form {
   justify-content: center;
   font-size: 1.15em;
   vertical-align: middle;
+}
+
+@media (max-width: 700px) {
+  .actions-cell {
+    flex-direction: row !important;
+    gap: 8px !important;
+    justify-content: center !important;
+  }
+}
+@media (max-width: 600px) {
+  .actions-cell {
+    flex-direction: row !important;
+    gap: 8px !important;
+    justify-content: center !important;
+  }
 }
 
 /* Rabais switch row pour formulaire bénéficiaire */
