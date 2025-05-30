@@ -106,9 +106,8 @@ function ManageBeneficiaire() {
 
   // Colonnes pour le tableau triable
   const columns = [
-    { label: 'Numéro bénéficiaire', key: 'numero', sortable: true },
-    { label: 'Nom', key: 'nom', sortable: true },
-    { label: 'Prénom', key: 'prenom', sortable: true },
+    { label: '#', key: 'numero', sortable: true },
+    { label: 'Prénom Nom', key: 'prenomNom', sortable: true, render: row => `${row.prenom} ${row.nom}` },
     { label: 'Rabais (%)', key: 'discount', sortable: true, render: row => (row.discount !== undefined ? Math.round(Number(row.discount)) : 50) },
     { label: 'Passages', key: 'passages', sortable: true, render: row => {
       const key = `${row.nom}|||${row.prenom}`;
@@ -118,7 +117,7 @@ function ManageBeneficiaire() {
           <span className="passages-count">{passages}</span>
           {passages > 0 && (
             <i
-              className="fa fa-eye passages-eye-blue"
+              className="fa fa-eye icon-action passages-eye"
               title="Voir les achats de ce bénéficiaire"
               tabIndex={0}
               role="button"
@@ -143,6 +142,16 @@ function ManageBeneficiaire() {
     ) },
   ];
 
+  // Ajout d'une clé 'prenomNom' et 'passages' pour le tri
+  const beneficiairesWithPrenomNom = beneficiaires.map(b => {
+    const key = `${b.nom}|||${b.prenom}`;
+    return {
+      ...b,
+      prenomNom: `${b.prenom} ${b.nom}`.trim(),
+      passages: passagesByBenef[key] || 0
+    };
+  });
+
   return (
     <div className="page-centered-container">
       <h1>
@@ -154,8 +163,8 @@ function ManageBeneficiaire() {
       </Link>
       <SortableTable
         columns={columns}
-        data={beneficiaires}
-        initialSort={{ col: 'nom', dir: 'asc' }}
+        data={beneficiairesWithPrenomNom}
+        initialSort={{ col: 'prenomNom', dir: 'asc' }}
       />
       {notif.message && (
         <div className={`notification ${notif.type}`}>
