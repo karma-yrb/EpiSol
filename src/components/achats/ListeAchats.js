@@ -33,7 +33,12 @@ function ListeAchats() {
   useEffect(() => {
     fetch(getApiUrl('/api/achats'))
       .then(res => res.json())
-      .then(data => setAchats(Array.isArray(data) ? data : []))
+      .then(data => {
+        if (Array.isArray(data)) {
+          console.log('[ListeAchats] ids reçus du backend:', data.map(a => a.id)); // LOG DEBUG
+        }
+        setAchats(Array.isArray(data) ? data : []);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -69,6 +74,7 @@ function ListeAchats() {
   };
 
   const handleDetails = async (id) => {
+    console.log('[ListeAchats] handleDetails - id envoyé au backend:', id); // LOG DEBUG
     setDetailsId(id);
     setDetailsLoading(true);
     setDetails(null);

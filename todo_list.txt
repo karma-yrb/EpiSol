@@ -1,5 +1,5 @@
 Bugs (à corriger):
-- page /liste-achats, le bouton "supprimer..." est trop gros, il doit tenir sur une ligne, à coté du champ de recherche
+- page /liste-achats : Erreur lors du chargement du détail.
 
 Features (à implementer): 
 - faire en sorte que le nom du beneficiaire apparaisse dans le champ de recherche lorsque que la page /liste-achats est appelée depuis /beneficiaires
