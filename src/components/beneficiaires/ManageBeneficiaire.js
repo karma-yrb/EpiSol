@@ -135,9 +135,9 @@ function ManageBeneficiaire() {
     { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
       <div className="actions-cell">
         <Link to={`/beneficiaires/edit/${row.id}`} className="edit-link">
-          <ActionIconButton type="edit" title="Éditer" className="action-icon-btn" onClick={e => e.stopPropagation()} />
+          <ActionIconButton type="edit" title="Éditer" onClick={e => e.stopPropagation()} />
         </Link>
-        <ActionIconButton type="delete" title="Supprimer" className="action-icon-btn" onClick={() => { setBeneficiaireToDelete(row.id); setShowDeleteModal(true); }} />
+        <ActionIconButton type="delete" title="Supprimer" onClick={() => { setBeneficiaireToDelete(row.id); setShowDeleteModal(true); }} />
       </div>
     ) },
   ];
