@@ -13,6 +13,19 @@ function BeneficiaireForm({ formData, handleChange, handleSubmit, id }) {
       <label>Numéro de bénéficiaire *</label>
       <input type="text" name="numero" value={formData.numero} onChange={handleChange} required />
 
+      <label>Rabais (%)</label>
+      <input
+        type="number"
+        name="discount"
+        min="0"
+        max="90"
+        step="1"
+        value={formData.discount ?? 50}
+        onChange={handleChange}
+        required
+        placeholder="Ex: 50"
+      />
+      
       <label>Téléphone</label>
       <input type="text" name="telephone" value={formData.telephone} onChange={handleChange} />
 
@@ -27,33 +40,6 @@ function BeneficiaireForm({ formData, handleChange, handleSubmit, id }) {
 
       <label>Adresse</label>
       <input type="text" name="adresse" value={formData.adresse} onChange={handleChange} />
-
-      {/* Rabais (%) avec interrupteur avant le texte, sans CSS inline */}
-      <div className="rabais-switch-row">
-        <label className="switch-label">
-          <span className="switch">
-            <input
-              type="checkbox"
-              checked={formData.discountActive ?? true}
-              onChange={e => handleChange({ target: { name: 'discountActive', value: e.target.checked } })}
-            />
-            <span className="slider round"></span>
-          </span>
-          <span className="rabais-switch-text">Rabais (%)</span>
-        </label>
-        <input
-          type="number"
-          name="discount"
-          min="0"
-          max="90"
-          step="1"
-          value={formData.discount ?? 50}
-          onChange={handleChange}
-          required
-          placeholder="Ex: 50"
-          className="rabais-input"
-        />
-      </div>
 
       <button type="submit">{id ? 'Mettre à jour' : 'Créer'}</button>
     </form>
