@@ -4,6 +4,7 @@ import './Achats.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import AchatDetailsModal from './AchatDetailsModal';
 import { getApiUrl } from '../../utils/apiUtils';
+import ActionIconButton from '../commun/ActionIconButton';
 
 function ListeAchats() {
   const [achats, setAchats] = useState([]);
@@ -89,16 +90,15 @@ function ListeAchats() {
     setDetailsLoading(false);
   };
 
-  // Fonction utilitaire pour formater la date jj mmm\naaaa
+  // Fonction utilitaire pour formater la date jj mmm aaaa (une seule ligne)
   function formatDateShort(dateStr) {
     if (!dateStr) return '';
     const d = new Date(dateStr);
     const jour = d.getDate().toString().padStart(2, '0');
-    // Tableau des mois en français, index 0 = janvier
     const mois = ['janv', 'févr', 'mars', 'avr', 'mai', 'juin', 'juil', 'août', 'sept', 'oct', 'nov', 'déc'];
     const moisStr = mois[d.getMonth()];
     const annee = d.getFullYear();
-    return `${jour} ${moisStr}\n${annee}`;
+    return `${jour} ${moisStr} ${annee}`;
   }
 
   // Lecture du paramètre d’URL 'beneficiaireId' (id numérique)
@@ -227,17 +227,13 @@ function ListeAchats() {
           <tbody>
             {achatsTries.map(a => (
               <tr key={a.id}>
-                <td>{a.date_achat ? formatDateShort(a.date_achat).split('\n').map((line, i) => <React.Fragment key={i}>{i > 0 && <br />}{line}</React.Fragment>) : ''}</td>
+                <td>{a.date_achat ? formatDateShort(a.date_achat) : ''}</td>
                 <td>{a.beneficiaire_nom} {a.beneficiaire_prenom}</td>
                 <td>{Array.isArray(a.lignes) ? a.lignes.reduce((sum, l) => sum + (l.quantite || 0), 0) : (typeof a.quantite === 'number' ? a.quantite : '')}</td>
                 <td>{Number(a.total).toFixed(2)}</td>
                 <td>
-                  <button className="edit-btn" title="Détails" onClick={() => handleDetails(a.id)}>
-                    <i className="fa fa-eye"></i>
-                  </button>
-                  <button className="delete-btn" title="Supprimer" onClick={() => handleDelete(a.id)}>
-                    <i className="fa fa-trash"></i>
-                  </button>
+                  <ActionIconButton type="view" title="Détails" onClick={() => handleDetails(a.id)} />
+                  <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(a.id)} />
                 </td>
               </tr>
             ))}
