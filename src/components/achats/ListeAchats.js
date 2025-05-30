@@ -99,13 +99,18 @@ function ListeAchats() {
   // Pré-remplissage du champ recherche avec le nom/prénom si beneficiaireId présent
   useEffect(() => {
     if (beneficiaireId && achats && achats.length > 0) {
-      // On cherche le premier achat du bénéficiaire pour récupérer son nom/prénom
       const achat = achats.find(a => String(a.beneficiaire_id) === String(beneficiaireId));
       if (achat) {
-        setSearch(`${achat.beneficiaire_nom} ${achat.beneficiaire_prenom}`.trim());
+        setSearch(s => s || `${achat.beneficiaire_nom} ${achat.beneficiaire_prenom}`.trim());
+        return;
       }
     }
-  }, [beneficiaireId, achats]);
+    const nom = params.get('beneficiaireNom');
+    const prenom = params.get('beneficiairePrenom');
+    if (beneficiaireId && (nom || prenom)) {
+      setSearch(s => s || `${nom || ''} ${prenom || ''}`.trim());
+    }
+  }, [beneficiaireId, achats, params]);
 
   // Ajout du bouton pour supprimer les filtres
   const handleClearFilters = () => {
@@ -116,13 +121,14 @@ function ListeAchats() {
   // Ajout : filtrage selon l’id bénéficiaire OU la recherche texte
   const achatsArray = Array.isArray(achats) ? achats : [];
   const achatsFiltres = achatsArray.filter(a => {
-    if (beneficiaireId) {
-      // Filtrage strict par id
-      return String(a.beneficiaire_id) === String(beneficiaireId);
-    }
     if (search && search.length > 0) {
       const nomComplet = `${a.beneficiaire_nom} ${a.beneficiaire_prenom}`.toLowerCase();
-      return nomComplet.includes(search.toLowerCase()) || (a.beneficiaire_nom && a.beneficiaire_nom.toLowerCase().includes(search.toLowerCase())) || (a.beneficiaire_prenom && a.beneficiaire_prenom.toLowerCase().includes(search.toLowerCase()));
+      return nomComplet.includes(search.toLowerCase()) ||
+        (a.beneficiaire_nom && a.beneficiaire_nom.toLowerCase().includes(search.toLowerCase())) ||
+        (a.beneficiaire_prenom && a.beneficiaire_prenom.toLowerCase().includes(search.toLowerCase()));
+    }
+    if (beneficiaireId) {
+      return String(a.beneficiaire_id) === String(beneficiaireId);
     }
     return true;
   });
@@ -173,7 +179,7 @@ function ListeAchats() {
             onChange={e => setSearch(e.target.value)}
             className="achats-list-search-input"
           />
-          {(beneficiaireId || search) && (
+          {(beneficiaireId || (search && search.trim().length > 0)) && (
             <button
               className="main-action-btn bg-blue clear-filters-btn"
               onClick={handleClearFilters}

@@ -1,7 +1,5 @@
 Bugs (à corriger):
-
+- page /liste-achats, le bouton "supprimer..." est trop gros, il doit tenir sur une ligne, à coté du champ de recherche
 
 Features (à implementer): 
-- faire en sorte que le bouton "supprimer les filtres" de la page /liste-achat s'intergre mieux et disparaisse quand aucun filtre n'est appliqué
-- voir s'il est possible ou meilleur de passer les paramatres de /beneficiaires vers /liste-achats en POST pour eviter que l'url ne change
 - faire en sorte que le nom du beneficiaire apparaisse dans le champ de recherche lorsque que la page /liste-achats est appelée depuis /beneficiaires
