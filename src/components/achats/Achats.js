@@ -195,12 +195,7 @@ function Achats() {
             <h2 className="achats-list-title">Achats en cours</h2>
             <div style={{marginBottom: 12}}>
               {selectedB && (
-                <label className="switch-label" style={{display:'flex',alignItems:'center',gap:10,cursor:'pointer',userSelect:'none'}}>
-                  <span style={{fontWeight:500}}>
-                    {applyDiscount
-                      ? `${discountValue}% appliqués`
-                      : `Appliquer les ${discountValue}% du bénéficiaire`}
-                  </span>
+                <label className="switch-label">
                   <span className="switch">
                     <input
                       type="checkbox"
@@ -208,6 +203,11 @@ function Achats() {
                       onChange={e => setApplyDiscount(e.target.checked)}
                     />
                     <span className="slider round"></span>
+                  </span>
+                  <span className="switch-text">
+                    {applyDiscount
+                      ? `${discountValue}% appliqués`
+                      : `Appliquer les ${discountValue}% du bénéficiaire`}
                   </span>
                 </label>
               )}

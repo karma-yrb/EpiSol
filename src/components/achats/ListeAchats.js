@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './Achats.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import AchatDetailsModal from './AchatDetailsModal';
-import ActionIconButton from '../commun/ActionIconButton';
-import SortableTable from '../commun/SortableTable';
-import { fetchAchats, deleteAchat, fetchAchatDetails } from '../../api/achatsHistoriqueApi';
-import { isAdminFromToken } from '../../utils/auth';
 
 function ListeAchats() {
-  const isAdmin = isAdminFromToken();
-  // DEBUG
-  console.log('[ListeAchats] isAdmin:', isAdmin);
-
   const [achats, setAchats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deleteId, setDeleteId] = useState(null);
@@ -25,9 +18,21 @@ function ListeAchats() {
   const [sortCol, setSortCol] = useState('date_achat');
   const [sortDir, setSortDir] = useState('desc'); // 'asc' | 'desc'
 
+  // Ajout : lecture du paramètre d’URL 'beneficiaire'
+  const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
-    fetchAchats()
-      .then(data => setAchats(data))
+    const params = new URLSearchParams(location.search);
+    const benef = params.get('beneficiaire');
+    if (benef && benef.length > 0) {
+      setSearch(benef.trim());
+    }
+  }, [location.search]);
+
+  useEffect(() => {
+    fetch('/api/achats')
+      .then(res => res.json())
+      .then(data => setAchats(Array.isArray(data) ? data : []))
       .finally(() => setLoading(false));
   }, []);
 
@@ -40,7 +45,8 @@ function ListeAchats() {
   const confirmDelete = async () => {
     setDeleteStatus('loading');
     try {
-      await deleteAchat(deleteId);
+      const res = await fetch(`/api/achats/${deleteId}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error();
       setAchats(list => list.filter(a => a.id !== deleteId));
       setDeleteStatus('success');
       setNotif({ type: 'success', message: 'Achat supprimé.' });
@@ -66,7 +72,9 @@ function ListeAchats() {
     setDetailsLoading(true);
     setDetails(null);
     try {
-      const data = await fetchAchatDetails(id);
+      const res = await fetch(`/api/achats/${id}`);
+      if (!res.ok) throw new Error();
+      const data = await res.json();
       setDetails(data);
     } catch {
       setDetails(null);
@@ -84,80 +92,80 @@ function ListeAchats() {
     return `${jour}/${mois}/${annee}`;
   }
 
-  // Colonnes pour le tableau triable
-  const columns = [
-    {
-      label: 'Date',
-      key: 'date_achat',
-      sortable: true,
-      render: row => row.date_achat ? formatDateShort(row.date_achat) : ''
-    },
-    {
-      label: 'Bénéficiaire',
-      key: 'beneficiaire',
-      sortable: true,
-      render: row => `${row.beneficiaire_nom} ${row.beneficiaire_prenom}`
-    },
-    {
-      label: 'Quantité',
-      key: 'quantite',
-      sortable: true,
-      render: row => {
-        let val = Array.isArray(row.lignes)
-          ? row.lignes.reduce((sum, l) => sum + (l.quantite || 0), 0)
-          : (row.quantite ? Number(row.quantite) : '');
-        console.log('DEBUG Quantité - row:', row, 'val:', val);
-        return val;
-      }
-    },
-    {
-      label: 'Total (€)',
-      key: 'total',
-      sortable: true,
-      render: row => Number(row.total).toFixed(2)
-    },
-    {
-      label: 'Actions',
-      key: 'actions',
-      sortable: false,
-      render: row => (
-        <div className="actions-cell">
-          <ActionIconButton
-            type="view"
-            title="Détails"
-            onClick={() => handleDetails(row.id)}
-            style={{ marginRight: 4, width: '100%' }}
-          />
-          {isAdmin && (
-            <ActionIconButton
-              type="delete"
-              title="Supprimer"
-              onClick={() => handleDelete(row.id)}
-            />
-          )}
-        </div>
-      )
-    }
-  ];
+  // Lecture du paramètre d’URL 'beneficiaireId' (id numérique)
+  const params = new URLSearchParams(location.search);
+  const beneficiaireId = params.get('beneficiaireId');
 
-  // Filtrage et tri (on garde la logique de recherche et de tri)
-  const achatsFiltres = achats.filter(a => {
-    if (!search) return true;
-    const searchStr = `${a.beneficiaire_nom} ${a.beneficiaire_prenom} ${a.date_achat} ${a.total}`.toLowerCase();
-    return searchStr.includes(search.toLowerCase());
+  // Pré-remplissage du champ recherche avec le nom/prénom si beneficiaireId présent
+  useEffect(() => {
+    if (beneficiaireId && achats && achats.length > 0) {
+      // On cherche le premier achat du bénéficiaire pour récupérer son nom/prénom
+      const achat = achats.find(a => String(a.beneficiaire_id) === String(beneficiaireId));
+      if (achat) {
+        setSearch(`${achat.beneficiaire_nom} ${achat.beneficiaire_prenom}`.trim());
+      }
+    }
+  }, [beneficiaireId, achats]);
+
+  // Ajout du bouton pour supprimer les filtres
+  const handleClearFilters = () => {
+    setSearch('');
+    navigate('/liste-achats');
+  };
+
+  // Ajout : filtrage selon l’id bénéficiaire OU la recherche texte
+  const achatsArray = Array.isArray(achats) ? achats : [];
+  const achatsFiltres = achatsArray.filter(a => {
+    if (beneficiaireId) {
+      // Filtrage strict par id
+      return String(a.beneficiaire_id) === String(beneficiaireId);
+    }
+    if (search && search.length > 0) {
+      const nomComplet = `${a.beneficiaire_nom} ${a.beneficiaire_prenom}`.toLowerCase();
+      return nomComplet.includes(search.toLowerCase()) || (a.beneficiaire_nom && a.beneficiaire_nom.toLowerCase().includes(search.toLowerCase())) || (a.beneficiaire_prenom && a.beneficiaire_prenom.toLowerCase().includes(search.toLowerCase()));
+    }
+    return true;
   });
+
+  // Fonction de tri
+  const achatsTries = [...achatsFiltres].sort((a, b) => {
+    let vA, vB;
+    if (sortCol === 'date_achat') {
+      vA = a.date_achat || '';
+      vB = b.date_achat || '';
+    } else if (sortCol === 'beneficiaire') {
+      vA = `${a.beneficiaire_nom} ${a.beneficiaire_prenom}`.toLowerCase();
+      vB = `${b.beneficiaire_nom} ${b.beneficiaire_prenom}`.toLowerCase();
+    } else if (sortCol === 'total') {
+      vA = Number(a.total);
+      vB = Number(b.total);
+    }
+    if (vA < vB) return sortDir === 'asc' ? -1 : 1;
+    if (vA > vB) return sortDir === 'asc' ? 1 : -1;
+    return 0;
+  });
+
+  // Gestion du clic sur l'en-tête pour trier
+  const handleSort = col => {
+    if (sortCol === col) {
+      setSortDir(d => d === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortCol(col);
+      setSortDir('asc');
+    }
+  };
 
   return (
     <div className="page-centered-container">
-      <h1 className="page-title"><i className="fa fa-list-alt icon-blue icon-lg mr-8"></i>Historique des achats</h1>
+      <h1 className="page-title"><i className="fa fa-list-alt" style={{color:'#007bff',fontSize:28,marginRight:8}}></i>Historique des achats</h1>
       {notif.message && (
         <div className={`notification ${notif.type}`}>{notif.message}</div>
       )}
       {loading ? (
-        <div className="loading centered-text"><i className="fa fa-spinner fa-spin"></i> Chargement...</div>
+        <div className="loading"><i className="fa fa-spinner fa-spin"></i> Chargement...</div>
       ) : (
         <>
-        <div className="achats-list-search-row">
+        <div style={{display:'flex',gap:16,marginBottom:12,alignItems:'center'}}>
           <input
             type="text"
             placeholder="Recherche globale..."
@@ -165,13 +173,61 @@ function ListeAchats() {
             onChange={e => setSearch(e.target.value)}
             className="achats-list-search-input"
           />
+          {(beneficiaireId || search) && (
+            <button
+              className="main-action-btn bg-blue clear-filters-btn"
+              onClick={handleClearFilters}
+              type="button"
+            >
+              <i className="fa fa-times-circle" aria-hidden="true"></i>
+              <span className="clear-filters-label">Supprimer les filtres</span>
+            </button>
+          )}
         </div>
-        <SortableTable
-          columns={columns}
-          data={achatsFiltres}
-          initialSort={{ col: sortCol, dir: sortDir }}
-          className="achats-list-table"
-        />
+        <table className="produits-table achats-list-table">
+          <thead>
+            <tr>
+              <th style={{cursor:'pointer'}} onClick={() => handleSort('date_achat')}>
+                Date
+                {sortCol === 'date_achat' && (
+                  <i className={`fa fa-caret-${sortDir === 'asc' ? 'up' : 'down'}`} style={{marginLeft:4}}></i>
+                )}
+              </th>
+              <th style={{cursor:'pointer'}} onClick={() => handleSort('beneficiaire')}>
+                Bénéficiaire
+                {sortCol === 'beneficiaire' && (
+                  <i className={`fa fa-caret-${sortDir === 'asc' ? 'up' : 'down'}`} style={{marginLeft:4}}></i>
+                )}
+              </th>
+              <th>Quantité</th>
+              <th style={{cursor:'pointer'}} onClick={() => handleSort('total')}>
+                Total (€)
+                {sortCol === 'total' && (
+                  <i className={`fa fa-caret-${sortDir === 'asc' ? 'up' : 'down'}`} style={{marginLeft:4}}></i>
+                )}
+              </th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {achatsTries.map(a => (
+              <tr key={a.id}>
+                <td>{a.date_achat ? formatDateShort(a.date_achat) : ''}</td>
+                <td>{a.beneficiaire_nom} {a.beneficiaire_prenom}</td>
+                <td>{Array.isArray(a.lignes) ? a.lignes.reduce((sum, l) => sum + (l.quantite || 0), 0) : (typeof a.quantite === 'number' ? a.quantite : '')}</td>
+                <td>{Number(a.total).toFixed(2)}</td>
+                <td>
+                  <button className="edit-btn" title="Détails" onClick={() => handleDetails(a.id)}>
+                    <i className="fa fa-eye"></i>
+                  </button>
+                  <button className="delete-btn" title="Supprimer" onClick={() => handleDelete(a.id)}>
+                    <i className="fa fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
         </>
       )}
       {showDeleteModal && (
@@ -184,7 +240,7 @@ function ListeAchats() {
           confirmLabel="Supprimer"
           cancelLabel="Annuler"
           title="Supprimer l'achat ?"
-          icon={<i className="fa fa-exclamation-triangle icon-red icon-action mr-8"></i>}
+          icon={<i className="fa fa-exclamation-triangle" style={{color:'#c00',marginRight:8}}></i>}
         />
       )}
       {/* Modal de détails */}
@@ -194,6 +250,11 @@ function ListeAchats() {
         loading={detailsLoading}
         onClose={() => setDetailsId(null)}
       />
+      {/* Message de développement */}
+      <div className="achats-info">
+        <i className="fa fa-info-circle"></i>
+        Cette section est en cours de développement.
+      </div>
     </div>
   );
 }

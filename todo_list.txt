@@ -1,5 +1,7 @@
 Bugs (à corriger):
-1. Le switch de rabais dans /acahts s'affiche apres le texte alors qu'il devrait etre avant.
+
 
 Features (à implementer): 
-1. il faut créer une route pour la gestion des stocks, la rajouter au menu, mais sur la oage il y aura juste un  message indiquant que la page n'est pas disponible pour l'instant car en cours de developpement
+- faire en sorte que le bouton "supprimer les filtres" de la page /liste-achat s'intergre mieux et disparaisse quand aucun filtre n'est appliqué
+- voir s'il est possible ou meilleur de passer les paramatres de /beneficiaires vers /liste-achats en POST pour eviter que l'url ne change
+- faire en sorte que le nom du beneficiaire apparaisse dans le champ de recherche lorsque que la page /liste-achats est appelée depuis /beneficiaires

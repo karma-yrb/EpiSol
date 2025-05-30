@@ -110,15 +110,18 @@ function ManageBeneficiaire() {
     { label: 'Rabais (%)', key: 'discount', sortable: true, render: row => (row.discount !== undefined ? Math.round(Number(row.discount)) : 50) },
     { label: 'Passages', key: 'passages', sortable: true, render: row => {
       const key = `${row.nom}|||${row.prenom}`;
-      return <>
-        {passagesByBenef[key] || 0}
-        <i
-          className="fa fa-eye icon-action passages-eye"
-          title="Voir les achats de ce bénéficiaire"
-          tabIndex={0}
-          onClick={() => navigate(`/liste-achats?beneficiaire=${encodeURIComponent(row.nom + ' ' + row.prenom)}`)}
-        />
-      </>;
+      const passages = passagesByBenef[key] || 0;
+      return (
+        <>
+          <span className="passages-count">{passages}</span>
+          <i
+            className="fa fa-eye icon-action passages-eye"
+            title="Voir les achats de ce bénéficiaire"
+            tabIndex={0}
+            onClick={() => navigate(`/liste-achats?beneficiaireId=${row.id}`)}
+          />
+        </>
+      );
     } },
     { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
       <div className="actions-cell">
