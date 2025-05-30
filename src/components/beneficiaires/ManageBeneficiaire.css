@@ -34,3 +34,10 @@
   margin-top: 16px;
   margin-bottom: 16px;
 }
+
+
+@media (max-width: 393px) {
+  .produits-table th, .produits-table td {
+    padding: 10px;
+  }
+}

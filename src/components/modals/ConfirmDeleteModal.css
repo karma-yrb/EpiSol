@@ -1,0 +1,14 @@
+/* CSS pour ConfirmDeleteModal */
+
+.confirm-modal-icon-danger {
+  color: #c00;
+  margin-right: 8px;
+}
+
+.confirm-modal-status-success {
+  color: green;
+}
+
+.confirm-modal-status-error {
+  color: #c00;
+}
