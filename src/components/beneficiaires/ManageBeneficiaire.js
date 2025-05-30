@@ -7,6 +7,7 @@ import { fetchAchats } from '../../api/achatsApi';
 import ActionIconButton from '../commun/ActionIconButton';
 import SortableTable from '../commun/SortableTable';
 import '../commun/SortableTable.css';
+import { postData } from '../../utils/apiUtils';
 
 function ManageBeneficiaire() {
   const [beneficiaires, setBeneficiaires] = useState([]);
@@ -118,7 +119,7 @@ function ManageBeneficiaire() {
             className="fa fa-eye icon-action passages-eye"
             title="Voir les achats de ce bénéficiaire"
             tabIndex={0}
-            onClick={() => navigate(`/liste-achats?beneficiaireId=${row.id}`)}
+            onClick={() => navigate(`/liste-achats?beneficiaireId=${row.id}&beneficiaireNom=${encodeURIComponent(row.nom)}&beneficiairePrenom=${encodeURIComponent(row.prenom)}`)}
           />
         </>
       );
