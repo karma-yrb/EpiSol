@@ -1,5 +1,9 @@
 Bugs (à corriger):
-- page /liste-achats : Erreur lors du chargement du détail.
+- /beneficiaires : tri ne fontionnes plus
+- /liste-achats : Erreur lors du chargement du détail.
+- /liste-achats : regression > les boutons doivent faire 100% de la largeur en mode mobile, le bouton "edit-btn" ne respecte pas ça
 
 Features (à implementer): 
-- faire en sorte que le nom du beneficiaire apparaisse dans le champ de recherche lorsque que la page /liste-achats est appelée depuis /beneficiaires
+- /beneficiaires : la colonne "Numéro bénéficiaire" doit s'appeler "#"
+- /beneficiaires : la colonne "nom" et "prenom" doit etre fusionnée pour ne faire qu'une qui s'appelle "prénom nom"
+- afficher les initiales du user à la place du role pour le bouton d'acces au profil et deconnexion

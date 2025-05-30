@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import BeneficiaireForm from './BeneficiaireForm';
 import { fetchBeneficiaire, updateBeneficiaire, addBeneficiaire } from '../../api/beneficiairesApi';
+import './ManageBeneficiaire.css';
 
 function EditBeneficiaire() {
   const { id } = useParams();
@@ -91,9 +92,8 @@ function EditBeneficiaire() {
       <h1 className="profile-title">
         <i className="fa fa-address-book"></i>
         {id ? 'Modifier un bénéficiaire' : 'Créer un nouveau bénéficiaire'}
-      </h1>
-      {errorMsg && (
-        <div className="notification error" style={{marginBottom:16}}>
+      </h1>      {errorMsg && (
+        <div className="notification error beneficiaire-notification-error">
           <i className="fa fa-exclamation-circle"></i> {errorMsg}
         </div>
       )}
@@ -104,7 +104,7 @@ function EditBeneficiaire() {
         id={id}
       />
       {successMsg && (
-        <div className="notification success" style={{marginTop:16, marginBottom:16}}>
+        <div className="notification success beneficiaire-notification-success">
           <i className="fa fa-check-circle"></i> {successMsg}
         </div>
       )}

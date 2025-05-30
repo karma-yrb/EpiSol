@@ -374,20 +374,6 @@ form.uni-form {
 Retiré :
 .action-icon-btn, .action-icon-btn:disabled, .icon-action, .bg-blue, .bg-red, .bg-green, .bg-grey, .bg-orange, .action-icon-btn:hover:not(:disabled)
 Ces styles sont maintenant dans ActionIconButton.css
-*/
 
-.passages-eye {
-  color: #007bff !important;
-  cursor: pointer;
-  transition: color 0.15s;
-  filter: none !important;
-}
-.passages-eye:visited,
-.passages-eye:active,
-.passages-eye:focus {
-  color: #007bff !important;
-  filter: none !important;
-}
-.passages-eye:hover {
-  color: #0056b3 !important;
-}
+Retiré également .passages-eye qui est maintenant géré dans App.css pour une centralisation globale.
+*/

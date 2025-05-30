@@ -1,6 +1,7 @@
 import React from 'react';
 import '../commun/UniForm.css';
 import BaseModal from './BaseModal';
+import './ConfirmDeleteModal.css';
 
 function ConfirmDeleteModal({
   show,
@@ -11,7 +12,7 @@ function ConfirmDeleteModal({
   confirmLabel = 'Supprimer',
   cancelLabel = 'Annuler',
   title = 'Confirmer la suppression ?',
-  icon = <i className="fa fa-exclamation-triangle icon-action" style={{color:'#c00',marginRight:8}}></i>,
+  icon = <i className="fa fa-exclamation-triangle icon-action confirm-modal-icon-danger"></i>,
   successColor = 'green',
   errorColor = '#c00',
 }) {
@@ -25,9 +26,8 @@ function ConfirmDeleteModal({
             <button className="cancel-button" onClick={onCancel}>{cancelLabel}</button>
           </>
         )}
-        {status === 'loading' && <span>Suppression...</span>}
-        {(status === 'success' || status === 'error') && (
-          <span style={{color: status==='success' ? successColor : errorColor}}>{message}</span>
+        {status === 'loading' && <span>Suppression...</span>}        {(status === 'success' || status === 'error') && (
+          <span className={`confirm-modal-status-${status}`}>{message}</span>
         )}
       </div>
     </BaseModal>

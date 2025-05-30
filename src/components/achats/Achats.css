@@ -289,32 +289,6 @@
   }
 }
 
-/* Uniformisation des icônes d'action (voir, modifier, supprimer) sur toute l'app */
-.edit-btn i,
-.delete-btn i,
-.fa-eye.icon-action,
-.fa-eye.icon-action.passages-eye,
-.actions-cell .fa {
-  opacity: 1 !important;
-  color: #fff !important;
-  transition: none !important;
-  font-size: 18px !important;
-  vertical-align: middle;
-}
-.edit-btn:hover i,
-.delete-btn:hover i,
-.fa-eye.icon-action:hover,
-.fa-eye.icon-action.passages-eye:hover,
-.actions-cell .fa:hover {
-  opacity: 1 !important;
-  color: #fff !important;
-  filter: brightness(1.2);
-}
-.actions-cell .fa {
-  margin: 0 4px;
-  cursor: pointer;
-}
-
 /* Switch custom pour le rabais (inspiré du style bénéficiaire) */
 .switch-label {
   display: flex;
@@ -369,4 +343,40 @@
   margin-left: 8px;
   font-size: 15px;
   color: #222;
+}
+
+/* Classes pour remplacer les styles inline */
+.achats-form-section {
+  margin-bottom: 12px;
+}
+
+/* Classes pour les cellules du tableau des totaux */
+.achats-total-cell-label {
+  font-weight: 700;
+  text-align: right;
+}
+
+.achats-total-cell-initial {
+  font-weight: 700;
+  text-decoration: line-through;
+  color: #888;
+}
+
+.achats-total-cell-rabais {
+  font-weight: 700;
+  color: #1a7f1a;
+}
+
+.achats-total-cell-final {
+  font-weight: 700;
+  color: #0071bc;
+}
+
+/* Classes pour les notifications avec styles spécifiques */
+.achats-notification {
+  margin-top: 16px;
+}
+
+.achats-container-margin {
+  margin-bottom: 12px;
 }

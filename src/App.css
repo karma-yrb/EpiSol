@@ -40,9 +40,8 @@
 /* Uniformisation globale des icônes d'action (voir, modifier, supprimer) */
 .edit-btn i,
 .delete-btn i,
-.fa-eye.icon-action,
-.fa-eye.icon-action.passages-eye,
-.actions-cell .fa {
+.fa-eye.icon-action:not(.passages-eye),
+.actions-cell .fa:not(.passages-eye) {
   opacity: 1 !important;
   color: #fff !important;
   transition: none !important;
@@ -51,9 +50,8 @@
 }
 .edit-btn:hover i,
 .delete-btn:hover i,
-.fa-eye.icon-action:hover,
-.fa-eye.icon-action.passages-eye:hover,
-.actions-cell .fa:hover {
+.fa-eye.icon-action:not(.passages-eye):hover,
+.actions-cell .fa:not(.passages-eye):hover {
   opacity: 1 !important;
   color: #fff !important;
   filter: brightness(1.2);
@@ -61,4 +59,16 @@
 .actions-cell .fa {
   margin: 0 4px;
   cursor: pointer;
+}
+.fa-eye.icon-action.passages-eye {
+  color: #1565c0 !important; /* bleu foncé */
+  opacity: 1 !important;
+  background: none !important;
+  font-size: 18px !important;
+  vertical-align: middle;
+  transition: color 0.15s;
+  cursor: pointer;
+}
+.fa-eye.icon-action.passages-eye:hover {
+  color: #42a5f5 !important; /* bleu clair au survol */
 }

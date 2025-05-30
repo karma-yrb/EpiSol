@@ -189,11 +189,10 @@ function Achats() {
           setHighlightedProduit={setHighlightedProduit}
           handleProduitKeyDown={handleProduitKeyDown}
         />
-        {/* Liste des achats en cours */}
-        {achatList.length > 0 && (
+        {/* Liste des achats en cours */}        {achatList.length > 0 && (
           <div className="achats-list-wrapper">
             <h2 className="achats-list-title">Achats en cours</h2>
-            <div style={{marginBottom: 12}}>
+            <div className="achats-form-section">
               {selectedB && (
                 <label className="switch-label">
                   <span className="switch">
@@ -236,11 +235,10 @@ function Achats() {
                     </td>
                   </tr>
                 ))}
-                {/* Ligne de total original barré : affichée seulement si rabais appliqué */}
-                {applyDiscount && (
+                {/* Ligne de total original barré : affichée seulement si rabais appliqué */}                {applyDiscount && (
                   <tr className="achats-total-row">
-                    <td colSpan={2} style={{ fontWeight: 700, textAlign: 'right' }}>Total initial</td>
-                    <td style={{ fontWeight: 700, textDecoration:'line-through', color:'#888' }}>
+                    <td colSpan={2} className="achats-total-cell-label">Total initial</td>
+                    <td className="achats-total-cell-initial">
                       {totalSansRabais.toFixed(2)} €
                     </td>
                     <td></td>
@@ -249,18 +247,18 @@ function Achats() {
                 {/* Ligne de rabais */}
                 {applyDiscount && (
                   <tr className="achats-total-row">
-                    <td colSpan={2} style={{ fontWeight: 700, textAlign: 'right' }}>Rabais</td>
-                    <td style={{ fontWeight: 700, color:'#1a7f1a' }}>- {montantRabais.toFixed(2)} €</td>
+                    <td colSpan={2} className="achats-total-cell-label">Rabais</td>
+                    <td className="achats-total-cell-rabais">- {montantRabais.toFixed(2)} €</td>
                     <td></td>
                   </tr>
                 )}
                 {/* Ligne de total après rabais */}
                 <tr className="achats-total-row">
-                  <td colSpan={2} style={{ fontWeight: 700, textAlign: 'right' }}>Total à payer</td>
-                  <td style={{ fontWeight: 700, color:'#0071bc' }}>
+                  <td colSpan={2} className="achats-total-cell-label">Total à payer</td>
+                  <td className="achats-total-cell-final">
                     {totalAvecRabais.toFixed(2)} €
                   </td>
-                  <td style={{ fontWeight: 700, color: '#0071bc' }}>
+                  <td className="achats-total-cell-final">
                     {achatList.reduce((sum, a) => sum + a.quantite, 0)} produit{achatList.reduce((sum, a) => sum + a.quantite, 0) > 1 ? 's' : ''}
                   </td>
                 </tr>
@@ -275,14 +273,13 @@ function Achats() {
           </div>
         )}
         {/* Notifications globales */}
-        {console.log('[DEBUG] saveSuccess:', saveSuccess, 'saveError:', saveError)}
-        {saveSuccess && (
-          <div className="notification success" style={{marginTop:16}}>
+        {console.log('[DEBUG] saveSuccess:', saveSuccess, 'saveError:', saveError)}        {saveSuccess && (
+          <div className="notification success achats-notification">
             <i className="fa fa-check-circle"></i> Achats enregistrés avec succès !
           </div>
         )}
         {saveError && (
-          <div className="notification error" style={{marginTop:16}}>
+          <div className="notification error achats-notification">
             <i className="fa fa-exclamation-circle"></i> {saveError}
           </div>
         )}
