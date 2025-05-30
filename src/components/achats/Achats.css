@@ -370,3 +370,51 @@ input:checked + .slider:before {
 .passages-eye:hover {
   color: #0056b3 !important;
 }
+
+/* Style pour le bouton supprimer les filtres dans ListeAchats */
+.clear-filters-btn {
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+  line-height: 1;
+  box-shadow: none;
+  font-weight: 500;
+  margin-left: 0;
+  margin-right: 0;
+  white-space: nowrap;
+}
+.clear-filters-btn:hover {
+  background: #e0e0e0;
+  color: #0071bc;
+}
+.clear-filters-btn .fa-times-circle {
+  font-size: 1.1em;
+  margin-right: 4px;
+}
+.clear-filters-label {
+  font-size: 15px;
+  font-weight: 500;
+  display: inline;
+}
+
+@media (max-width: 700px) {
+  .achats-list-search-row, .achats-list-search-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .clear-filters-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 4px;
+    height: 36px;
+  }
+}

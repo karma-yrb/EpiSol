@@ -172,7 +172,7 @@ function ListeAchats() {
         <div className="loading"><i className="fa fa-spinner fa-spin"></i> Chargement...</div>
       ) : (
         <>
-        <div style={{display:'flex',gap:16,marginBottom:12,alignItems:'center'}}>
+        <div className="achats-list-search-row">
           <input
             type="text"
             placeholder="Recherche globale..."
@@ -182,7 +182,7 @@ function ListeAchats() {
           />
           {(beneficiaireId || (search && search.trim().length > 0)) && (
             <button
-              className="main-action-btn bg-blue clear-filters-btn"
+              className="clear-filters-btn"
               onClick={handleClearFilters}
               type="button"
             >
