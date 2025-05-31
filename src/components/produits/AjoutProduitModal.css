@@ -56,6 +56,11 @@
   cursor: pointer;
 }
 
+#mini-modal-ajout-produit .ajout-produit-cancel-btn:hover {
+  background: #ddd;
+  color: #111;
+}
+
 #mini-modal-ajout-produit .ajout-produit-error {
   color: #c00;
   margin-top: 8px;

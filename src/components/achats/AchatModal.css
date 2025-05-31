@@ -118,6 +118,11 @@
   font-weight: 500;
 }
 
+.achat-modal-actions .cancel-btn:hover {
+  background: #ddd;
+  color: #111;
+}
+
 .achat-modal-error {
   color: #c00;
   background: #ffeaea;

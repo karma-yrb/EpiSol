@@ -13,6 +13,7 @@
   margin: 0 2px;
   padding: 0;
   outline: none;
+  background: #6c757d; /* couleur de fond par défaut (gris) */
 }
 .action-icon-btn:disabled {
   opacity: 0.6;

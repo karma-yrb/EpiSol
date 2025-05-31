@@ -1,6 +1,6 @@
 Bugs (à corriger) :
-- /liste-achats : Erreur lors du chargement du détail.
-- /liste-achats : regression > les boutons doivent faire 100% de la largeur en mode mobile, le bouton "edit-btn" ne respecte pas ça
+✅ COMPLETED - /liste-achats : regression > les boutons doivent faire 100% de la largeur en mode mobile, le bouton "edit-btn" ne respecte pas ça
+✅ COMPLETED - Boutons d'action transparents : ajout d'une couleur de fond par défaut pour la classe .action-icon-btn
 
 Features (à implementer): 
-- afficher les initiales du user à la place du role pour le bouton d'acces au profil et deconnexion
+✅ COMPLETED - afficher les initiales du user à la place du role pour le bouton d'acces au profil et deconnexion
