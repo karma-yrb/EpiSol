@@ -1,10 +1,15 @@
 Bugs (à corriger) :
 ✅ COMPLETED - /liste-achats : regression > les boutons doivent faire 100% de la largeur en mode mobile, le bouton "edit-btn" ne respecte pas ça
 ✅ COMPLETED - Boutons d'action transparents : ajout d'une couleur de fond par défaut pour la classe .action-icon-btn
-✅ COMPLETED - Navigation historique : "voir les achats" depuis /beneficiaires maintenant enregistré dans l'historique pour permettre retour via bouton précédent du navigateur
-✅ COMPLETED - Recherche bénéficiaire : ajout message "aucun bénéficiaire trouvé" avec bouton d'ajout nouveau bénéficiaire
-
-- reduire Achats.js, ListeAchats.js, ManageProduits.js
 
 Features (à implementer): 
 ✅ COMPLETED - afficher les initiales du user à la place du role pour le bouton d'acces au profil et deconnexion
+✅ COMPLETED - Recherche bénéficiaire : ajout message "aucun bénéficiaire trouvé" avec bouton d'ajout nouveau bénéficiaire
+- Navigation historique : "voir les achats" depuis /beneficiaires maintenant enregistré dans l'historique pour permettre retour via bouton précédent du navigateur
+
+Améliorations
+✅ COMPLETED - reduire la taille de AchatModal.js
+✅ COMPLETED - reduire la taille de Achats.js (311 → 128 lignes)
+- reduire la taille de ListeAchats.js
+- reduire la taille de ManageProduits.js
+- verifier que les composants créés pour ces reduction ne peuvent pas etre etre mutualisés, pour eviter les redondances ou les fichiers similaires
