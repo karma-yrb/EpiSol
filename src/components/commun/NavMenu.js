@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './NavMenu.css';
 import { isAdminFromToken, getUserInitialsFromToken } from '../../utils/auth';
@@ -16,10 +16,18 @@ const NAV_LINKS = [
 function NavMenu({ user }) {
   const [open, setOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
   const location = useLocation();
 
-  // Détecte si mobile (largeur < 900px)
-  const isMobile = window.innerWidth < 900;
+  // Hook pour détecter les changements de taille d'écran
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 900);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const isAdmin = isAdminFromToken();
   
