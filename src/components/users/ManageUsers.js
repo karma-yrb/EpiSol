@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../commun/UniForm.css';
 import './ManageUsers.css';
@@ -6,59 +6,49 @@ import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import { fetchUsers, deleteUser } from '../../api/usersApi';
 import ActionIconButton from '../commun/ActionIconButton';
 import UserLastLogin from './UserLastLogin';
+import { useGenericData } from '../../hooks/useGenericData';
 
 function ManageUsers({ userConnected }) {
-  const [users, setUsers] = useState([]);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [userToDelete, setUserToDelete] = useState(null);
-  const [notif, setNotif] = useState({ type: '', message: '' });
-  const [deleteStatus, setDeleteStatus] = useState('idle');
-  const [deleteMsg, setDeleteMsg] = useState('');
   const navigate = useNavigate();
+
+  // Utilisation du hook générique avec options personnalisées
+  const {
+    data: users,
+    loading,
+    showDeleteModal,
+    notif,
+    deleteStatus,
+    handleDelete,
+    confirmDelete,
+    cancelDelete
+  } = useGenericData(null, {
+    fetchFunction: async () => {
+      const data = await fetchUsers();
+      // Exclure l'utilisateur connecté et l'utilisateur "Admin"
+      return data.filter(
+        (user) => user.username !== userConnected && user.username !== 'admin'
+      );
+    },
+    deleteFunction: deleteUser,
+    successMessage: 'Utilisateur supprimé avec succès.',
+    errorMessage: 'Erreur lors de la suppression de l\'utilisateur.'
+  });
 
   useEffect(() => {
     if (!userConnected) {
       navigate('/access-denied');
       return;
-    }
-    fetchUsers()
-      .then((data) => {
-        // Exclure l'utilisateur connecté et l'utilisateur "Admin" (username === 'admin')
-        const filteredUsers = data.filter(
-          (user) => user.username !== userConnected && user.username !== 'admin'
-        );
-        setUsers(filteredUsers);
-      })
-      .catch((error) => console.error('Erreur lors de la récupération des utilisateurs :', error));
-  }, [userConnected, navigate]);
+    }  }, [userConnected, navigate]);
 
-  const confirmDelete = async () => {
-    setDeleteStatus('loading');
-    setDeleteMsg('');
-    try {
-      await deleteUser(userToDelete);
-      setUsers(users.filter(u => u.id !== userToDelete));
-      setDeleteStatus('success');
-      setDeleteMsg('Utilisateur supprimé.');
-    } catch {
-      setDeleteStatus('error');
-      setDeleteMsg('Erreur lors de la suppression.');
-    }
-  };
-
-  useEffect(() => {
-    if (deleteStatus === 'success' || deleteStatus === 'error') {
-      const timer = setTimeout(() => {
-        setShowDeleteModal(false);
-        setUserToDelete(null);
-        setDeleteStatus('idle');
-        setDeleteMsg('');
-        if (deleteStatus === 'success') setNotif({ type: 'success', message: 'Utilisateur supprimé.' });
-        if (deleteStatus === 'error') setNotif({ type: 'error', message: deleteMsg });
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [deleteStatus, deleteMsg]);
+  if (loading) {
+    return (
+      <div className="page-centered-container">
+        <div className="loading">
+          <i className="fa fa-spinner fa-spin"></i> Chargement...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="page-centered-container">
@@ -85,7 +75,7 @@ function ManageUsers({ userConnected }) {
                 <Link to={`/users/edit/${user.id}`} className="edit-link">
                   <ActionIconButton type="edit" title="Éditer" onClick={e => e.stopPropagation()} />
                 </Link>
-                <ActionIconButton type="delete" title="Supprimer" onClick={() => { setUserToDelete(user.id); setShowDeleteModal(true); }} />
+                <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(user.id)} />
                 <ActionIconButton type="view" title="Voir logs" onClick={() => window.location.href = `/users/${user.id}/logs`} />
               </td>
             </tr>
@@ -97,13 +87,12 @@ function ManageUsers({ userConnected }) {
           <i className={`fa fa-${notif.type==='success'?'check-circle':'exclamation-circle'}`}></i> {notif.message}
         </div>
       )}
-      {showDeleteModal && (
-        <ConfirmDeleteModal
+      {showDeleteModal && (        <ConfirmDeleteModal
           show={showDeleteModal}
           onConfirm={confirmDelete}
-          onCancel={() => { setShowDeleteModal(false); setUserToDelete(null); setDeleteStatus('idle'); setDeleteMsg(''); }}
+          onCancel={cancelDelete}
           status={deleteStatus}
-          message={deleteMsg}
+          message=""
           confirmLabel="Supprimer"
           cancelLabel="Annuler"
           title="Confirmer la suppression de l'utilisateur ?"

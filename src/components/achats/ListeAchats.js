@@ -2,7 +2,7 @@ import React from 'react';
 import './Achats.css';
 import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import AchatDetailsModal from './AchatDetailsModal';
-import AchatsSearchBar from './AchatsSearchBar';
+import GenericSearchBar from '../commun/GenericSearchBar';
 import AchatsTableList from './AchatsTableList';
 import { useAchatsData } from '../../hooks/useAchatsData';
 import { useAchatsFilters } from '../../hooks/useAchatsFilters';
@@ -53,14 +53,16 @@ function ListeAchats() {
       {loading ? (
         <div className="loading">
           <i className="fa fa-spinner fa-spin"></i> Chargement...
-        </div>
-      ) : (
+        </div>      ) : (
         <>
-          <AchatsSearchBar
+          <GenericSearchBar
             search={search}
-            setSearch={setSearch}
-            beneficiaireId={beneficiaireId}
-            handleClearFilters={handleClearFilters}
+            onSearchChange={setSearch}
+            placeholder="Recherche globale..."
+            className="achats-list-search-row"
+            showClearFilters={true}
+            onClearFilters={handleClearFilters}
+            hasActiveFilters={beneficiaireId || (search && search.trim().length > 0)}
           />
           
           <AchatsTableList

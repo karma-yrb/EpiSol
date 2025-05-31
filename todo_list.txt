@@ -10,6 +10,6 @@ Features (à implementer):
 Améliorations
 ✅ COMPLETED - reduire la taille de AchatModal.js
 ✅ COMPLETED - reduire la taille de Achats.js (311 → 128 lignes)
-- reduire la taille de ListeAchats.js
-- reduire la taille de ManageProduits.js
+✅ COMPLETED - reduire la taille de ListeAchats.js (275 → 115 lignes)
+✅ COMPLETED - reduire la taille de ManageProduits.js (273 → 145 lignes)
 - verifier que les composants créés pour ces reduction ne peuvent pas etre etre mutualisés, pour eviter les redondances ou les fichiers similaires
