@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './NavMenu.css';
-import { isAdminFromToken } from '../../utils/auth';
+import { isAdminFromToken, getUserInitialsFromToken } from '../../utils/auth';
 
 const NAV_LINKS = [
   { to: '/', icon: 'fa-home', label: 'Accueil' },
@@ -22,6 +22,9 @@ function NavMenu({ user }) {
   const isMobile = window.innerWidth < 900;
 
   const isAdmin = isAdminFromToken();
+  
+  // Récupère les initiales de l'utilisateur depuis le token
+  const userInitials = getUserInitialsFromToken();
 
   return (
     <>
@@ -51,12 +54,14 @@ function NavMenu({ user }) {
             </li>
           ))}
         </ul>
-      </nav>
-      {/* Menu utilisateur déroulant à droite */}
+      </nav>      {/* Menu utilisateur déroulant à droite */}
       <div className="user-menu-wrapper">
-        {user}
         <button className="user-menu-btn" onClick={() => setUserMenuOpen(v => !v)}>
-          <i className="fa fa-user-circle"></i>
+          {userInitials ? (
+            <span className="user-initials">{userInitials}</span>
+          ) : (
+            <i className="fa fa-user-circle"></i>
+          )}
         </button>
         {userMenuOpen && (
           <div className="user-dropdown-menu">
