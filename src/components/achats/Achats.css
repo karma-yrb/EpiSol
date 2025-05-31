@@ -380,3 +380,59 @@
 .achats-container-margin {
   margin-bottom: 12px;
 }
+
+/* Styles pour le message "aucun résultat" */
+.achats-no-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  padding: 16px;
+  text-align: center;
+}
+
+.achats-no-results-message {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.achats-no-results-message i {
+  margin-right: 8px;
+  color: #999;
+}
+
+.achats-add-beneficiaire-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.achats-add-beneficiaire-btn:hover {
+  background: #218838;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.achats-add-beneficiaire-btn:active {
+  transform: translateY(0);
+}
+
+.achats-add-beneficiaire-btn i {
+  font-size: 12px;
+}

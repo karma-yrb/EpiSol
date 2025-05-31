@@ -120,11 +120,10 @@ function ListeAchats() {
       setSearch(s => s || `${nom || ''} ${prenom || ''}`.trim());
     }
   }, [beneficiaireId, achats, params]);
-
   // Ajout du bouton pour supprimer les filtres
   const handleClearFilters = () => {
     setSearch('');
-    navigate('/liste-achats');
+    navigate('/liste-achats', { replace: false });
   };
 
   // Ajout : filtrage selon l’id bénéficiaire OU la recherche texte

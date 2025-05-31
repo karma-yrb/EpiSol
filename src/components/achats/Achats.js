@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Achats.css';
 import AchatModal from './AchatModal';
 import { addAchat as addAchatApi } from '../../api/achatsApi';
@@ -7,6 +8,8 @@ import { useAchatList } from '../../hooks/useAchatList';
 import { useProduitSearch } from '../../hooks/useProduitSearch';
 
 function Achats() {
+  const navigate = useNavigate();
+  
   // --- Bénéficiaires ---
   const {
     beneficiaires,
@@ -17,6 +20,7 @@ function Achats() {
     setSelectedB,
     showDropdown,
     setShowDropdown,
+    showNoResults,
     searchRef,
     highlighted,
     setHighlighted,
@@ -139,8 +143,7 @@ function Achats() {
               onFocus={() => { if (filteredB.length > 0) setShowDropdown(true); }}
               onKeyDown={handleKeyDown}
               className="achats-beneficiaire-input"
-            />
-            {showDropdown && filteredB.length > 0 && (
+            />            {showDropdown && filteredB.length > 0 && (
               <ul className="achats-beneficiaire-dropdown">
                 {filteredB.map((b, idx) => (
                   <li key={b.id} onMouseDown={()=>handleSelectB(b)}
@@ -151,6 +154,20 @@ function Achats() {
                   </li>
                 ))}
               </ul>
+            )}
+            {showNoResults && (
+              <div className="achats-no-results">
+                <div className="achats-no-results-message">
+                  <i className="fa fa-search"></i>
+                  Aucun bénéficiaire trouvé avec "{searchB}"
+                </div>                <button 
+                  className="achats-add-beneficiaire-btn"
+                  onClick={() => navigate('/beneficiaires/add')}
+                >
+                  <i className="fa fa-plus"></i>
+                  Ajouter un nouveau bénéficiaire
+                </button>
+              </div>
             )}
           </div>
           {selectedB && (

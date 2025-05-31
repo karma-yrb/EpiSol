@@ -113,18 +113,17 @@ function ManageBeneficiaire() {
       const key = `${row.nom}|||${row.prenom}`;
       const passages = passagesByBenef[key] || 0;
       return (
-        <>
-          <span className="passages-count">{passages}</span>
+        <>          <span className="passages-count">{passages}</span>
           {passages > 0 && (
             <i
               className="fa fa-eye icon-action passages-eye"
               title="Voir les achats de ce bénéficiaire"
               tabIndex={0}
               role="button"
-              onClick={() => navigate(`/liste-achats?beneficiaireId=${row.id}&beneficiaireNom=${encodeURIComponent(row.nom)}&beneficiairePrenom=${encodeURIComponent(row.prenom)}`)}
+              onClick={() => navigate(`/liste-achats?beneficiaireId=${row.id}&beneficiaireNom=${encodeURIComponent(row.nom)}&beneficiairePrenom=${encodeURIComponent(row.prenom)}`, { replace: false })}
               onKeyDown={e => {
                 if (e.key === 'Enter' || e.key === ' ') {
-                  navigate(`/liste-achats?beneficiaireId=${row.id}&beneficiaireNom=${encodeURIComponent(row.nom)}&beneficiairePrenom=${encodeURIComponent(row.prenom)}`);
+                  navigate(`/liste-achats?beneficiaireId=${row.id}&beneficiaireNom=${encodeURIComponent(row.nom)}&beneficiairePrenom=${encodeURIComponent(row.prenom)}`, { replace: false });
                 }
               }}
             />
