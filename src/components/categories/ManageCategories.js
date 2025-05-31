@@ -1,108 +1,65 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import '../commun/UniForm.css';
 import './ManageCategories.css';
-import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import CategoryAddForm from './CategoryAddForm';
 import CategoryTable from './CategoryTable';
-import ActionIconButton from '../commun/ActionIconButton';
+import { useGenericData } from '../../hooks/useGenericData';
+import { useGenericDeleteModal } from '../../hooks/useGenericDeleteModal';
 import { fetchCategories, addCategory, updateCategory, deleteCategory } from '../../api/categoriesApi';
 
 function ManageCategories() {
-  const [categories, setCategories] = useState([]);
   const [newCat, setNewCat] = useState('');
-  const [notif, setNotif] = useState({ type: '', message: '' });
-  const [editId, setEditId] = useState(null);
-  const [editValue, setEditValue] = useState('');
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [catToDelete, setCatToDelete] = useState(null);
-  const [deleteStatus, setDeleteStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
-  const [deleteMsg, setDeleteMsg] = useState('');
+  
+  const apiConfig = {
+    fetchFunction: fetchCategories,
+    addFunction: addCategory,
+    updateFunction: updateCategory,
+    deleteFunction: deleteCategory,
+    entityName: 'catégorie',
+    entityNamePlural: 'catégories',
+    sortFunction: (items) => items.sort((a, b) => a.nom.localeCompare(b.nom, 'fr', { sensitivity: 'base' }))
+  };  const {
+    data: categories,
+    notif,
+    loading,
+    error,
+    setNotif,
+    addItem,
+    editId,
+    editValue,
+    setEditValue,
+    handleEdit,
+    handleSaveEdit,
+    handleCancelEdit
+  } = useGenericData(apiConfig);
 
-  useEffect(() => {
-    fetchCategories()
-      .then(data => setCategories(Array.isArray(data) ? data : []))
-      .catch(() => setCategories([]));
-  }, []);
-
-  const handleAdd = async (e) => {
-    e.preventDefault();
-    if (!newCat.trim()) return;
+  // Fonction pour ajouter une catégorie
+  const handleAdd = async () => {
+    if (!newCat.trim()) {
+      setNotif({ type: 'error', message: 'Le nom de la catégorie ne peut pas être vide.' });
+      return;
+    }
+    
     try {
-      const data = await addCategory(newCat);
-      const newCategories = [...categories, { id: data.id, nom: data.nom }];
-      newCategories.sort((a, b) => a.nom.localeCompare(b.nom, 'fr', { sensitivity: 'base' }));
-      setCategories(newCategories);
+      const newCategory = await addCategory({ nom: newCat });
+      addItem(newCategory);
       setNewCat('');
-      setNotif({ type: 'success', message: 'Catégorie ajoutée !' });
-    } catch {
-      setNotif({ type: 'error', message: 'Erreur lors de l\'ajout.' });
+      setNotif({ type: 'success', message: 'Catégorie ajoutée avec succès.' });
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout:', error);
+      setNotif({ type: 'error', message: 'Erreur lors de l\'ajout de la catégorie.' });
     }
   };
-
-  const handleDelete = (id) => {
-    setCatToDelete(id);
-    setShowDeleteModal(true);
-  };
-
-  const confirmDelete = async () => {
-    setDeleteStatus('loading');
-    setDeleteMsg('');
-    try {
-      await deleteCategory(catToDelete);
-      setCategories(categories.filter(c => c.id !== catToDelete));
-      setDeleteStatus('success');
-      setDeleteMsg('Catégorie supprimée.');
-    } catch (err) {
-      setDeleteStatus('error');
-      setDeleteMsg(err.apiMsg || 'Erreur lors de la suppression.');
+  const {
+    handleDelete,
+    ModalComponent: DeleteModal
+  } = useGenericDeleteModal({
+    deleteFunction: deleteCategory,
+    entityName: 'catégorie',
+    onSuccess: (deletedId) => {
+      // La suppression est déjà gérée par useGenericData via son state interne
     }
-  };
-
-  // Fermer la modale après confirmation affichée 1s
-  useEffect(() => {
-    if (deleteStatus === 'success' || deleteStatus === 'error') {
-      const timer = setTimeout(() => {
-        setShowDeleteModal(false);
-        setCatToDelete(null);
-        setDeleteStatus('idle');
-        setDeleteMsg('');
-        if (deleteStatus === 'success') setNotif({ type: 'success', message: 'Catégorie supprimée.' });
-        if (deleteStatus === 'error') setNotif({ type: 'error', message: deleteMsg });
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [deleteStatus, deleteMsg]);
-
-  const cancelDelete = () => {
-    setShowDeleteModal(false);
-    setCatToDelete(null);
-  };
-
-  const handleEdit = (id, nom) => {
-    setEditId(id);
-    setEditValue(nom);
-  };
-
-  const handleEditSubmit = async (id) => {
-    if (!editValue.trim()) return;
-    try {
-      await updateCategory(id, editValue);
-      setCategories(categories.map(c => c.id === id ? { ...c, nom: editValue } : c));
-      setNotif({ type: 'success', message: 'Catégorie modifiée.' });
-      setEditId(null);
-    } catch {
-      setNotif({ type: 'error', message: 'Erreur lors de la modification.' });
-    }
-  };
-
-  useEffect(() => {
-    if (notif.message) {
-      const timer = setTimeout(() => setNotif({ type: '', message: '' }), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [notif]);
-
+  });
   return (
     <div className="page-centered-container">
       <h1>
@@ -110,14 +67,14 @@ function ManageCategories() {
         Gestion des catégories
       </h1>
       {editId !== 'add' && (
-        <button className="create-button" onClick={() => setEditId('add')}><i className="fa fa-plus mr-6"></i>Ajouter une catégorie</button>
+        <button className="create-button" onClick={() => handleEdit('add')}><i className="fa fa-plus mr-6"></i>Ajouter une catégorie</button>
       )}
       {editId === 'add' && (
         <CategoryAddForm
           newCat={newCat}
           setNewCat={setNewCat}
-          onAdd={() => { handleAdd({ preventDefault: () => {} }); setEditId(null); }}
-          onCancel={() => { setEditId(null); setNewCat(''); }}
+          onAdd={(e) => { handleAdd(e); handleCancelEdit(); }}
+          onCancel={handleCancelEdit}
         />
       )}
       <CategoryTable
@@ -126,23 +83,11 @@ function ManageCategories() {
         editValue={editValue}
         setEditValue={setEditValue}
         handleEdit={handleEdit}
-        handleEditSubmit={handleEditSubmit}
-        setEditId={setEditId}
+        handleEditSubmit={handleSaveEdit}
+        setEditId={handleCancelEdit}
         handleDelete={handleDelete}
       />
-      {showDeleteModal && (
-        <ConfirmDeleteModal
-          show={showDeleteModal}
-          onConfirm={confirmDelete}
-          onCancel={cancelDelete}
-          status={deleteStatus}
-          message={deleteMsg}
-          confirmLabel="Supprimer"
-          cancelLabel="Annuler"
-          title="Confirmer la suppression ?"
-          icon={<i className="fa fa-exclamation-triangle icon-red icon-action mr-8"></i>}
-        />
-      )}
+      <DeleteModal />
     </div>
   );
 }

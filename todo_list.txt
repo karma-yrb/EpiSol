@@ -1,22 +1,50 @@
 Bugs (à corriger) :
-- /liste-achats : Erreur lors du chargement du détail.
-- /liste-achats : regression > les boutons doivent faire 100% de la largeur en mode mobile, le bouton "edit-btn" ne respecte pas ça
-- /beneficiaires : le style n'est pas pris en compte : @media (max-width: 393px) {.produits-table th, .produits-table td {padding: 10px;}}
+✅ TERMINÉ - /liste-achats : Erreur lors du chargement du détail.
+✅ TERMINÉ - /liste-achats : regression > les boutons doivent faire 100% de la largeur en mode mobile, le bouton "edit-btn" ne respecte pas ça
+✅ TERMINÉ - /beneficiaires : le style n'est pas pris en compte : @media (max-width: 393px) {.produits-table th, .produits-table td {padding: 10px;}}
+✅ TERMINÉ - Régressions UI post-refactorisation (Mai 2025):
+  - Bouton profil/déconnexion sans background
+  - Menu latéral sans textes affichés  - Menu mobile ne prenant pas toute la largeur
+✅ TERMINÉ - Correction erreur dans ManageBeneficiaire après migration vers useGenericData
+✅ TERMINÉ - Correction du hook useGenericData pour accepter correctement un objet de configuration au lieu d'une URL
+✅ TERMINÉ - Correction erreur dans CategoryTable.js (null check dans la boucle .map)
+✅ TERMINÉ - Correction erreur dans ManageUsers.js (format incorrect de la configuration dans useGenericData)
+- /users/add :  les données de l'utilisateur connecté sont chargés alors que le form devrait être vide 
 
 Features (à implementer): 
-- /beneficiaires : la colonne "Numéro bénéficiaire" doit s'appeler "#"
-- /beneficiaires : la colonne "nom" et "prenom" doit etre fusionnée pour ne faire qu'une qui s'appelle "prénom nom"
-- afficher les initiales du user à la place du role pour le bouton d'acces au profil et deconnexion
+✅ TERMINÉ - /beneficiaires : la colonne "Numéro bénéficiaire" doit s'appeler "#"
+✅ TERMINÉ - /beneficiaires : la colonne "nom" et "prenom" doit etre fusionnée pour ne faire qu'une qui s'appelle "prénom nom"
+✅ TERMINÉ - afficher les initiales du user à la place du role pour le bouton d'acces au profil et deconnexion
 
+Ameliorations :
 ✅ TERMINÉ - Mutualisation des composants (09/2024):
 - Création de hooks génériques : useGenericData, useGenericSearch, useGenericDeleteModal
 - Remplacement des composants redondants par GenericSearchBar
 - Migration de ManageUsers vers l'approche générique
+- Migration de ManageCategories vers useGenericData et useGenericDeleteModal
+- Migration complète de ManageBeneficiaire vers useGenericData et useGenericDeleteModal
 - Suppression de 4 fichiers redondants (AchatsSearchBar, ProduitsSearchBar, useDeleteModal, ListeAchatsRefactored)
 - Réduction significative de la duplication de code
 
+✅ TERMINÉ - Corrections et optimisations UI (Mai 2025):
+- Correction du bouton profil avec background approprié (#eaf4ff)
+- Amélioration du style des initiales utilisateur (cercle bleu avec texte blanc)
+- Correction de l'affichage des textes dans le menu latéral
+- Menu mobile responsive prenant toute la largeur écran (100vw)
+- Navigation mobile optimisée avec gestion dynamique de la taille d'écran
+
+✅ TERMINÉ - Backend maintenance (Mai 2025):
+- Ajout d'un fichier .gitignore complet pour Node.js
+- Restoration du fichier authUtils.js (était accidentellement vidé)
+- Synchronisation et déploiement des modifications
+
 Prochaines étapes de mutualisation potentielles:
-- Migrer ManageCategories vers useGenericData
-- Migrer ManageBeneficiaire vers useGenericData  
 - Unifier les modales de formulaire (ProduitsFormModal vs AjoutProduitModal)
 - Remplacer les hooks de recherche spécialisés par useGenericSearch
+
+- /produits : les 2 boutons "ajouter..." et "gérer..." doivent faire la meme largeur et cote a cote et prendre 80% de l'espace en mode desktop, le champ de recherche doit faire 80% aussi 
+
+UX Mobile <=393px :
+🔄 EN COURS - Corrections d'affichage mobile (Juin 2025):
+- /achats : les boutons pour changer la quantité devraient etre alignés (voir actions-cell peut-etre)
+- /users et /beneficiaires : la ligne "sort" de l'écran, le tableau devrait prendre 100% de la largeur et réduire le margin des boutons

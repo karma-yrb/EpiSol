@@ -5,10 +5,9 @@ function CategoryTable({ categories, editId, editValue, setEditValue, handleEdit
   return (
     <table className="produits-table">
       <thead>
-        <tr><th>Nom</th><th>Actions</th></tr>
-      </thead>
+        <tr><th>Nom</th><th>Actions</th></tr>      </thead>
       <tbody>
-        {categories.map(cat => (
+        {categories && categories.map(cat => (
           <CategoryRow
             key={cat.id}
             cat={cat}

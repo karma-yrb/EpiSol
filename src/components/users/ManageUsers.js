@@ -10,7 +10,6 @@ import { useGenericData } from '../../hooks/useGenericData';
 
 function ManageUsers({ userConnected }) {
   const navigate = useNavigate();
-
   // Utilisation du hook générique avec options personnalisées
   const {
     data: users,
@@ -21,7 +20,7 @@ function ManageUsers({ userConnected }) {
     handleDelete,
     confirmDelete,
     cancelDelete
-  } = useGenericData(null, {
+  } = useGenericData({
     fetchFunction: async () => {
       const data = await fetchUsers();
       // Exclure l'utilisateur connecté et l'utilisateur "Admin"
@@ -30,8 +29,8 @@ function ManageUsers({ userConnected }) {
       );
     },
     deleteFunction: deleteUser,
-    successMessage: 'Utilisateur supprimé avec succès.',
-    errorMessage: 'Erreur lors de la suppression de l\'utilisateur.'
+    entityName: 'utilisateur',
+    entityNamePlural: 'utilisateurs'
   });
 
   useEffect(() => {
@@ -59,12 +58,11 @@ function ManageUsers({ userConnected }) {
       <Link to="/users/add">
         <button className="create-button"><i className="fa fa-plus mr-6"></i>Ajouter un utilisateur</button>
       </Link>
-      <table className="produits-table">
-        <thead>
+      <table className="produits-table">        <thead>
           <tr><th>Nom</th><th>Prénom</th><th>Dernière connexion</th><th>Actions</th></tr>
         </thead>
         <tbody>
-          {users.map(user => (
+          {users && users.map(user => (
             <tr key={user.id}>
               <td>{user.nom}</td>
               <td>{user.prenom}</td>

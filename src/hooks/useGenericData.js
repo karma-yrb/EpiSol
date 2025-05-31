@@ -2,22 +2,25 @@ import { useState, useEffect } from 'react';
 
 /**
  * Hook générique pour gérer les données avec fetch, suppression et notifications
- * @param {string} apiEndpoint - Point de terminaison de l'API
- * @param {Object} options - Options de configuration
- * @param {function} options.fetchFunction - Fonction personnalisée de fetch (optionnel)
- * @param {function} options.deleteFunction - Fonction personnalisée de suppression (optionnel)
- * @param {string} options.successMessage - Message de succès pour suppression
- * @param {string} options.errorMessage - Message d'erreur pour suppression
- * @param {function} options.transformData - Fonction pour transformer les données reçues
+ * @param {Object} config - Configuration de l'API
+ * @param {function} config.fetchFunction - Fonction personnalisée de fetch
+ * @param {function} config.addFunction - Fonction personnalisée d'ajout
+ * @param {function} config.updateFunction - Fonction personnalisée de mise à jour
+ * @param {function} config.deleteFunction - Fonction personnalisée de suppression
+ * @param {string} config.entityName - Nom de l'entité (singulier)
+ * @param {string} config.entityNamePlural - Nom de l'entité (pluriel)
+ * @param {function} config.sortFunction - Fonction optionnelle pour trier les données
  */
-export function useGenericData(apiEndpoint, options = {}) {
+export function useGenericData(config, options = {}) {
   const {
     fetchFunction,
+    addFunction,
+    updateFunction,
     deleteFunction,
-    successMessage = 'Élément supprimé avec succès.',
-    errorMessage = 'Erreur lors de la suppression.',
-    transformData = (data) => Array.isArray(data) ? data : []
-  } = options;
+    entityName = 'élément',
+    entityNamePlural = 'éléments',
+    sortFunction
+  } = config || {};
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +28,6 @@ export function useGenericData(apiEndpoint, options = {}) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [notif, setNotif] = useState({ type: '', message: '' });
   const [deleteStatus, setDeleteStatus] = useState('idle');
-
   // Fonction de fetch des données
   const fetchData = async () => {
     setLoading(true);
@@ -34,24 +36,24 @@ export function useGenericData(apiEndpoint, options = {}) {
       if (fetchFunction) {
         result = await fetchFunction();
       } else {
-        const res = await fetch(apiEndpoint);
-        if (!res.ok) throw new Error('Erreur lors du chargement');
-        result = await res.json();
+        throw new Error('Fonction de récupération des données non fournie');
       }
-      setData(transformData(result));
+      
+      // Applique la fonction de tri si elle existe
+      const dataToSet = sortFunction ? sortFunction([...result]) : result;
+      setData(Array.isArray(dataToSet) ? dataToSet : []);
     } catch (error) {
       console.error('[useGenericData] Erreur fetch:', error);
       setData([]);
-      setNotif({ type: 'error', message: 'Erreur lors du chargement des données.' });
+      setNotif({ type: 'error', message: `Erreur lors du chargement des ${entityNamePlural}.` });
     } finally {
       setLoading(false);
     }
   };
-
   // Fetch initial
   useEffect(() => {
     fetchData();
-  }, [apiEndpoint]);
+  }, []);
 
   // Gestion de la suppression
   const handleDelete = (id) => {
@@ -59,20 +61,18 @@ export function useGenericData(apiEndpoint, options = {}) {
     setDeleteStatus('idle');
     setShowDeleteModal(true);
   };
-
   const confirmDelete = async () => {
     setDeleteStatus('loading');
     try {
       if (deleteFunction) {
         await deleteFunction(deleteId);
       } else {
-        const res = await fetch(`${apiEndpoint}/${deleteId}`, { method: 'DELETE' });
-        if (!res.ok) throw new Error('Erreur lors de la suppression');
+        throw new Error('Fonction de suppression non fournie');
       }
       
       setData(prevData => prevData.filter(item => item.id !== deleteId));
       setDeleteStatus('success');
-      setNotif({ type: 'success', message: successMessage });
+      setNotif({ type: 'success', message: `${entityName} supprimé avec succès.` });
       
       setTimeout(() => {
         setShowDeleteModal(false);
@@ -81,7 +81,7 @@ export function useGenericData(apiEndpoint, options = {}) {
       }, 1200);
     } catch (error) {
       setDeleteStatus('error');
-      setNotif({ type: 'error', message: errorMessage });
+      setNotif({ type: 'error', message: `Erreur lors de la suppression du ${entityName}.` });
       
       setTimeout(() => {
         setShowDeleteModal(false);

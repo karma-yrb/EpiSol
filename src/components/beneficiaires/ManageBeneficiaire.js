@@ -1,25 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../commun/UniForm.css';
-import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
-import { fetchBeneficiaires, deleteBeneficiaire } from '../../api/beneficiairesApi';
+import { fetchBeneficiaires, deleteBeneficiaire, addBeneficiaire, updateBeneficiaire } from '../../api/beneficiairesApi';
 import { fetchAchats } from '../../api/achatsApi';
 import ActionIconButton from '../commun/ActionIconButton';
 import SortableTable from '../commun/SortableTable';
 import '../commun/SortableTable.css';
-import { postData } from '../../utils/apiUtils';
+import { useGenericDeleteModal } from '../../hooks/useGenericDeleteModal';
+import { useGenericData } from '../../hooks/useGenericData';
 import './ManageBeneficiaire.css';
 
 function ManageBeneficiaire() {
-  const [beneficiaires, setBeneficiaires] = useState([]);
-  const [achats, setAchats] = useState([]);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [beneficiaireToDelete, setBeneficiaireToDelete] = useState(null);
-  const [notif, setNotif] = useState({ type: '', message: '' });
-  const [deleteStatus, setDeleteStatus] = useState('idle');
-  const [deleteMsg, setDeleteMsg] = useState('');
   const navigate = useNavigate();
-
+  const [achats, setAchats] = useState([]);
+  
+  // Configuration pour useGenericData
+  const apiConfig = {
+    fetchFunction: fetchBeneficiaires,
+    addFunction: addBeneficiaire,
+    updateFunction: updateBeneficiaire,
+    deleteFunction: deleteBeneficiaire,
+    entityName: 'bénéficiaire',
+    entityNamePlural: 'bénéficiaires'
+  };
+    // Utilisation du hook générique pour les données
+  const {
+    data: beneficiaires,
+    notif,
+    loading,
+    error
+  } = useGenericData(apiConfig);
+    // Modal de suppression avec useGenericDeleteModal
+  const {
+    handleDelete,
+    ModalComponent: DeleteModal
+  } = useGenericDeleteModal({
+    deleteFunction: deleteBeneficiaire,
+    entityName: 'bénéficiaire',
+    onSuccess: () => {
+      // La suppression est gérée par useGenericData
+    }
+  });
   // Adjust role validation to allow both 'admin' and 'user'
   // Add logging for debugging token validation
   // Add validation to ensure the token is a valid JWT
@@ -58,42 +79,12 @@ function ManageBeneficiaire() {
       navigate('/access-denied');
       return;
     }
-
-    fetchBeneficiaires()
-      .then((data) => setBeneficiaires(data))
-      .catch((error) => console.error('Erreur lors de la récupération des bénéficiaires :', error));
+    
+    // Chargement des achats (les bénéficiaires sont déjà chargés par useGenericData)
     fetchAchats()
       .then((data) => setAchats(data))
       .catch((error) => console.error('Erreur lors de la récupération des achats :', error));
   }, [navigate]);
-
-  const confirmDelete = async () => {
-    setDeleteStatus('loading');
-    setDeleteMsg('');
-    try {
-      await deleteBeneficiaire(beneficiaireToDelete);
-      setBeneficiaires(beneficiaires.filter(b => b.id !== beneficiaireToDelete));
-      setDeleteStatus('success');
-      setDeleteMsg('Bénéficiaire supprimé.');
-    } catch {
-      setDeleteStatus('error');
-      setDeleteMsg('Erreur lors de la suppression.');
-    }
-  };
-
-  useEffect(() => {
-    if (deleteStatus === 'success' || deleteStatus === 'error') {
-      const timer = setTimeout(() => {
-        setShowDeleteModal(false);
-        setBeneficiaireToDelete(null);
-        setDeleteStatus('idle');
-        setDeleteMsg('');
-        if (deleteStatus === 'success') setNotif({ type: 'success', message: 'Bénéficiaire supprimé.' });
-        if (deleteStatus === 'error') setNotif({ type: 'error', message: deleteMsg });
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [deleteStatus, deleteMsg]);
 
   // Calcul du nombre de passages (achats) par bénéficiaire
   const passagesByBenef = {};
@@ -130,27 +121,24 @@ function ManageBeneficiaire() {
           )}
         </>
       );
-    } },
-    { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
+    } },    { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
       <div className="actions-cell">
         <Link to={`/beneficiaires/edit/${row.id}`} className="edit-link">
           <ActionIconButton type="edit" title="Éditer" onClick={e => e.stopPropagation()} />
         </Link>
-        <ActionIconButton type="delete" title="Supprimer" onClick={() => { setBeneficiaireToDelete(row.id); setShowDeleteModal(true); }} />
+        <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(row.id)} />
       </div>
-    ) },
-  ];
+    ) },  ];
 
   // Ajout d'une clé 'prenomNom' et 'passages' pour le tri
-  const beneficiairesWithPrenomNom = beneficiaires.map(b => {
+  const beneficiairesWithPrenomNom = beneficiaires ? beneficiaires.map(b => {
     const key = `${b.nom}|||${b.prenom}`;
     return {
       ...b,
       prenomNom: `${b.prenom} ${b.nom}`.trim(),
       passages: passagesByBenef[key] || 0
     };
-  });
-
+  }) : [];
   return (
     <div className="page-centered-container">
       <h1>
@@ -160,29 +148,29 @@ function ManageBeneficiaire() {
       <Link to="/beneficiaires/add">
         <button className="create-button"><i className="fa fa-plus mr-6"></i>Ajouter un bénéficiaire</button>
       </Link>
-      <SortableTable
-        columns={columns}
-        data={beneficiairesWithPrenomNom}
-        initialSort={{ col: 'prenomNom', dir: 'asc' }}
-      />
+      
+      {loading ? (
+        <div className="loading-indicator">
+          <i className="fa fa-spinner fa-spin"></i> Chargement des bénéficiaires...
+        </div>
+      ) : error ? (
+        <div className="error-message">
+          <i className="fa fa-exclamation-triangle"></i> {error}
+        </div>
+      ) : (
+        <SortableTable
+          columns={columns}
+          data={beneficiairesWithPrenomNom}
+          initialSort={{ col: 'prenomNom', dir: 'asc' }}
+        />
+      )}
+      
       {notif.message && (
         <div className={`notification ${notif.type}`}>
           <i className={`fa fa-${notif.type==='success'?'check-circle':'exclamation-circle'}`}></i> {notif.message}
         </div>
       )}
-      {showDeleteModal && (
-        <ConfirmDeleteModal
-          show={showDeleteModal}
-          onConfirm={confirmDelete}
-          onCancel={() => { setShowDeleteModal(false); setBeneficiaireToDelete(null); setDeleteStatus('idle'); setDeleteMsg(''); }}
-          status={deleteStatus}
-          message={deleteMsg}
-          confirmLabel="Supprimer"
-          cancelLabel="Annuler"
-          title="Confirmer la suppression du bénéficiaire ?"
-          icon={<i className="fa fa-exclamation-triangle icon-red icon-action mr-8"></i>}
-        />
-      )}
+      <DeleteModal />
     </div>
   );
 }
