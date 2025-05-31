@@ -59,36 +59,35 @@ function AchatsTable({
             <tr key={idx}>
               <td>{a.produit.nom}</td>
               <td>{a.quantite}</td>
-              <td>{(a.quantite * a.prix).toFixed(2)} €</td>
-              <td>
-                <button 
-                  title="Diminuer la quantité" 
-                  className="achats-qty-btn moins" 
-                  onClick={() => handleDecreaseQuantite(idx)}
-                >
-                  -
-                </button>
-                <button 
-                  title="Augmenter la quantité" 
-                  className="achats-qty-btn plus" 
-                  onClick={() => handleIncreaseQuantite(idx)}
-                >
-                  +
-                </button>
-                <button 
-                  title="Supprimer" 
-                  className="achats-delete-btn" 
-                  onClick={() => handleDeleteAchat(idx)}
-                >
-                  <i className="fa fa-trash"></i>
-                </button>
+              <td>{(a.quantite * a.prix).toFixed(2)} €</td>              <td>
+                <div className="actions-cell">
+                  <button 
+                    title="Diminuer la quantité" 
+                    className="achats-qty-btn moins" 
+                    onClick={() => handleDecreaseQuantite(idx)}
+                  >
+                    -
+                  </button>
+                  <button 
+                    title="Augmenter la quantité" 
+                    className="achats-qty-btn plus" 
+                    onClick={() => handleIncreaseQuantite(idx)}
+                  >
+                    +
+                  </button>
+                  <button 
+                    title="Supprimer" 
+                    className="achats-delete-btn" 
+                    onClick={() => handleDeleteAchat(idx)}
+                  >
+                    <i className="fa fa-trash"></i>
+                  </button>
+                </div>
               </td>
             </tr>
-          ))}
-
-          {/* Ligne de total original barré : affichée seulement si rabais appliqué */}
+          ))}          {/* Ligne de total original barré : affichée seulement si rabais appliqué */}
           {applyDiscount && (
-            <tr className="achats-total-row">
+            <tr className="achats-total-row achats-total-initial">
               <td colSpan={2} className="achats-total-cell-label">Total initial</td>
               <td className="achats-total-cell-initial">
                 {totalSansRabais.toFixed(2)} €
@@ -99,7 +98,7 @@ function AchatsTable({
 
           {/* Ligne de rabais */}
           {applyDiscount && (
-            <tr className="achats-total-row">
+            <tr className="achats-total-row achats-total-rabais">
               <td colSpan={2} className="achats-total-cell-label">Rabais</td>
               <td className="achats-total-cell-rabais">- {montantRabais.toFixed(2)} €</td>
               <td></td>
@@ -107,7 +106,7 @@ function AchatsTable({
           )}
 
           {/* Ligne de total après rabais */}
-          <tr className="achats-total-row">
+          <tr className="achats-total-row achats-total-final">
             <td colSpan={2} className="achats-total-cell-label">Total à payer</td>
             <td className="achats-total-cell-final">
               {totalAvecRabais.toFixed(2)} €

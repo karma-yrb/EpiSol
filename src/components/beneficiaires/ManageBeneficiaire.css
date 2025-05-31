@@ -54,4 +54,26 @@
     padding: 8px 4px !important;
     font-size: 13px !important;
   }
+  
+  /* Tables doivent prendre 100% largeur sur mobile */
+  body .page-centered-container .produits-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  /* Réduction des marges des boutons d'action */
+  body .page-centered-container .actions-cell {
+    gap: 2px !important;
+  }
+  
+  body .page-centered-container .actions-cell .action-icon-btn {
+    margin: 0 !important;
+    padding: 2px 4px !important;
+    min-width: 24px !important;
+    min-height: 24px !important;
+    max-width: 24px !important;
+    max-height: 24px !important;
+    font-size: 10px !important;
+  }
 }

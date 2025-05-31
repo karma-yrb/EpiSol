@@ -38,13 +38,19 @@ Ameliorations :
 - Restoration du fichier authUtils.js (était accidentellement vidé)
 - Synchronisation et déploiement des modifications
 
+✅ TERMINÉ - Amélioration UI page /produits (Juin 2025):
+- Boutons "Ajouter produit" et "Gérer catégories" : même largeur, côte à côte, 80% espace desktop
+- Champ de recherche : 80% largeur desktop
+- Création de GenericSearchBar.css pour layout responsive
+- Design mobile préservé avec flex-direction column
+- Alignement parfait des boutons d'action
+
 Prochaines étapes de mutualisation potentielles:
 - Unifier les modales de formulaire (ProduitsFormModal vs AjoutProduitModal)
 - Remplacer les hooks de recherche spécialisés par useGenericSearch
 
-- /produits : les 2 boutons "ajouter..." et "gérer..." doivent faire la meme largeur et cote a cote et prendre 80% de l'espace en mode desktop, le champ de recherche doit faire 80% aussi 
-
 UX Mobile <=393px :
-🔄 EN COURS - Corrections d'affichage mobile (Juin 2025):
-- /achats : les boutons pour changer la quantité devraient etre alignés (voir actions-cell peut-etre)
-- /users et /beneficiaires : la ligne "sort" de l'écran, le tableau devrait prendre 100% de la largeur et réduire le margin des boutons
+✅ TERMINÉ - Corrections d'affichage mobile (Juin 2025):
+- /achats : alignement des boutons de quantité avec actions-cell et réduction de taille mobile
+- /users et /beneficiaires : tableaux 100% largeur mobile et réduction marges boutons
+- Amélioration de la hiérarchie des polices : "Rabais" plus petit (14px), "Prix total" plus grand (18px)
