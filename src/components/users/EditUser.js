@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import UserForm from './UserForm';
-import { AuthContext } from '../../context/AuthContext';
 
 function EditUser() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { userId } = useContext(AuthContext); // Récupère l'ID de l'utilisateur connecté
   const [user, setUser] = useState({
     nom: '',
     prenom: '',
@@ -16,14 +14,19 @@ function EditUser() {
     role: ''
   });
   const [successMsg, setSuccessMsg] = useState('');
-
   useEffect(() => {
-    const fetchUserId = id || userId; // Utilise l'ID de l'utilisateur connecté si aucun ID n'est fourni
-    console.log('Fetching user with ID:', fetchUserId); // Vérifie l'ID utilisé
+    // Si on a un ID dans l'URL, on charge les données de cet utilisateur (mode édition)
+    // Si pas d'ID, on reste en mode création avec un formulaire vide
+    if (!id) {
+      console.log('Mode création - formulaire vide');
+      return;
+    }
+
+    console.log('Mode édition - chargement des données pour ID:', id);
 
     // Utilise l'URL de l'API en production si disponible
     const apiUrl = process.env.REACT_APP_API_URL || '';
-    const fullUrl = `${apiUrl}/api/users/${fetchUserId}`;
+    const fullUrl = `${apiUrl}/api/users/${id}`;
     console.log('API URL utilisée:', fullUrl);
     fetch(fullUrl)
       .then((response) => {
@@ -41,7 +44,7 @@ function EditUser() {
         console.error('Erreur lors de la récupération de l\'utilisateur :', error);
         alert('Impossible de récupérer les données de l\'utilisateur. Veuillez réessayer plus tard.');
       });
-  }, [id, userId]);
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

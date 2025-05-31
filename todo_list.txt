@@ -9,7 +9,7 @@ Bugs (à corriger) :
 ✅ TERMINÉ - Correction du hook useGenericData pour accepter correctement un objet de configuration au lieu d'une URL
 ✅ TERMINÉ - Correction erreur dans CategoryTable.js (null check dans la boucle .map)
 ✅ TERMINÉ - Correction erreur dans ManageUsers.js (format incorrect de la configuration dans useGenericData)
-- /users/add :  les données de l'utilisateur connecté sont chargés alors que le form devrait être vide 
+✅ TERMINÉ - /users/add : les données de l'utilisateur connecté sont chargés alors que le form devrait être vide
 
 Features (à implementer): 
 ✅ TERMINÉ - /beneficiaires : la colonne "Numéro bénéficiaire" doit s'appeler "#"
