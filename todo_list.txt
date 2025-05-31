@@ -1,9 +1,6 @@
 Bugs (à corriger) :
 - /liste-achats : Erreur lors du chargement du détail.
 - /liste-achats : regression > les boutons doivent faire 100% de la largeur en mode mobile, le bouton "edit-btn" ne respecte pas ça
-- /beneficiaires : le style n'est pas pris en compte : @media (max-width: 393px) {.produits-table th, .produits-table td {padding: 10px;}}
 
 Features (à implementer): 
-- /beneficiaires : la colonne "Numéro bénéficiaire" doit s'appeler "#"
-- /beneficiaires : la colonne "nom" et "prenom" doit etre fusionnée pour ne faire qu'une qui s'appelle "prénom nom"
 - afficher les initiales du user à la place du role pour le bouton d'acces au profil et deconnexion

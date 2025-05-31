@@ -36,8 +36,22 @@
 }
 
 
+/* Styles responsive spécifiques pour la page des bénéficiaires */
+/* Surcharge complète de la règle ManageProduits.css pour tous les écrans <= 700px */
+/* Utilisation d'un sélecteur très spécifique pour garantir la priorité */
+@media (max-width: 700px) {
+  body .page-centered-container .produits-table th, 
+  body .page-centered-container .produits-table td {
+    padding: 10px 8px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* Pour les très petits écrans, encore plus compact */
 @media (max-width: 393px) {
-  .produits-table th, .produits-table td {
-    padding: 10px;
+  body .page-centered-container .produits-table th, 
+  body .page-centered-container .produits-table td {
+    padding: 8px 4px !important;
+    font-size: 13px !important;
   }
 }
