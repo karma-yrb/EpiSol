@@ -274,15 +274,21 @@ form.uni-form {
 .form-buttons button {
   height: 44px;
   min-width: 0;
-  padding: 0 1.5em;
+  padding: 0 0.4em;
   border-radius: 8px;
   border: none;
-  font-size: 17px;
+  font-size: 15px;
   cursor: pointer;
   font-weight: 600;
   width: 50%;
   flex: 1 1 0;
   box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .form-buttons button[type="submit"] {
   background: #0071bc;
@@ -300,21 +306,60 @@ form.uni-form {
 @media (max-width: 700px) {
   .form-buttons {
     flex-direction: row !important;
-    gap: 14px !important;
+    gap: 10px !important;
   }
   .form-buttons button {
     width: 50%;
     flex: 1 1 0;
+    padding: 0 0.2em;
+    font-size: 14px;
   }
 }
 @media (max-width: 600px) {
   .form-buttons {
     flex-direction: row !important;
-    gap: 14px !important;
+    gap: 8px !important;
   }
   .form-buttons button {
     width: 50%;
     flex: 1 1 0;
+    padding: 0 0.1em;
+    font-size: 13px;
+  }
+}
+@media (max-width: 480px) {
+  .form-buttons button {
+    padding: 0 0.1em;
+    font-size: 12px;
+    height: 40px;
+  }
+}
+
+/* Fix spécifique pour éviter le débordement du texte des boutons */
+.form-buttons button {
+  word-break: keep-all;
+  hyphens: none;
+}
+
+/* Style alternatif pour les très petits écrans */
+@media (max-width: 400px) {
+  .form-buttons {
+    gap: 6px !important;
+  }
+  .form-buttons button {
+    padding: 0 !important;
+    font-size: 11px;
+    height: 38px;
+    min-width: 0;
+    line-height: 1.2;
+  }
+}
+
+/* Fix spécifique pour les mots longs comme "Enregistrer" */
+@media (max-width: 350px) {
+  .form-buttons button {
+    font-size: 10px;
+    padding: 0 2px !important;
   }
 }
 

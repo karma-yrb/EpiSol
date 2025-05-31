@@ -100,11 +100,13 @@ function Achats() {
       quantite: a.quantite,
       prix_unitaire: a.prix
     }));
-    console.log('[Achats] handleSaveAchats - payload envoyé:', { beneficiaire_id: selectedB.id, lignes });
-    try {
+    console.log('[Achats] handleSaveAchats - payload envoyé:', { beneficiaire_id: selectedB.id, lignes });    try {
       const response = await addAchatApi(selectedB.id, lignes);
       console.log('[Achats] handleSaveAchats - réponse API:', response);
       resetAchatList();
+      // Vider le champ bénéficiaire après un achat réussi
+      setSelectedB(null);
+      setSearchB('');
       setSaveSuccess(true);
       setSaveError("");
       setTimeout(() => setSaveSuccess(false), 2500);
