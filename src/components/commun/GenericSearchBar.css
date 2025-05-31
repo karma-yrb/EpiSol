@@ -1,0 +1,214 @@
+/* Styles pour GenericSearchBar - Composant générique de barre de recherche */
+
+.search-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 18px 0;
+  align-items: stretch;
+}
+
+/* Groupe d'actions (boutons) */
+.search-actions-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Groupe de recherche */
+.search-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+}
+
+/* Champ de recherche */
+.search-input {
+  width: 100%;
+  min-width: 0;
+  flex: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 17px;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid #bbb;
+  box-sizing: border-box;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: #1a7f1a;
+  outline: none;
+}
+
+/* Boutons d'action par défaut */
+.search-action-btn {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  transition: background 0.2s;
+}
+
+/* Bouton supprimer filtres */
+.clear-filters-btn {
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+  line-height: 1;
+  box-shadow: none;
+  font-weight: 500;
+  margin: 0;
+  white-space: nowrap;
+  align-self: flex-start;
+}
+
+.clear-filters-btn:hover {
+  background: #e0e0e0;
+  color: #0071bc;
+}
+
+.clear-filters-btn .fa-times-circle {
+  font-size: 1.1em;
+  margin-right: 4px;
+}
+
+.clear-filters-label {
+  font-size: 15px;
+}
+
+/* Classes utilitaires */
+.ml-6 {
+  margin-left: 6px;
+}
+
+/* ========== STYLES SPÉCIFIQUES POUR LA PAGE PRODUITS ========== */
+
+/* Container spécifique pour produits avec largeur 80% en desktop */
+.search-bar-container.produits-filtres {
+  max-width: 80%;
+  margin: 18px auto;
+}
+
+/* Groupe d'actions pour produits - boutons côte à côte, même largeur */
+.produits-filtres .search-actions-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.produits-filtres .search-actions-group button {
+  flex: 1;
+  max-width: none;
+  width: 50%;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Champ de recherche pour produits - 80% de largeur */
+.produits-filtres .search-input-group {
+  width: 100%;
+}
+
+.produits-filtres .search-input {
+  width: 100%;
+}
+
+/* Bouton ajouter produit */
+.produits-filtres .add-produit-btn {
+  background: #1a7f1a;
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+.produits-filtres .add-produit-btn:hover {
+  background: #158a15;
+}
+
+/* Bouton gérer catégories */
+.produits-filtres .produits-categories-btn.special {
+  background: #0071bc;
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+.produits-filtres .produits-categories-btn.special:hover {
+  background: #005b99;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+@media (max-width: 700px), (max-width: 600px) {
+  /* En mobile, retour au layout vertical */
+  .produits-filtres .search-actions-group {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .produits-filtres .search-actions-group button {
+    width: 100%;
+    flex: none;
+  }
+  
+  .produits-filtres .search-input {
+    font-size: 15px;
+  }
+  
+  .search-bar-container.produits-filtres {
+    max-width: 100%;
+    margin: 18px 0;
+    gap: 10px;
+  }
+}
+
+@media (min-width: 701px) {
+  /* Desktop : largeur 80% pour tout le container */
+  .search-bar-container.produits-filtres {
+    max-width: 80%;
+    width: 80%;
+  }
+  
+  /* Boutons côte à côte, même largeur */
+  .produits-filtres .search-actions-group {
+    width: 100%;
+  }
+  
+  .produits-filtres .search-actions-group button {
+    flex: 1;
+    width: 50%;
+  }
+  
+  /* Champ de recherche 80% */
+  .produits-filtres .search-input-group {
+    width: 100%;
+  }
+}

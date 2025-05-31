@@ -1,4 +1,5 @@
 import React from 'react';
+import './GenericSearchBar.css';
 
 /**
  * Composant générique de barre de recherche réutilisable

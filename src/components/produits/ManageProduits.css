@@ -20,7 +20,7 @@
 
 .add-produit-btn {
   display: block;
-  margin: 10px auto 0 auto;
+  margin: 0;
   padding: 7px 18px;
   font-size: 15px;
   border-radius: 7px;
@@ -155,79 +155,6 @@ select {
   padding-right: 36px;
 }
 
-.produits-filtres {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin: 18px 0;
-  align-items: stretch;
-}
-.produits-filtres .produits-btn-group {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  justify-content: flex-start;
-}
-.produits-search-input {
-  width: 100%;
-  min-width: 0;
-  flex: none;
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 17px;
-}
-.produits-filtres .produits-categories-btn.special,
-.produits-filtres .add-produit-btn {
-  flex: 0 0 auto;
-  margin: 0;
-}
-.produits-filtres .produits-reset-btn {
-  background: #eee;
-  color: #333;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 10px;
-  margin-left: 4px;
-  font-size: 15px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.produits-filtres .produits-categories-btn {
-  background: #f5f5f5;
-  color: #333;
-  border: 1px solid #bbb;
-  border-radius: 6px;
-  padding: 6px 14px;
-  font-weight: 500;
-  cursor: pointer;
-  font-size: 15px;
-  margin-left: 0;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.produits-filtres .produits-categories-btn.special {
-  background: #0071bc;
-  color: #fff;
-  border: none;
-  font-weight: 600;
-  margin-left: 0;
-  margin-right: 0;
-  padding: 8px 16px;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-  transition: background 0.2s;
-}
-.produits-filtres .produits-categories-btn.special:hover {
-  background: #005b99;
-}
-.produits-filtres .produits-btn-group {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
 .produits-actions-bar {
   display: none;
 }
@@ -272,17 +199,7 @@ select {
     font-size: 14px;
     padding: 8px 4px;
   }
-  .produits-filtres {
-    gap: 10px;
-  }
-  .produits-filtres .produits-btn-group {
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-  }
-  .produits-search-input {
-    font-size: 15px;
-  }
+  /* Styles pour produits-filtres maintenant dans GenericSearchBar.css */
 }
 
 .modal-bg {
