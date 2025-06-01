@@ -66,7 +66,7 @@
 
 - ✅ **TERMINÉ** - Dans la page beneficiaires/ 
     - ✅ enlever le bouton "supprimer" et rajouter un bouton "enregistrer un nouvel achat" qui aménera vers la page /achats avec ce bénéficiaire déjà sélectionné
-    - [ ] rajouter le bouton "supprimer" dans la page beneficiaires/edit/:id
+    - ✅ rajouter le bouton "supprimer" dans la page beneficiaires/edit/:id a coté du bouton mettre à jour, le comportement lui doit rester le meme. Aprés suppression retourner dans la pages benenficiaire et afficher un message de confirmation de suppression
 
 - [ ] Réorganiser le dossier /src/achats
   - Garder un achats.css pour les classe communes mais attribuer un css pour chaque composant ayant des spécificités
@@ -90,6 +90,8 @@
 
 - ✅ **TERMINÉ** - **Page `/produits` mobile (Juin 2025)** :
   - Design mobile préservé avec `flex-direction: column`
+
+- [] Largeur des formulaires, ils dépassent de l'écran en gnénéral pour cette largeur d'écran, il faut corriger ça
 
 ---
 

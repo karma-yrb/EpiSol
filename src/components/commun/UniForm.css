@@ -302,10 +302,21 @@ form.uni-form {
   align-items: center;
   justify-content: center;
 }
-.form-buttons button[type="submit"] {
+.form-buttons button[type="submit"],
+.form-buttons .submit-btn {
   background: #0071bc;
   color: #fff;
   margin-top: 0 !important;
+  font-size: 15px !important;
+}
+.form-buttons .delete-btn {
+  background: #c00;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px !important;
+}
+.form-buttons .delete-btn:hover {
+  background: #a00;
 }
 .form-buttons .cancel-btn {
   background: #eee;
@@ -323,8 +334,9 @@ form.uni-form {
   .form-buttons button {
     width: 50%;
     flex: 1 1 0;
-    padding: 0 0.2em;
+    padding: 0 0.4em;
     font-size: 14px;
+    min-width: 100px;
   }
 }
 @media (max-width: 600px) {
@@ -335,15 +347,17 @@ form.uni-form {
   .form-buttons button {
     width: 50%;
     flex: 1 1 0;
-    padding: 0 0.1em;
+    padding: 0 0.3em;
     font-size: 13px;
+    min-width: 90px;
   }
 }
 @media (max-width: 480px) {
   .form-buttons button {
-    padding: 0 0.1em;
+    padding: 0 0.3em;
     font-size: 12px;
-    height: 40px;
+    height: 42px;
+    min-width: 85px;
   }
 }
 
@@ -353,27 +367,30 @@ form.uni-form {
   hyphens: none;
 }
 
-/* Style alternatif pour les très petits écrans */
-@media (max-width: 400px) {
+/* Style spécifique pour écrans ≤395px - taille et padding augmentés */
+@media (max-width: 395px) {
   .form-buttons {
-    gap: 6px !important;
+    gap: 8px !important;
   }
   .form-buttons button {
-    padding: 0 !important;
-    font-size: 11px;
-    height: 38px;
-    min-width: 0;
-    line-height: 1.2;
+    padding: 0.6em !important;
+    font-size: 13px !important;
+    height: 44px !important;
+    min-width: 95px !important;
+    line-height: 1.3 !important;
+  }
+  /* Spécificité maximale pour garantir l'application */
+  .uni-form .form-buttons button,
+  .edit-beneficiaire-form .form-buttons button,
+  .create-beneficiaire-form .form-buttons button {
+    padding: 0.6em !important;
+    font-size: 13px !important;
+    height: 44px !important;
+    min-width: 95px !important;
   }
 }
 
-/* Fix spécifique pour les mots longs comme "Enregistrer" */
-@media (max-width: 350px) {
-  .form-buttons button {
-    font-size: 10px;
-    padding: 0 2px !important;
-  }
-}
+/* Nettoyage des règles en conflit - suppression des autres media queries conflictuelles */
 
 .base-modal-container {
   background: #fff;

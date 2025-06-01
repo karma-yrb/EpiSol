@@ -1,7 +1,7 @@
 import React from 'react';
 import '../commun/UniForm.css';
 
-function BeneficiaireForm({ formData, handleChange, handleSubmit, id }) {
+function BeneficiaireForm({ formData, handleChange, handleSubmit, handleDelete, id }) {
   return (
     <form onSubmit={handleSubmit} className="uni-form uni-form-container">
       <label>Nom *</label>
@@ -41,7 +41,20 @@ function BeneficiaireForm({ formData, handleChange, handleSubmit, id }) {
       <label>Adresse</label>
       <input type="text" name="adresse" value={formData.adresse} onChange={handleChange} />
 
-      <button type="submit">{id ? 'Mettre à jour' : 'Créer'}</button>
+      <div className="form-buttons">
+        <button type="submit" className="submit-btn">
+          {id ? 'Mettre à jour' : 'Créer'}
+        </button>        {id && handleDelete && (
+          <button 
+            type="button" 
+            className="delete-btn" 
+            onClick={handleDelete}
+            title="Supprimer ce bénéficiaire"
+          >
+            Supprimer
+          </button>
+        )}
+      </div>
     </form>
   );
 }

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import BeneficiaireForm from './BeneficiaireForm';
-import { fetchBeneficiaire, updateBeneficiaire, addBeneficiaire } from '../../api/beneficiairesApi';
+import { fetchBeneficiaire, updateBeneficiaire, addBeneficiaire, deleteBeneficiaire } from '../../api/beneficiairesApi';
+import { useGenericDeleteModal } from '../../hooks/useGenericDeleteModal';
 import './ManageBeneficiaire.css';
 
 function EditBeneficiaire() {
@@ -20,6 +21,21 @@ function EditBeneficiaire() {
   });
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
+
+  // Modal de suppression avec useGenericDeleteModal
+  const {
+    handleDelete,
+    ModalComponent: DeleteModal
+  } = useGenericDeleteModal({
+    deleteFunction: deleteBeneficiaire,
+    entityName: 'bénéficiaire',
+    onSuccess: () => {
+      setSuccessMsg('Bénéficiaire supprimé avec succès !');
+      setTimeout(() => {
+        navigate('/beneficiaires');
+      }, 1200);
+    }
+  });
 
   useEffect(() => {
     if (id) {
@@ -96,11 +112,11 @@ function EditBeneficiaire() {
         <div className="notification error beneficiaire-notification-error">
           <i className="fa fa-exclamation-circle"></i> {errorMsg}
         </div>
-      )}
-      <BeneficiaireForm
+      )}      <BeneficiaireForm
         formData={formData}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        handleDelete={id ? () => handleDelete(id) : null}
         id={id}
       />
       {successMsg && (
@@ -108,6 +124,7 @@ function EditBeneficiaire() {
           <i className="fa fa-check-circle"></i> {successMsg}
         </div>
       )}
+      <DeleteModal />
     </div>
   );
 }
