@@ -5,18 +5,18 @@ import BeneficiaireSelector from './BeneficiaireSelector';
 import AchatsTable from './AchatsTable';
 import AchatsNotifications from './AchatsNotifications';
 import { addAchat as addAchatApi } from '../../api/achatsApi';
-import { useBeneficiaireSearch } from '../../hooks/useBeneficiaireSearch';
+import { useUnifiedBeneficiaireSearch } from '../../hooks/useUnifiedBeneficiaireSearch';
 import { useAchatList } from '../../hooks/useAchatList';
-import { useProduitSearch } from '../../hooks/useProduitSearch';
+import { useUnifiedProduitSearch } from '../../hooks/useUnifiedProduitSearch';
 import { useDiscountCalculations } from '../../hooks/useDiscountCalculations';
 
 function Achats() {
   // --- Bénéficiaires ---
-  const beneficiaireSearch = useBeneficiaireSearch();
+  const beneficiaireSearch = useUnifiedBeneficiaireSearch();
   const { selectedB, setSelectedB, setSearchB } = beneficiaireSearch;
 
   // --- Produits & Modal ---
-  const produitSearch = useProduitSearch();
+  const produitSearch = useUnifiedProduitSearch();
   const { selectedProduit, setSelectedProduit, setProduitSearch, produitInputRef } = produitSearch;
 
   // --- Liste d'achats ---

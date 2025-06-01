@@ -6,7 +6,7 @@
 
 ## 🐛 Bugs
 
-### 🖥️ Desktop
+### 🖥️ Global
 - ✅ **TERMINÉ** - `/liste-achats` : Erreur lors du chargement du détail
 - ✅ **TERMINÉ** - Correction erreur dans `ManageBeneficiaire` après migration vers `useGenericData`
 - ✅ **TERMINÉ** - Correction du hook `useGenericData` pour accepter correctement un objet de configuration au lieu d'une URL
@@ -26,7 +26,7 @@
 
 ## ⚡ Améliorations
 
-### 🖥️ Desktop
+### 🖥️ Global
 - ✅ **TERMINÉ** - **Mutualisation des composants (09/2024)** :
   - Création de hooks génériques : `useGenericData`, `useGenericSearch`, `useGenericDeleteModal`
   - Remplacement des composants redondants par `GenericSearchBar`
@@ -58,8 +58,17 @@
   - Mode 'inline' pour création rapide dans `AchatModal`, mode 'add'/'edit' pour `ManageProduits`
   - Suppression de 4 fichiers obsolètes et réduction significative de la duplication de code
 
-- [ ] **Dernière étape de mutualisation identifiée** :
-  - Remplacer les hooks de recherche spécialisés par `useGenericSearch`
+- ✅ **TERMINÉ** - **Unification des hooks de recherche (Juin 2025)** :
+  - Création de `useUnifiedBeneficiaireSearch` et `useUnifiedProduitSearch` basés sur `useGenericSearch`
+  - Remplacement des hooks spécialisés `useBeneficiaireSearch` et `useProduitSearch`
+  - Migration réussie dans `Achats.js` sans régression fonctionnelle
+  - Suppression de 2 fichiers obsolètes et finalisation de la mutualisation du code
+
+- [ ] dans la page beneficiaires/ enlever le bouton "supprimer" et rajouter un bouton "enregistrer un nouvel achat" qui aménera vers la page /achats achats ce bénéficiaire deja selectionné
+
+- [ ] Réorganiser le dossier /src/achats
+  - Garder un achats.css pour les classe communes mais attribuer un css pour chaque composant ayant des spécificités
+  - Faire des sous dossiers peut-etre 
 
 ### 📱 Mobile
 - ✅ **TERMINÉ** - **UX Mobile ≤395px - Page `/achats` (Juin 2025)** :
@@ -84,7 +93,7 @@
 
 ## 🚀 Nouvelles fonctionnalités
 
-### 🖥️ Desktop
+### 🖥️ Global
 - ✅ **TERMINÉ** - `/beneficiaires` : La colonne "Numéro bénéficiaire" doit s'appeler "#"
 - ✅ **TERMINÉ** - `/beneficiaires` : La colonne "nom" et "prenom" doit être fusionnée pour ne faire qu'une qui s'appelle "prénom nom"
 - ✅ **TERMINÉ** - Afficher les initiales du user à la place du role pour le bouton d'accès au profil et déconnexion
@@ -96,12 +105,13 @@
 
 ## 📊 Statistiques du projet
 
-| Catégorie | Desktop | Mobile | Total |
+| Catégorie | Global | Mobile | Total |
 |-----------|---------|--------|-------|
 | 🐛 Bugs | 6 | 3 | 9 |
-| ⚡ Améliorations | 5 + 1 à venir | 4 | 10 |
+| ⚡ Améliorations | 6 + 2 à venir | 4 | 12 |
 | 🚀 Fonctionnalités | 3 | 0 | 3 |
-| **TOTAL** | **14** | **7** | **22** |
+| **TOTAL** | **16** | **7** | **24** |
 
-> **Progression globale : 21/22 tâches terminées (95%)** 🎯  
+> **Progression globale : 22/24 tâches terminées (92%)** 🎯  
+> **Restant : 2 améliorations desktop en attente** 🔮
 > **Restant : 1 amélioration desktop en attente** 🔮
