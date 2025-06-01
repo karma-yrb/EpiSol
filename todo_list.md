@@ -64,7 +64,9 @@
   - Migration réussie dans `Achats.js` sans régression fonctionnelle
   - Suppression de 2 fichiers obsolètes et finalisation de la mutualisation du code
 
-- [ ] dans la page beneficiaires/ enlever le bouton "supprimer" et rajouter un bouton "enregistrer un nouvel achat" qui aménera vers la page /achats achats ce bénéficiaire deja selectionné
+- ✅ **TERMINÉ** - Dans la page beneficiaires/ 
+    - ✅ enlever le bouton "supprimer" et rajouter un bouton "enregistrer un nouvel achat" qui aménera vers la page /achats avec ce bénéficiaire déjà sélectionné
+    - [ ] rajouter le bouton "supprimer" dans la page beneficiaires/edit/:id
 
 - [ ] Réorganiser le dossier /src/achats
   - Garder un achats.css pour les classe communes mais attribuer un css pour chaque composant ayant des spécificités

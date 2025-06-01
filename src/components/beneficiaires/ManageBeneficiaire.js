@@ -1,46 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../commun/UniForm.css';
-import { fetchBeneficiaires, deleteBeneficiaire, addBeneficiaire, updateBeneficiaire } from '../../api/beneficiairesApi';
+import { fetchBeneficiaires, addBeneficiaire, updateBeneficiaire } from '../../api/beneficiairesApi';
 import { fetchAchats } from '../../api/achatsApi';
 import ActionIconButton from '../commun/ActionIconButton';
 import SortableTable from '../commun/SortableTable';
 import '../commun/SortableTable.css';
-import { useGenericDeleteModal } from '../../hooks/useGenericDeleteModal';
 import { useGenericData } from '../../hooks/useGenericData';
 import './ManageBeneficiaire.css';
 
 function ManageBeneficiaire() {
   const navigate = useNavigate();
   const [achats, setAchats] = useState([]);
-  
-  // Configuration pour useGenericData
+    // Configuration pour useGenericData
   const apiConfig = {
     fetchFunction: fetchBeneficiaires,
     addFunction: addBeneficiaire,
     updateFunction: updateBeneficiaire,
-    deleteFunction: deleteBeneficiaire,
     entityName: 'bénéficiaire',
     entityNamePlural: 'bénéficiaires'
-  };
-    // Utilisation du hook générique pour les données
+  };    // Utilisation du hook générique pour les données
   const {
     data: beneficiaires,
     notif,
     loading,
     error
   } = useGenericData(apiConfig);
-    // Modal de suppression avec useGenericDeleteModal
-  const {
-    handleDelete,
-    ModalComponent: DeleteModal
-  } = useGenericDeleteModal({
-    deleteFunction: deleteBeneficiaire,
-    entityName: 'bénéficiaire',
-    onSuccess: () => {
-      // La suppression est gérée par useGenericData
-    }
-  });
   // Adjust role validation to allow both 'admin' and 'user'
   // Add logging for debugging token validation
   // Add validation to ensure the token is a valid JWT
@@ -126,9 +111,14 @@ function ManageBeneficiaire() {
         <Link to={`/beneficiaires/edit/${row.id}`} className="edit-link">
           <ActionIconButton type="edit" title="Éditer" onClick={e => e.stopPropagation()} />
         </Link>
-        <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(row.id)} />
+        <Link 
+          to={`/achats?beneficiaireId=${row.id}&beneficiaireNom=${encodeURIComponent(row.nom)}&beneficiairePrenom=${encodeURIComponent(row.prenom)}`} 
+          className="new-achat-link"
+        >
+          <ActionIconButton type="add" title="Enregistrer un nouvel achat" onClick={e => e.stopPropagation()} />
+        </Link>
       </div>
-    ) },  ];
+    ) },];
 
   // Ajout d'une clé 'prenomNom' et 'passages' pour le tri
   const beneficiairesWithPrenomNom = beneficiaires ? beneficiaires.map(b => {
@@ -164,13 +154,11 @@ function ManageBeneficiaire() {
           initialSort={{ col: 'prenomNom', dir: 'asc' }}
         />
       )}
-      
-      {notif.message && (
+        {notif.message && (
         <div className={`notification ${notif.type}`}>
           <i className={`fa fa-${notif.type==='success'?'check-circle':'exclamation-circle'}`}></i> {notif.message}
         </div>
       )}
-      <DeleteModal />
     </div>
   );
 }
