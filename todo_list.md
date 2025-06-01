@@ -52,8 +52,13 @@
   - Amélioration du style des initiales utilisateur (cercle bleu avec texte blanc)
   - Correction de l'affichage des textes dans le menu latéral
 
-- [ ] **Prochaines étapes de mutualisation identifiées** :
-  - Unifier les modales de formulaire (`ProduitsFormModal` vs `AjoutProduitModal`)
+- ✅ **TERMINÉ** - **Unification des modales de formulaire (Juin 2025)** :
+  - Création de `UnifiedProductModal` remplaçant `ProduitsFormModal` et `AjoutProduitModal`
+  - Nouveau hook `useUnifiedProductForm` unifiant la logique de création/édition
+  - Mode 'inline' pour création rapide dans `AchatModal`, mode 'add'/'edit' pour `ManageProduits`
+  - Suppression de 4 fichiers obsolètes et réduction significative de la duplication de code
+
+- [ ] **Dernière étape de mutualisation identifiée** :
   - Remplacer les hooks de recherche spécialisés par `useGenericSearch`
 
 ### 📱 Mobile
@@ -94,9 +99,9 @@
 | Catégorie | Desktop | Mobile | Total |
 |-----------|---------|--------|-------|
 | 🐛 Bugs | 6 | 3 | 9 |
-| ⚡ Améliorations | 4 + 2 à venir | 4 | 10 |
+| ⚡ Améliorations | 5 + 1 à venir | 4 | 10 |
 | 🚀 Fonctionnalités | 3 | 0 | 3 |
-| **TOTAL** | **13** | **7** | **22** |
+| **TOTAL** | **14** | **7** | **22** |
 
-> **Progression globale : 20/22 tâches terminées (91%)** 🎯  
-> **Restant : 2 améliorations desktop en attente** 🔮
+> **Progression globale : 21/22 tâches terminées (95%)** 🎯  
+> **Restant : 1 amélioration desktop en attente** 🔮
