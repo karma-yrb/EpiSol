@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
+import './useGenericDeleteModal.css';
 
 /**
  * Hook générique pour gérer les suppressions avec modal de confirmation

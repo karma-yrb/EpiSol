@@ -17,9 +17,9 @@
   - Bouton profil/déconnexion sans background
   - Menu latéral sans textes affichés
 
-- ✅ **TERMINÉ** - page beneficiaires/ 
+- ✅ **TERMINÉ** - page /beneficiaires 
     - ✅ l'ajout de beneficiaire ne fontionne pas, voir message d'erreur (problème : champs obligatoires manquants dans le formulaire)
-    - le lien pour aller vers achats/ ne fontionne pas correctement, le champ de choix du beneficiaire est vide. il devrait etre rempli avec le beneficieire selectionné et le bouton "ajouter un produit" devrait apparaitre
+    - le lien pour aller vers /achats ne fontionne pas correctement, le champ de choix du beneficiaire est vide. il devrait etre rempli avec le beneficieire selectionné et le bouton "ajouter un produit" devrait apparaitre
 
 
 ### 📱 Mobile
@@ -72,7 +72,7 @@
 - ✅ **TERMINÉ** - Dans la page beneficiaires/ 
     - ✅ enlever le bouton "supprimer" et rajouter un bouton "enregistrer un nouvel achat" qui aménera vers la page /achats avec ce bénéficiaire déjà sélectionné
     - ✅ rajouter le bouton "supprimer" dans la page beneficiaires/edit/:id a coté du bouton mettre à jour, le comportement lui doit rester le meme. Aprés suppression retourner dans la pages benenficiaire et afficher un message de confirmation de suppression
-    - le message de confirmation de suppresion doit etre dans un modal et non en bas de page
+    - Le message de confirmation de suppresion doit etre dans un modal et non en bas de page
 
 - [ ] Réorganiser le dossier /src/achats
   - Garder un achats.css pour les classe communes mais attribuer un css pour chaque composant ayant des spécificités

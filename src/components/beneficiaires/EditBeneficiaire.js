@@ -18,10 +18,7 @@ function EditBeneficiaire() {
     ville: '',
     adresse: '',
     discount: 50
-  });
-  const [errorMsg, setErrorMsg] = useState('');
-  const [successMsg, setSuccessMsg] = useState('');
-
+  });  const [errorMsg, setErrorMsg] = useState('');
   // Modal de suppression avec useGenericDeleteModal
   const {
     handleDelete,
@@ -30,7 +27,8 @@ function EditBeneficiaire() {
     deleteFunction: deleteBeneficiaire,
     entityName: 'bénéficiaire',
     onSuccess: () => {
-      setSuccessMsg('Bénéficiaire supprimé avec succès !');
+      // Le message de succès est déjà géré par le modal
+      // Redirection après un délai pour laisser le temps de voir le message
       setTimeout(() => {
         navigate('/beneficiaires');
       }, 1200);
@@ -57,11 +55,9 @@ function EditBeneficiaire() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrorMsg('');
-    setSuccessMsg('');
     // Nettoyage strict : on ne garde que les champs attendus côté backend
     const dataToSend = {
       nom: formData.nom || '',
@@ -87,10 +83,9 @@ function EditBeneficiaire() {
     console.log('handleSubmit - Données envoyées au backend:', dataToSend); // LOG DEBUG
     const submitPromise = id
       ? updateBeneficiaire(id, dataToSend)
-      : addBeneficiaire(dataToSend);
-    submitPromise
+      : addBeneficiaire(dataToSend);    submitPromise
       .then(() => {
-        setSuccessMsg(id ? 'Bénéficiaire mis à jour avec succès !' : 'Bénéficiaire créé avec succès !');
+        // Redirection directe après succès - les messages sont gérés par les notifications d'API
         setTimeout(() => {
           navigate('/beneficiaires');
         }, 1200);
@@ -119,11 +114,8 @@ function EditBeneficiaire() {
         handleDelete={id ? () => handleDelete(id) : null}
         id={id}
       />
-      {successMsg && (
-        <div className="notification success beneficiaire-notification-success">
-          <i className="fa fa-check-circle"></i> {successMsg}
-        </div>
-      )}
+      
+      {/* Modal de suppression - Les messages sont gérés dans le modal */}
       <DeleteModal />
     </div>
   );
