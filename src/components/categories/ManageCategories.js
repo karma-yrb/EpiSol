@@ -4,7 +4,6 @@ import './ManageCategories.css';
 import CategoryAddForm from './CategoryAddForm';
 import CategoryTable from './CategoryTable';
 import { useGenericData } from '../../hooks/useGenericData';
-import { useGenericDeleteModal } from '../../hooks/useGenericDeleteModal';
 import { fetchCategories, addCategory, updateCategory, deleteCategory } from '../../api/categoriesApi';
 
 function ManageCategories() {
@@ -30,7 +29,12 @@ function ManageCategories() {
     setEditValue,
     handleEdit,
     handleSaveEdit,
-    handleCancelEdit
+    handleCancelEdit,
+    handleDelete,
+    showDeleteModal,
+    confirmDelete,
+    cancelDelete,
+    deleteStatus
   } = useGenericData(apiConfig);
 
   // Fonction pour ajouter une catégorie
@@ -49,19 +53,8 @@ function ManageCategories() {
       console.error('Erreur lors de l\'ajout:', error);
       setNotif({ type: 'error', message: 'Erreur lors de l\'ajout de la catégorie.' });
     }
-  };
-  const {
-    handleDelete,
-    ModalComponent: DeleteModal
-  } = useGenericDeleteModal({
-    deleteFunction: deleteCategory,
-    entityName: 'catégorie',
-    onSuccess: (deletedId) => {
-      // La suppression est déjà gérée par useGenericData via son state interne
-    }
-  });
-  return (
-    <div className="page-centered-container">
+  };  return (
+    <div className="page-centered-container" data-page="categories">
       <h1>
         <i className="fa fa-tags icon-blue icon-lg mr-8"></i>
         Gestion des catégories
@@ -76,8 +69,7 @@ function ManageCategories() {
           onAdd={(e) => { handleAdd(e); handleCancelEdit(); }}
           onCancel={handleCancelEdit}
         />
-      )}
-      <CategoryTable
+      )}      <CategoryTable
         categories={categories}
         editId={editId}
         editValue={editValue}
@@ -87,7 +79,38 @@ function ManageCategories() {
         setEditId={handleCancelEdit}
         handleDelete={handleDelete}
       />
-      <DeleteModal />
+      
+      {/* Modal de confirmation de suppression */}
+      {showDeleteModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Confirmer la suppression</h3>
+            <p>Êtes-vous sûr de vouloir supprimer cette catégorie ?</p>
+            <div className="modal-buttons">
+              <button 
+                className="btn btn-secondary" 
+                onClick={cancelDelete}
+                disabled={deleteStatus === 'loading'}
+              >
+                Annuler
+              </button>
+              <button 
+                className="btn btn-danger" 
+                onClick={confirmDelete}
+                disabled={deleteStatus === 'loading'}
+              >
+                {deleteStatus === 'loading' ? 'Suppression...' : 'Supprimer'}
+              </button>
+            </div>
+            {deleteStatus === 'success' && (
+              <p className="success-message">Suppression réussie !</p>
+            )}
+            {deleteStatus === 'error' && (
+              <p className="error-message">Erreur lors de la suppression</p>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

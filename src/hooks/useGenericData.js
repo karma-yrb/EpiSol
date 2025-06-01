@@ -21,13 +21,15 @@ export function useGenericData(config, options = {}) {
     entityNamePlural = 'éléments',
     sortFunction
   } = config || {};
-
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deleteId, setDeleteId] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [notif, setNotif] = useState({ type: '', message: '' });
   const [deleteStatus, setDeleteStatus] = useState('idle');
+  // États pour l'édition inline
+  const [editId, setEditId] = useState(null);
+  const [editValue, setEditValue] = useState('');
   // Fonction de fetch des données
   const fetchData = async () => {
     setLoading(true);
@@ -108,12 +110,44 @@ export function useGenericData(config, options = {}) {
   const updateItem = (id, updatedItem) => {
     setData(prevData => prevData.map(item => item.id === id ? updatedItem : item));
   };
-
   // Fonction pour rafraîchir les données
   const refreshData = () => {
     fetchData();
   };
 
+  // Fonctions pour l'édition inline
+  const handleEdit = (id, currentValue) => {
+    setEditId(id);
+    setEditValue(currentValue);
+  };
+
+  const handleSaveEdit = async () => {
+    if (!editValue.trim()) {
+      setNotif({ type: 'error', message: `Le nom du ${entityName} ne peut pas être vide.` });
+      return;
+    }
+
+    try {
+      if (updateFunction) {
+        const updatedItem = await updateFunction(editId, { nom: editValue });
+        updateItem(editId, updatedItem);
+        setNotif({ type: 'success', message: `${entityName} modifié avec succès.` });
+      } else {
+        throw new Error('Fonction de mise à jour non fournie');
+      }
+    } catch (error) {
+      console.error('[useGenericData] Erreur lors de la mise à jour:', error);
+      setNotif({ type: 'error', message: `Erreur lors de la modification du ${entityName}.` });
+    } finally {
+      setEditId(null);
+      setEditValue('');
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditId(null);
+    setEditValue('');
+  };
   return {
     data,
     loading,
@@ -128,6 +162,13 @@ export function useGenericData(config, options = {}) {
     updateItem,
     refreshData,
     setData,
-    setNotif
+    setNotif,
+    // Fonctions d'édition inline
+    editId,
+    editValue,
+    setEditValue,
+    handleEdit,
+    handleSaveEdit,
+    handleCancelEdit
   };
 }

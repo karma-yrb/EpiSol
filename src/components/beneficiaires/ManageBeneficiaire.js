@@ -157,9 +157,8 @@ function ManageBeneficiaire() {
       passages: passagesByBenef[key] || 0,
       depuis: creationTimestamp // Timestamp pour le tri
     };
-  }) : [];
-  return (
-    <div className="page-centered-container">
+  }) : [];  return (
+    <div className="page-centered-container" data-page="manage-beneficiaires">
       <h1>
         <i className="fa fa-users icon-blue icon-lg mr-8"></i>
         Gestion des bénéficiaires

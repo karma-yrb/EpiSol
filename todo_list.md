@@ -13,10 +13,10 @@
 - ✅ **TERMINÉ** - Correction erreur dans `CategoryTable.js` (null check dans la boucle `.map`)
 - ✅ **TERMINÉ** - Correction erreur dans `ManageUsers.js` (format incorrect de la configuration dans `useGenericData`)
 - ✅ **TERMINÉ** - `/users/add` : Les données de l'utilisateur connecté sont chargées alors que le form devrait être vide
-- ✅ **TERMINÉ** - `/users/edit/:id` : Le champ "changer le mot de passe" se remplissait au chargement avec le mot de passe hashé
 - ✅ **TERMINÉ** - **Régressions UI post-refactorisation (Mai 2025)** :
   - Bouton profil/déconnexion sans background
   - Menu latéral sans textes affichés
+
 - ✅ **TERMINÉ** - page /beneficiaires 
     - ✅ l'ajout de beneficiaire ne fontionne pas, voir message d'erreur (problème : champs obligatoires manquants dans le formulaire)
     - ✅ le lien pour aller vers /achats ne fontionne pas correctement, le champ de choix du beneficiaire est vide. il devrait etre rempli avec le beneficieire selectionné et le bouton "ajouter un produit" devrait apparaitre
@@ -26,13 +26,8 @@
   - ✅ Formulaire inline restait ouvert après validation et ne sélectionnait pas le produit créé
   - ✅ Problèmes d'affichage UI du formulaire inline (champs mal disposés)
   - ✅ Bouton "Ajouter nouveau produit" ne disparaissait pas après sélection d'un produit
-  - ✅ Corrections CSS dans `UnifiedProductModal.css` pour forcer l'affichage vertical
-  - ✅ Modification condition d'affichage dans `ProductSearchDropdown.js`
-
-- ✅ **TERMINÉ** - **Débordement formulaires mobile ≤395px (Juin 2025)** :
-  - ✅ Formulaire de connexion et autres formulaires dépassaient de l'écran sur mobile
-  - ✅ Correction du padding et largeur des `.uni-form` dans `.uni-form-container`
-  - ✅ Ajustement responsive avec `calc(100vw - 2rem)` et `box-sizing: border-box`
+  - Corrections CSS dans `UnifiedProductModal.css` pour forcer l'affichage vertical
+  - Modification condition d'affichage dans `ProductSearchDropdown.js`
 
 
 ### 📱 Mobile
@@ -122,9 +117,8 @@
 
 - ✅ **TERMINÉ** - **Largeur des formulaires et tableaux mobile ≤395px (Juin 2025)** :
   - ✅ Formulaires : correction du débordement d'écran 
-  - ✅ `/beneficiaires` : Date "Depuis" en format multi-lignes (jj/mm/aa → 12\nJuin\n2025) pour optimiser l'espace horizontal
-  - ✅ `/beneficiaires ≤395px` : Colonne "Rabais" cachée pour libérer de l'espace et afficher tous les boutons
-  - Amélioration de la lisibilité sur très petits écrans avec format date adaptatif et optimisation des colonnes
+  - ✅ `/beneficiaires` : Date "Depuis" en format multi-lignes (jj/mm/aa → 12\n06\n25) pour optimiser l'espace horizontal
+  - Amélioration de la lisibilité sur très petits écrans avec format date adaptatif
 
 ---
 
@@ -151,10 +145,10 @@
 
 | Catégorie | Global | Mobile | Total |
 |-----------|---------|--------|-------|
-| 🐛 Bugs | 5 | 3 | 8 |
-| ⚡ Améliorations | 8 | 5 | 13 |
+| 🐛 Bugs | 6 | 3 | 9 |
+| ⚡ Améliorations | 6 + 2 à venir | 4 | 12 |
 | 🚀 Fonctionnalités | 3 | 0 | 3 |
-| **TOTAL** | **16** | **8** | **24** |
+| **TOTAL** | **16** | **7** | **24** |
 
-> **Progression globale : 23/24 tâches terminées (96%)** 🎯  
-> **Restant : 1 nouvelle fonctionnalité en attente** 🔮
+> **Progression globale : 22/24 tâches terminées (92%)** 🎯  
+> **Restant : 2 améliorations desktop en attente** 🔮

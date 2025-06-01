@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import BeneficiaireForm from './BeneficiaireForm';
 import { fetchBeneficiaire, updateBeneficiaire, addBeneficiaire, deleteBeneficiaire } from '../../api/beneficiairesApi';
 import { useGenericDeleteModal } from '../../hooks/useGenericDeleteModal';
-import './ManageBeneficiaire.css';
+import '../commun/UniForm.css';
 
 function EditBeneficiaire() {
   const { id } = useParams();

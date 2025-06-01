@@ -254,3 +254,52 @@ form button[type="submit"]:hover {
     padding: 0.5em 0.5em;
   }
 }
+
+/* Responsive pour mobile ≤395px */
+@media (max-width: 395px) {
+  /* Champ d'édition centré avec largeur optimisée */
+  .category-row-input {
+    text-align: center;
+    max-width: 150px !important;
+    width: 150px !important;
+  }
+  
+  /* Optimisation des colonnes du tableau */
+  .produits-table th:first-child,
+  .produits-table td:first-child {
+    width: 70% !important;
+    max-width: 70% !important;
+  }
+  
+  .produits-table th:last-child,
+  .produits-table td:last-child {
+    width: 30% !important;
+    max-width: 30% !important;
+  }
+  
+  /* Centrage et optimisation des boutons d'action */
+  .actions-cell {
+    gap: 4px !important;
+    margin: auto !important;
+    text-align: center !important;
+  }
+  
+  /* Boutons compacts et optimisés */
+  .actions-cell .edit-btn,
+  .actions-cell .delete-btn,
+  .actions-cell .save-btn,
+  .actions-cell .cancel-btn {
+    max-width: 30px !important;
+    max-height: 30px !important;
+    font-size: 1.1em !important;
+    padding: 4px !important;
+    margin: 2px !important;
+    border-radius: 4px !important;
+  }
+  
+  /* Réduction du padding global pour gagner de l'espace */
+  .produits-table th, .produits-table td {
+    padding: 8px 4px !important;
+    font-size: 14px !important;
+  }
+}
