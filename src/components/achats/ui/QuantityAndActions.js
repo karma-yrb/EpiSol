@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/QuantityAndActions.css';
 
 /**
  * Composant pour la saisie de quantité et les actions du modal d'achat

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import './Achats.css';
-import AchatModal from './AchatModal';
-import BeneficiaireSelector from './BeneficiaireSelector';
-import AchatsTable from './AchatsTable';
+import './styles/Achats.css';
+import AchatModal from './forms/AchatModal';
+import BeneficiaireSelector from './ui/BeneficiaireSelector';
+import AchatsTable from './lists/AchatsTable';
 import AchatsNotifications from './AchatsNotifications';
-import { addAchat as addAchatApi } from '../../api/achatsApi';
+import { addAchat as addAchatApi } from './api/achatsApi';
 import { useUnifiedBeneficiaireSearch } from '../../hooks/useUnifiedBeneficiaireSearch';
-import { useAchatList } from '../../hooks/useAchatList';
+import { useAchatList } from './hooks/useAchatList';
 import { useUnifiedProduitSearch } from '../../hooks/useUnifiedProduitSearch';
 import { useDiscountCalculations } from '../../hooks/useDiscountCalculations';
 

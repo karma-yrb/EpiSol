@@ -1,0 +1,27 @@
+/* Styles spécifiques pour ListeAchats.js */
+
+.achats-container-margin {
+  margin-bottom: 12px;
+}
+
+.achats-form-section {
+  margin-bottom: 12px;
+}
+
+.achats-info {
+  color: #888;
+  font-size: 15px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.achats-info i {
+  margin-right: 8px;
+}
+
+.achats-notification {
+  margin-top: 16px;
+}

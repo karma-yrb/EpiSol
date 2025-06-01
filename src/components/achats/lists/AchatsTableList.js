@@ -1,5 +1,5 @@
 import React from 'react';
-import ActionIconButton from '../commun/ActionIconButton';
+import ActionIconButton from '../../commun/ActionIconButton';
 
 /**
  * Fonction utilitaire pour formater la date jj mmm aaaa

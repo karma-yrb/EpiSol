@@ -1,6 +1,6 @@
 import React from 'react';
-import './AchatModal.css';
-import ActionIconButton from '../commun/ActionIconButton';
+import '../styles/AchatModal.css';
+import ActionIconButton from '../../commun/ActionIconButton';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';

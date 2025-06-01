@@ -1,11 +1,12 @@
 import React from 'react';
-import './Achats.css';
-import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
-import AchatDetailsModal from './AchatDetailsModal';
-import GenericSearchBar from '../commun/GenericSearchBar';
+import '../styles/Achats.css';
+import '../styles/ListeAchats.css';
+import ConfirmDeleteModal from '../../modals/ConfirmDeleteModal';
+import AchatDetailsModal from '../forms/AchatDetailsModal';
+import GenericSearchBar from '../../commun/GenericSearchBar';
 import AchatsTableList from './AchatsTableList';
-import { useAchatsData } from '../../hooks/useAchatsData';
-import { useAchatsFilters } from '../../hooks/useAchatsFilters';
+import { useAchatsData } from '../hooks/useAchatsData';
+import { useAchatsFilters } from '../hooks/useAchatsFilters';
 
 function ListeAchats() {
   // Hooks personnalisés pour séparer les logiques

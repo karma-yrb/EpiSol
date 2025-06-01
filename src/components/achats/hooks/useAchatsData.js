@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getApiUrl } from '../utils/apiUtils';
+import { getApiUrl } from '../../../utils/apiUtils';
 
 /**
  * Hook personnalisé pour gérer la logique des achats (fetch, delete, details)

@@ -1,0 +1,108 @@
+/* Styles communs pour tous les composants d'achats */
+
+/* Classes de base pour les conteneurs */
+.achats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: #f9f9f9;
+  padding: 40px 0 60px 0;
+}
+
+/* Styles pour les titres */
+.achats-title {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.achats-title-icon {
+  margin-right: 14px;
+  color: #1a7f1a;
+}
+
+/* Styles pour les cartes */
+.achats-main-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  padding: 2em;
+  text-align: center;
+}
+
+/* Styles pour les boutons */
+.achats-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.achats-btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.achats-btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.achats-btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.achats-btn-secondary:hover {
+  background-color: #545b62;
+}
+
+/* Styles pour les tableaux */
+.achats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.achats-table th,
+.achats-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.achats-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+/* Media queries responsives communes */
+@media (max-width: 600px) {
+  .achats-main-card {
+    padding: 1em;
+    margin: 0 10px;
+  }
+  
+  .achats-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 395px) {
+  .achats-table th,
+  .achats-table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .achats-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}

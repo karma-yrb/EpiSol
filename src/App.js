@@ -15,7 +15,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import ManageProduits from './components/produits/ManageProduits';
 import ManageCategories from './components/categories/ManageCategories';
 import Achats from './components/achats/Achats';
-import ListeAchats from './components/achats/ListeAchats';
+import ListeAchats from './components/achats/lists/ListeAchats';
 import UserLogsPage from './components/users/UserLogsPage';
 import Stocks from './components/stocks/Stocks';
 

@@ -1,0 +1,236 @@
+/* Styles pour AchatsTable.js et AchatsTableList.js */
+
+.achats-list-wrapper {
+  margin: 30px auto 0 auto;
+  max-width: 500px;
+}
+
+.achats-list-title {
+  font-size: 20px;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.achats-list-table {
+  width: 100%;
+  background: #fafafa;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.achats-list-table th,
+.achats-list-table td {
+  padding: 10px;
+  text-align: center;
+}
+
+.achats-list-table th {
+  background: #f5f5f5;
+}
+
+.achats-list-table td {
+  border-bottom: 1px solid #eee;
+}
+
+.achats-list-table .achats-total-row td {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0071bc;
+  border-top: 2px solid #e0e0e0;
+}
+
+.achats-list-table .achats-total-row td:first-child {
+  border-radius: 0 0 0 8px;
+}
+
+.achats-list-table .achats-total-row td:last-child {
+  border-radius: 0 0 8px 0;
+}
+
+.achats-list-search-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.achats-list-search-input {
+  padding: 7px 12px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-size: 15px;
+  min-width: 180px;
+}
+
+.clear-filters-btn {
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+  line-height: 1;
+  box-shadow: none;
+  font-weight: 500;
+  margin-left: 0;
+  margin-right: 0;
+  white-space: nowrap;
+}
+
+.clear-filters-btn:hover {
+  background: #e0e0e0;
+  color: #0071bc;
+}
+
+.clear-filters-btn .fa-times-circle {
+  font-size: 1.1em;
+  margin-right: 4px;
+}
+
+.clear-filters-label {
+  font-size: 15px;
+  font-weight: 500;
+  display: inline;
+}
+
+/* Switch custom pour le rabais */
+.switch-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.switch input[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #ccc;
+  border-radius: 24px;
+  transition: .3s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: .3s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+
+.switch input:checked + .slider {
+  background: #1a7f1a;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+.slider.round {
+  border-radius: 24px;
+}
+
+.switch-text {
+  margin-left: 8px;
+  font-size: 15px;
+  color: #222;
+}
+
+/* Classes pour les cellules du tableau des totaux - Desktop */
+.achats-total-cell-label {
+  font-weight: 700;
+  text-align: right;
+  font-size: 14px !important;
+}
+
+.achats-total-cell-initial {
+  font-weight: 700;
+  text-decoration: line-through;
+  color: #888;
+}
+
+/* Styles haute priorité pour les tables mixtes produits-table + achats-list-table */
+table.produits-table.achats-list-table .achats-total-cell-label {
+  font-size: 14px !important;
+}
+
+.achats-total-rabais {
+  font-size: 12px !important;
+  background-color: #e7e7e7 !important;
+}
+
+/* Media Queries spécifiques aux tableaux */
+@media (max-width: 700px) {
+  .achats-list-search-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .clear-filters-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 4px;
+    height: 36px;
+  }
+}
+
+/* Responsive styles pour mobile ≤395px */
+@media (max-width: 395px) {
+  /* Alignement des boutons de quantité avec actions-cell */
+  .achats-list-table .actions-cell {
+    gap: 2px !important;
+    justify-content: center !important;
+  }
+  
+  /* Styles pour la ligne "Total à payer" - police 18px pour le label */
+  .achats-list-table .achats-total-final .achats-total-cell-label {
+    font-size: 18px !important;
+  }
+  
+  /* Styles généraux mobile pour les autres cellules */
+  .achats-total-rabais {
+    font-size: 12px !important;
+    background-color: #e7e7e7 !important;
+  }
+  
+  /* Styles haute priorité pour tables mixtes en mobile */
+  table.produits-table.achats-list-table .achats-total-cell-label {
+    font-size: 12px !important;
+  }
+  
+  table.produits-table.achats-list-table .achats-total-cell-rabais:nth-child(2) {
+    font-size: 12px !important;
+  }
+  
+  /* Override spécifique pour la ligne "Total à payer" */
+  table.produits-table.achats-list-table .achats-total-final .achats-total-cell-label {
+    font-size: 18px !important;
+  }
+}

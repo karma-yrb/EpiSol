@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/AchatsTable.css';
 
 /**
  * Composant pour afficher la liste des achats avec totaux et rabais

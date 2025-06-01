@@ -81,9 +81,12 @@
   - Script de test créé : `test_quantity_bug.js` pour reproduction et validation
   - ✅ Résolu sur production https://episol.yade-services.fr/liste-achats
 
-- [ ] Réorganiser le dossier /src/achats
-  - Garder un achats.css pour les classe communes mais attribuer un css pour chaque composant ayant des spécificités
-  - Faire des sous dossiers peut-etre 
+- ✅ **TERMINÉ** - **Réorganisation du dossier /src/achats (Juin 2025)** :
+  - Structure logique avec sous-dossiers : `forms/`, `lists/`, `ui/`, `hooks/`, `api/`, `styles/`
+  - Centralisation des hooks et API spécifiques aux achats
+  - Création de `styles/common.css` pour classes partagées
+  - Mise à jour de tous les imports et suppression des doublons
+  - Documentation complète dans `achats/README.md`
 
 ### 📱 Mobile
 - ✅ **TERMINÉ** - **UX Mobile ≤395px - Page `/achats` (Juin 2025)** :

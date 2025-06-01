@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
-import UnifiedProductModal from '../produits/UnifiedProductModal';
-import ProductSearchDropdown from './ProductSearchDropdown';
-import QuantityAndActions from './QuantityAndActions';
-import { useUnifiedProductForm } from '../../hooks/useUnifiedProductForm';
-import { useProductDropdown } from '../../hooks/useProductDropdown';
-import './AchatModal.css';
+import UnifiedProductModal from '../../produits/UnifiedProductModal';
+import ProductSearchDropdown from '../ui/ProductSearchDropdown';
+import QuantityAndActions from '../ui/QuantityAndActions';
+import { useUnifiedProductForm } from '../../../hooks/useUnifiedProductForm';
+import { useProductDropdown } from '../../../hooks/useProductDropdown';
+import '../styles/AchatModal.css';
 
 function AchatModal({
   show,

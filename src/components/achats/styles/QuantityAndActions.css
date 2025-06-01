@@ -1,0 +1,55 @@
+/* Styles pour QuantityAndActions */
+
+.achats-qty-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.achats-qty-btn.moins {
+  background: #fffbe6;
+  border: 1px solid #e6a700;
+  color: #e6a700;
+}
+
+.achats-qty-btn.plus {
+  background: #e6ffe6;
+  border: 1px solid #1a7f1a;
+  color: #1a7f1a;
+}
+
+.achats-delete-btn {
+  background: #ffeaea;
+  border: 1px solid #c00;
+  color: #c00;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Responsive pour mobile ≤395px */
+@media (max-width: 395px) {
+  /* Réduction de la taille des boutons sur mobile */
+  .achats-qty-btn {
+    padding: 2px 6px !important;
+    font-size: 12px !important;
+    min-width: 24px;
+    min-height: 24px;
+  }
+  
+  .achats-delete-btn {
+    padding: 2px 6px !important;
+    font-size: 11px !important;
+    min-width: 24px;
+    min-height: 24px;
+  }
+  
+  .achats-delete-btn i {
+    font-size: 10px !important;
+  }
+}

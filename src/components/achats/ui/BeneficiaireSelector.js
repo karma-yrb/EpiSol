@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/BeneficiaireSelector.css';
 
 /**
  * Composant pour la sélection d'un bénéficiaire
