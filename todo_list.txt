@@ -49,8 +49,8 @@ Prochaines étapes de mutualisation potentielles:
 - Unifier les modales de formulaire (ProduitsFormModal vs AjoutProduitModal)
 - Remplacer les hooks de recherche spécialisés par useGenericSearch
 
-UX Mobile <=393px :
+UX Mobile <=395px :
 ✅ TERMINÉ - Corrections d'affichage mobile (Juin 2025):
-- /achats : alignement des boutons de quantité avec actions-cell et réduction de taille mobile
+✅ TERMINÉ - /achats : alignement des boutons de quantité avec actions-cell et réduction de taille mobile
 - /users et /beneficiaires : tableaux 100% largeur mobile et réduction marges boutons
 - Amélioration de la hiérarchie des polices : "Rabais" plus petit (14px), "Prix total" plus grand (18px)

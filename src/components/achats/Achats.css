@@ -167,7 +167,6 @@
   border-bottom: 1px solid #eee;
 }
 .achats-list-table .achats-total-row td {
-  background: #f2f6fa;
   font-size: 17px;
   font-weight: 700;
   color: #0071bc;
@@ -468,7 +467,7 @@ table.produits-table.achats-list-table .achats-total-cell-label {
   /* Styles généraux mobile pour les autres cellules */
   .achats-total-rabais {
     font-size: 12px !important;
-    background-color: #e8f5e8 !important;
+    background-color: #e7e7e7 !important;
   }
   
   /* Styles haute priorité pour tables mixtes en mobile */

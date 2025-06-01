@@ -37,7 +37,8 @@ function ManageUsers({ userConnected }) {
     if (!userConnected) {
       navigate('/access-denied');
       return;
-    }  }, [userConnected, navigate]);
+    }
+  }, [userConnected, navigate]);
 
   if (loading) {
     return (
