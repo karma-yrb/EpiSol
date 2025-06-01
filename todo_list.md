@@ -72,8 +72,14 @@
 - ✅ **TERMINÉ** - Dans la page beneficiaires/ 
     - ✅ enlever le bouton "supprimer" et rajouter un bouton "enregistrer un nouvel achat" qui aménera vers la page /achats avec ce bénéficiaire déjà sélectionné    - ✅ rajouter le bouton "supprimer" dans la page beneficiaires/edit/:id a coté du bouton mettre à jour, le comportement lui doit rester le meme. Aprés suppression retourner dans la pages benenficiaire et afficher un message de confirmation de suppression
     - ✅ Le message de confirmation de suppresion doit etre dans un modal et non en bas de page
-    - ✅ rajouter une colonne "depuis" ou apparaitra la date de creation du beneficiaire format jj/mm/aa
-    - ✅ Limiter le numéro de bénéficiaire à maximum 5 chiffres (validation DB + frontend)
+    - ✅ rajouter une colonne "depuis" ou apparaitra la date de creation du beneficiaire format jj/mm/aa    - ✅ Limiter le numéro de bénéficiaire à maximum 5 chiffres (validation DB + frontend)
+
+- ✅ **TERMINÉ** - **Fix production : Colonne "quantité" vide sur `/liste-achats` (Juin 2025)** :
+  - Problème identifié : SQL `SUM()` retourne `NULL` pour achats sans lignes d'achat
+  - **Backend** : Correction avec `COALESCE(SUM(al.quantite), 0)` dans `SQL_LISTE_ACHATS`
+  - **Frontend** : Amélioration logique d'affichage `(a.quantite || 0)` au lieu de vérification strict
+  - Script de test créé : `test_quantity_bug.js` pour reproduction et validation
+  - ✅ Résolu sur production https://episol.yade-services.fr/liste-achats
 
 - [ ] Réorganiser le dossier /src/achats
   - Garder un achats.css pour les classe communes mais attribuer un css pour chaque composant ayant des spécificités
@@ -98,7 +104,7 @@
 - ✅ **TERMINÉ** - **Page `/produits` mobile (Juin 2025)** :
   - Design mobile préservé avec `flex-direction: column`
 
-- [] Largeur des formulaires, ils dépassent de l'écran en gnénéral pour cette largeur d'écran, il faut corriger ça
+- [] Largeur des formulaires, ils dépassent de l'écran en général pour cette largeur d'écran, il faut corriger ça
 
 ---
 
