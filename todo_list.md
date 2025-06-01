@@ -19,7 +19,15 @@
 
 - ✅ **TERMINÉ** - page /beneficiaires 
     - ✅ l'ajout de beneficiaire ne fontionne pas, voir message d'erreur (problème : champs obligatoires manquants dans le formulaire)
-    - le lien pour aller vers /achats ne fontionne pas correctement, le champ de choix du beneficiaire est vide. il devrait etre rempli avec le beneficieire selectionné et le bouton "ajouter un produit" devrait apparaitre
+    - ✅ le lien pour aller vers /achats ne fontionne pas correctement, le champ de choix du beneficiaire est vide. il devrait etre rempli avec le beneficieire selectionné et le bouton "ajouter un produit" devrait apparaitre
+
+- ✅ **TERMINÉ** - **Corrections formulaire inline produit - Page `/achats` (Juin 2025)** :
+  - ✅ Bouton "Ajouter nouveau produit" n'apparaissait pas quand aucun produit n'était trouvé
+  - ✅ Formulaire inline restait ouvert après validation et ne sélectionnait pas le produit créé
+  - ✅ Problèmes d'affichage UI du formulaire inline (champs mal disposés)
+  - ✅ Bouton "Ajouter nouveau produit" ne disparaissait pas après sélection d'un produit
+  - Corrections CSS dans `UnifiedProductModal.css` pour forcer l'affichage vertical
+  - Modification condition d'affichage dans `ProductSearchDropdown.js`
 
 
 ### 📱 Mobile
@@ -89,7 +97,7 @@
   - Documentation complète dans `achats/README.md`
 
 ### 📱 Mobile
-- ✅ **TERMINÉ** - **UX Mobile ≤395px - Page `/achats` (Juin 2025)** :
+- ✅ **TERMINÉ** - **UX Mobile ≤395px - Page `/achats`** :
   - Alignement des boutons de quantité avec `actions-cell` et réduction de taille mobile
   - Optimisation responsive des contrôles de quantité (-, +, delete)
   - Amélioration de la hiérarchie des polices :
@@ -107,7 +115,10 @@
 - ✅ **TERMINÉ** - **Page `/produits` mobile (Juin 2025)** :
   - Design mobile préservé avec `flex-direction: column`
 
-- [] Largeur des formulaires, ils dépassent de l'écran en général pour cette largeur d'écran, il faut corriger ça
+- ✅ **TERMINÉ** - **Largeur des formulaires et tableaux mobile ≤395px (Juin 2025)** :
+  - ✅ Formulaires : correction du débordement d'écran 
+  - ✅ `/beneficiaires` : Date "Depuis" en format multi-lignes (jj/mm/aa → 12\n06\n25) pour optimiser l'espace horizontal
+  - Amélioration de la lisibilité sur très petits écrans avec format date adaptatif
 
 ---
 
@@ -141,4 +152,3 @@
 
 > **Progression globale : 22/24 tâches terminées (92%)** 🎯  
 > **Restant : 2 améliorations desktop en attente** 🔮
-> **Restant : 1 amélioration desktop en attente** 🔮

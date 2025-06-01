@@ -88,12 +88,27 @@ function ManageBeneficiaire() {
       if (row.created_at) {
         const creationDate = new Date(row.created_at);
         
-        // Format jj/mm/aa
+        // Format adaptatif : compact sur mobile ≤395px, normal sinon
         const day = creationDate.getDate().toString().padStart(2, '0');
         const month = (creationDate.getMonth() + 1).toString().padStart(2, '0');
         const year = creationDate.getFullYear().toString().slice(-2);
         
-        return `${day}/${month}/${year}`;
+        // Mois en format 3 lettres pour mobile
+        const monthNames = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'];
+        const monthShort = monthNames[creationDate.getMonth()];
+        const fullYear = creationDate.getFullYear();
+        
+        // Format mobile multi-lignes pour ≤395px
+        return (
+          <span className="beneficiaire-date">
+            <span className="date-desktop">{day}/{month}/{year}</span>
+            <span className="date-mobile">
+              <div>{day}</div>
+              <div>{monthShort}</div>
+              <div>{fullYear}</div>
+            </span>
+          </span>
+        );
       }
       return 'N/A';
     } },
