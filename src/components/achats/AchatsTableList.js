@@ -55,11 +55,10 @@ function AchatsTableList({
         {achatsTries.map(a => (
           <tr key={a.id}>
             <td>{a.date_achat ? formatDateShort(a.date_achat) : ''}</td>
-            <td>{a.beneficiaire_nom} {a.beneficiaire_prenom}</td>
-            <td>
+            <td>{a.beneficiaire_nom} {a.beneficiaire_prenom}</td>            <td>
               {Array.isArray(a.lignes) 
                 ? a.lignes.reduce((sum, l) => sum + (l.quantite || 0), 0) 
-                : (typeof a.quantite === 'number' ? a.quantite : '')
+                : (a.quantite || 0)
               }
             </td>
             <td>{Number(a.total).toFixed(2)}</td>

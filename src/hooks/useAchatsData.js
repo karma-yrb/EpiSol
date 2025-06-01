@@ -14,7 +14,6 @@ export function useAchatsData() {
   const [details, setDetails] = useState(null);
   const [detailsLoading, setDetailsLoading] = useState(false);
   const [deleteStatus, setDeleteStatus] = useState('idle');
-
   // Fetch initial des achats
   useEffect(() => {
     fetch(getApiUrl('/api/achats'))
@@ -22,6 +21,8 @@ export function useAchatsData() {
       .then(data => {
         if (Array.isArray(data)) {
           console.log('[ListeAchats] ids reçus du backend:', data.map(a => a.id));
+          console.log('[ListeAchats] données complètes reçues:', data);
+          console.log('[ListeAchats] première entrée quantité:', data[0]?.quantite, typeof data[0]?.quantite);
         }
         setAchats(Array.isArray(data) ? data : []);
       })
