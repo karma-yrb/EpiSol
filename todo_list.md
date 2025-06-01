@@ -117,8 +117,9 @@
 
 - ✅ **TERMINÉ** - **Largeur des formulaires et tableaux mobile ≤395px (Juin 2025)** :
   - ✅ Formulaires : correction du débordement d'écran 
-  - ✅ `/beneficiaires` : Date "Depuis" en format multi-lignes (jj/mm/aa → 12\n06\n25) pour optimiser l'espace horizontal
-  - Amélioration de la lisibilité sur très petits écrans avec format date adaptatif
+  - ✅ `/beneficiaires` : Date "Depuis" en format multi-lignes (jj/mm/aa → 12\nJuin\n2025) pour optimiser l'espace horizontal
+  - ✅ `/beneficiaires ≤395px` : Colonne "Rabais" cachée pour libérer de l'espace et afficher tous les boutons
+  - Amélioration de la lisibilité sur très petits écrans avec format date adaptatif et optimisation des colonnes
 
 ---
 
