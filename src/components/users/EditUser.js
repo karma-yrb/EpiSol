@@ -35,10 +35,11 @@ function EditUser() {
           throw new Error(`Erreur HTTP: ${response.status}`);
         }
         return response.json();
-      })
-      .then((data) => {
+      })      .then((data) => {
         // Fusionne les données reçues avec l'état initial pour garantir tous les champs
-        setUser(prev => ({ ...prev, ...data }));
+        // IMPORTANT: Exclure le champ password pour éviter d'afficher le mot de passe hashé
+        const { password, ...userDataWithoutPassword } = data;
+        setUser(prev => ({ ...prev, ...userDataWithoutPassword }));
       })
       .catch((error) => {
         console.error('Erreur lors de la récupération de l\'utilisateur :', error);

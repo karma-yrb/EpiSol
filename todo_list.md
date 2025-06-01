@@ -13,6 +13,7 @@
 - ✅ **TERMINÉ** - Correction erreur dans `CategoryTable.js` (null check dans la boucle `.map`)
 - ✅ **TERMINÉ** - Correction erreur dans `ManageUsers.js` (format incorrect de la configuration dans `useGenericData`)
 - ✅ **TERMINÉ** - `/users/add` : Les données de l'utilisateur connecté sont chargées alors que le form devrait être vide
+- ✅ **TERMINÉ** - `/users/edit/:id` : Le champ "changer le mot de passe" se remplissait au chargement avec le mot de passe hashé
 - ✅ **TERMINÉ** - **Régressions UI post-refactorisation (Mai 2025)** :
   - Bouton profil/déconnexion sans background
   - Menu latéral sans textes affichés
@@ -27,6 +28,11 @@
   - ✅ Bouton "Ajouter nouveau produit" ne disparaissait pas après sélection d'un produit
   - ✅ Corrections CSS dans `UnifiedProductModal.css` pour forcer l'affichage vertical
   - ✅ Modification condition d'affichage dans `ProductSearchDropdown.js`
+
+- ✅ **TERMINÉ** - **Débordement formulaires mobile ≤395px (Juin 2025)** :
+  - ✅ Formulaire de connexion et autres formulaires dépassaient de l'écran sur mobile
+  - ✅ Correction du padding et largeur des `.uni-form` dans `.uni-form-container`
+  - ✅ Ajustement responsive avec `calc(100vw - 2rem)` et `box-sizing: border-box`
 
 
 ### 📱 Mobile
