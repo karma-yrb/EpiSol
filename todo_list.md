@@ -17,17 +17,17 @@
   - Bouton profil/déconnexion sans background
   - Menu latéral sans textes affichés
 
-- ✅ **TERMINÉ** - page /beneficiaires 
+  - [] page /beneficiaires 
     - ✅ l'ajout de beneficiaire ne fontionne pas, voir message d'erreur (problème : champs obligatoires manquants dans le formulaire)
-    - ✅ le lien pour aller vers /achats ne fontionne pas correctement, le champ de choix du beneficiaire est vide. il devrait etre rempli avec le beneficieire selectionné et le bouton "ajouter un produit" devrait apparaitre
+    - le lien pour aller vers /achats ne fontionne pas correctement, le champ de choix du beneficiaire est vide. il devrait etre rempli avec le beneficieire selectionné et le bouton "ajouter un produit" devrait apparaitre
 
 - ✅ **TERMINÉ** - **Corrections formulaire inline produit - Page `/achats` (Juin 2025)** :
   - ✅ Bouton "Ajouter nouveau produit" n'apparaissait pas quand aucun produit n'était trouvé
   - ✅ Formulaire inline restait ouvert après validation et ne sélectionnait pas le produit créé
   - ✅ Problèmes d'affichage UI du formulaire inline (champs mal disposés)
   - ✅ Bouton "Ajouter nouveau produit" ne disparaissait pas après sélection d'un produit
-  - Corrections CSS dans `UnifiedProductModal.css` pour forcer l'affichage vertical
-  - Modification condition d'affichage dans `ProductSearchDropdown.js`
+  - ✅ Corrections CSS dans `UnifiedProductModal.css` pour forcer l'affichage vertical
+  - ✅ Modification condition d'affichage dans `ProductSearchDropdown.js`
 
 
 ### 📱 Mobile

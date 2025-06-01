@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './styles/Achats.css';
 import AchatModal from './forms/AchatModal';
 import BeneficiaireSelector from './ui/BeneficiaireSelector';
@@ -11,9 +12,12 @@ import { useUnifiedProduitSearch } from '../../hooks/useUnifiedProduitSearch';
 import { useDiscountCalculations } from '../../hooks/useDiscountCalculations';
 
 function Achats() {
+  // --- Gestion des paramètres URL ---
+  const location = useLocation();
+  
   // --- Bénéficiaires ---
   const beneficiaireSearch = useUnifiedBeneficiaireSearch();
-  const { selectedB, setSelectedB, setSearchB } = beneficiaireSearch;
+  const { selectedB, setSelectedB, setSearchB, beneficiaires } = beneficiaireSearch;
 
   // --- Produits & Modal ---
   const produitSearch = useUnifiedProduitSearch();
@@ -33,6 +37,27 @@ function Achats() {
   // --- États pour notifications ---
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [saveError, setSaveError] = useState("");
+
+  // Traitement des paramètres URL pour pré-sélectionner un bénéficiaire
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const beneficiaireId = params.get('beneficiaireId');
+    const beneficiaireNom = params.get('beneficiaireNom');
+    const beneficiairePrenom = params.get('beneficiairePrenom');
+
+    if (beneficiaireId && beneficiaireNom && beneficiairePrenom && beneficiaires.length > 0) {
+      // Chercher le bénéficiaire dans la liste
+      const beneficiaire = beneficiaires.find(b => String(b.id) === String(beneficiaireId));
+      
+      if (beneficiaire && !selectedB) {
+        // Pré-sélectionner le bénéficiaire
+        setSelectedB(beneficiaire);
+        setSearchB(`${beneficiaire.nom} ${beneficiaire.prenom}`);
+        console.log('[Achats] Bénéficiaire pré-sélectionné depuis URL:', beneficiaire);
+      }
+    }
+  }, [location.search, beneficiaires, selectedB, setSelectedB, setSearchB]);
+
   const handleAddAchat = (closeModal = false) => {
     if (!selectedProduit || !quantite || quantite <= 0) return;
     addAchat(selectedProduit, quantite);
