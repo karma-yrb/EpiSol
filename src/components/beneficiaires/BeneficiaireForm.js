@@ -24,9 +24,7 @@ function BeneficiaireForm({ formData, handleChange, handleSubmit, handleDelete, 
         onChange={handleChange}
         required
         placeholder="Ex: 50"
-      />
-      
-      <label>Téléphone</label>
+      />      <label>Téléphone</label>
       <input type="text" name="telephone" value={formData.telephone} onChange={handleChange} />
 
       <label>Email</label>
