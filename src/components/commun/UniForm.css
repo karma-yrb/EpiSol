@@ -167,6 +167,32 @@ form.uni-form {
   }
 }
 
+/* Correction débordement formulaires sur écrans ≤395px */
+@media (max-width: 395px) {
+  .uni-form-container,
+  .create-user-form,
+  .create-beneficiaire-form,
+  .edit-user-form,
+  .edit-beneficiaire-form,
+  .uni-form,
+  form.uni-form {
+    max-width: calc(100vw - 2rem) !important;
+    margin: 1rem auto !important;
+    padding: 1.5rem 1rem !important;
+    box-sizing: border-box;
+    width: calc(100vw - 2rem) !important;
+  }
+    /* S'assurer que le contenu interne ne déborde pas */
+  .uni-form-container .uni-form,
+  .uni-form-container form.uni-form {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 1rem !important;
+    box-sizing: border-box;
+  }
+}
+
 .produits-table {
   width: 80%;
   max-width: 600px;

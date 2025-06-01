@@ -16,10 +16,9 @@
 - ✅ **TERMINÉ** - **Régressions UI post-refactorisation (Mai 2025)** :
   - Bouton profil/déconnexion sans background
   - Menu latéral sans textes affichés
-
-  - [] page /beneficiaires 
+- ✅ **TERMINÉ** - page /beneficiaires 
     - ✅ l'ajout de beneficiaire ne fontionne pas, voir message d'erreur (problème : champs obligatoires manquants dans le formulaire)
-    - le lien pour aller vers /achats ne fontionne pas correctement, le champ de choix du beneficiaire est vide. il devrait etre rempli avec le beneficieire selectionné et le bouton "ajouter un produit" devrait apparaitre
+    - ✅ le lien pour aller vers /achats ne fontionne pas correctement, le champ de choix du beneficiaire est vide. il devrait etre rempli avec le beneficieire selectionné et le bouton "ajouter un produit" devrait apparaitre
 
 - ✅ **TERMINÉ** - **Corrections formulaire inline produit - Page `/achats` (Juin 2025)** :
   - ✅ Bouton "Ajouter nouveau produit" n'apparaissait pas quand aucun produit n'était trouvé
@@ -146,10 +145,10 @@
 
 | Catégorie | Global | Mobile | Total |
 |-----------|---------|--------|-------|
-| 🐛 Bugs | 6 | 3 | 9 |
-| ⚡ Améliorations | 6 + 2 à venir | 4 | 12 |
+| 🐛 Bugs | 5 | 3 | 8 |
+| ⚡ Améliorations | 8 | 5 | 13 |
 | 🚀 Fonctionnalités | 3 | 0 | 3 |
-| **TOTAL** | **16** | **7** | **24** |
+| **TOTAL** | **16** | **8** | **24** |
 
-> **Progression globale : 22/24 tâches terminées (92%)** 🎯  
-> **Restant : 2 améliorations desktop en attente** 🔮
+> **Progression globale : 23/24 tâches terminées (96%)** 🎯  
+> **Restant : 1 nouvelle fonctionnalité en attente** 🔮
