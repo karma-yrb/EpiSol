@@ -31,9 +31,9 @@ const UnifiedProductModal = ({
   loading = false
 }) => {
   if (!show) return null;
-
   // Gestion des changements de champs pour mode inline
   const handleInlineChange = (field) => (e) => {
+    console.log('handleInlineChange appelé:', field, e.target.value, 'onChange disponible:', !!onChange);
     if (onChange) {
       onChange({ target: { name: field, value: e.target.value } });
     }

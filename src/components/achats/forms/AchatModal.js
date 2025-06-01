@@ -39,13 +39,16 @@ function AchatModal({
     handleChange,
     handleSubmit: handleCreateProduit,
     openInlineCreation,
-    closeModal: closeAddProduit
-  } = useUnifiedProductForm((produitCree) => {
+    closeModal: closeAddProduit  } = useUnifiedProductForm((produitCree, mode) => {
     // Callback après création réussie
     if (produitCree) {
       setSelectedProduit(produitCree);
       setProduitSearch(produitCree.nom);
       setProduitDropdown(false);
+      // Fermer le dropdown si on vient du mode inline
+      if (mode === 'inline') {
+        setProduitDropdown(false);
+      }
     }
   });
   // Hook personnalisé pour le dropdown

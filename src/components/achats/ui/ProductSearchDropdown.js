@@ -59,8 +59,8 @@ function ProductSearchDropdown({
       
       <div className="achat-modal-hint">
         Commencer à écrire pour voir les suggestions
-      </div>        {/* Bouton pour ajouter un nouveau produit */}
-      {(produitDropdown || produitResults.length === 0) && produitSearch.length >= 3 && !showAddProduit && (
+      </div>      {/* Bouton pour ajouter un nouveau produit */}
+      {(produitDropdown || produitResults.length === 0) && produitSearch.length >= 3 && !showAddProduit && !selectedProduit && (
         <button
           className="achat-modal-add-btn"
           onMouseDown={e => {

@@ -43,9 +43,9 @@ export function useUnifiedProductForm(onProductCreated) {
       return () => clearTimeout(timer);
     }
   }, [successMessage, mode]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log('useUnifiedProductForm handleChange:', name, value);
     setFormData(prev => ({ ...prev, [name]: value }));
     setFormError(''); // Clear error when user types
   };
@@ -105,15 +105,17 @@ export function useUnifiedProductForm(onProductCreated) {
           ? 'Produit modifié avec succès !' 
           : 'Produit créé avec succès !'
       );
-      
-      // Notify parent component
+        // Notify parent component
       if (onProductCreated) {
         onProductCreated(produitResult, mode);
-      }
-
-      // Reset form for add mode, close for edit mode
-      if (mode === 'add' || mode === 'inline') {
+      }      // Reset form for add mode, close for edit mode
+      if (mode === 'add') {
         resetForm();
+      } else if (mode === 'inline') {
+        // Pour le mode inline, fermer rapidement le modal et réinitialiser
+        setTimeout(() => {
+          closeModal();
+        }, 100);
       } else {
         setTimeout(() => {
           closeModal();

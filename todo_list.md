@@ -117,6 +117,13 @@
 - ✅ **TERMINÉ** - `/beneficiaires` : La colonne "Numéro bénéficiaire" doit s'appeler "#"
 - ✅ **TERMINÉ** - `/beneficiaires` : La colonne "nom" et "prenom" doit être fusionnée pour ne faire qu'une qui s'appelle "prénom nom"
 - ✅ **TERMINÉ** - Afficher les initiales du user à la place du role pour le bouton d'accès au profil et déconnexion
+- [] Nouvelle façon de choisir les produits : 
+    - Grille/boutons, icons/image produit
+    - Score de sélection (les + choisis), pour faire apparaire en premier. En fonction du beneficiaire ou global
+    - Champ de recherche en haut, cache seulement les boutons produits
+    - Les achats s'enregistrent au fur et à mesure à chaque validation du btn terminer. Stockage dans un objet [{nom, quantité}] temporaire ou en localstorage pour éviter de perdre un achat en cours en cas de perte de session. Permet aussi la mis en pause de l'achat.
+    - Au clic sur "enregitrer les achats" cet objet est enoyer à la bdd et destruction de l'objet stocké
+    - Option de reprise de panier à la selection du même bénéficiaire, si nouvel achat destruction de l'objet stocké
 
 ### 📱 Mobile
 *Aucune nouvelle fonctionnalité spécifique mobile en cours*
