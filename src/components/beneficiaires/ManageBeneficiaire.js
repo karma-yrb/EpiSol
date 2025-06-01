@@ -110,12 +110,11 @@ function ManageBeneficiaire() {
       <div className="actions-cell">
         <Link to={`/beneficiaires/edit/${row.id}`} className="edit-link">
           <ActionIconButton type="edit" title="Éditer" onClick={e => e.stopPropagation()} />
-        </Link>
-        <Link 
+        </Link>        <Link 
           to={`/achats?beneficiaireId=${row.id}&beneficiaireNom=${encodeURIComponent(row.nom)}&beneficiairePrenom=${encodeURIComponent(row.prenom)}`} 
           className="new-achat-link"
         >
-          <ActionIconButton type="add" title="Enregistrer un nouvel achat" onClick={e => e.stopPropagation()} />
+          <ActionIconButton type="cart" title="Enregistrer un nouvel achat" onClick={e => e.stopPropagation()} />
         </Link>
       </div>
     ) },];

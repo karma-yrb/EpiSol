@@ -17,6 +17,7 @@ const ICONS = {
   delete: { icon: 'fa-trash', bg: 'bg-red' },
   view:   { icon: 'fa-eye', bg: 'bg-cyan' },
   save:   { icon: 'fa-save', bg: 'bg-green' },
+  cart:   { icon: 'fa-shopping-cart', bg: 'bg-orange' },
 };
 
 function ActionIconButton({ type = 'edit', onClick, title, icon, className = '', disabled = false, ...props }) {
@@ -38,7 +39,7 @@ function ActionIconButton({ type = 'edit', onClick, title, icon, className = '',
 }
 
 ActionIconButton.propTypes = {
-  type: PropTypes.oneOf(['edit', 'delete', 'view', 'save', 'custom']),
+  type: PropTypes.oneOf(['edit', 'delete', 'view', 'save', 'cart', 'custom']),
   onClick: PropTypes.func,
   title: PropTypes.string,
   icon: PropTypes.string,
