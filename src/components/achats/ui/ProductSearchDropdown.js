@@ -34,16 +34,17 @@ function ProductSearchDropdown({
         type="text"
         placeholder="Nom du produit..."
         value={produitSearch}
-        ref={produitInputRef}
-        onChange={e => { 
+        ref={produitInputRef}        onChange={e => { 
           setProduitSearch(e.target.value); 
           setSelectedProduit(null); 
           setHighlightedProduit(-1); 
-          setProduitDropdown(e.target.value.length >= 3 && produitResults.length > 0);
-        }}
-        onBlur={e => {
+          setProduitDropdown(e.target.value.length >= 3);
+        }}        onBlur={e => {
+          // Ne pas fermer le dropdown si l'utilisateur clique sur le bouton d'ajout
           setTimeout(() => {
-            setProduitDropdown(false);
+            if (!e.relatedTarget || !e.relatedTarget.classList.contains('achat-modal-add-btn')) {
+              setProduitDropdown(false);
+            }
           }, 120);
         }}
         onKeyDown={e => {
@@ -58,16 +59,15 @@ function ProductSearchDropdown({
       
       <div className="achat-modal-hint">
         Commencer à écrire pour voir les suggestions
-      </div>
-      
-      {/* Bouton pour ajouter un nouveau produit */}
-      {produitDropdown && produitResults.length === 0 && produitSearch.length >= 3 && !showAddProduit && (
+      </div>        {/* Bouton pour ajouter un nouveau produit */}
+      {(produitDropdown || produitResults.length === 0) && produitSearch.length >= 3 && !showAddProduit && (
         <button
           className="achat-modal-add-btn"
           onMouseDown={e => {
             e.preventDefault();
             e.stopPropagation();
             onOpenAddProduit(produitSearch);
+            setProduitDropdown(false); // Fermer le dropdown après ouverture du modal
           }}
         >
           <i className="fa fa-plus-circle" style={{marginRight:6}}></i>
