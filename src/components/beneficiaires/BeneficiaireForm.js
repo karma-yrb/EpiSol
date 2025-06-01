@@ -8,10 +8,18 @@ function BeneficiaireForm({ formData, handleChange, handleSubmit, handleDelete, 
       <input type="text" name="nom" value={formData.nom} onChange={handleChange} required />
 
       <label>Prénom *</label>
-      <input type="text" name="prenom" value={formData.prenom} onChange={handleChange} required />
-
-      <label>Numéro de bénéficiaire *</label>
-      <input type="text" name="numero" value={formData.numero} onChange={handleChange} required />
+      <input type="text" name="prenom" value={formData.prenom} onChange={handleChange} required />      <label>Numéro de bénéficiaire *</label>
+      <input 
+        type="text" 
+        name="numero" 
+        value={formData.numero} 
+        onChange={handleChange} 
+        required 
+        maxLength="5"
+        pattern="[0-9]{1,5}"
+        title="Le numéro doit contenir uniquement des chiffres (1 à 5 chiffres maximum)"
+        placeholder="Ex: 12345"
+      />
 
       <label>Rabais (%)</label>
       <input

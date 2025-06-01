@@ -70,9 +70,9 @@
   - Suppression de 2 fichiers obsolètes et finalisation de la mutualisation du code
 
 - ✅ **TERMINÉ** - Dans la page beneficiaires/ 
-    - ✅ enlever le bouton "supprimer" et rajouter un bouton "enregistrer un nouvel achat" qui aménera vers la page /achats avec ce bénéficiaire déjà sélectionné
-    - ✅ rajouter le bouton "supprimer" dans la page beneficiaires/edit/:id a coté du bouton mettre à jour, le comportement lui doit rester le meme. Aprés suppression retourner dans la pages benenficiaire et afficher un message de confirmation de suppression
-    - Le message de confirmation de suppresion doit etre dans un modal et non en bas de page
+    - ✅ enlever le bouton "supprimer" et rajouter un bouton "enregistrer un nouvel achat" qui aménera vers la page /achats avec ce bénéficiaire déjà sélectionné    - ✅ rajouter le bouton "supprimer" dans la page beneficiaires/edit/:id a coté du bouton mettre à jour, le comportement lui doit rester le meme. Aprés suppression retourner dans la pages benenficiaire et afficher un message de confirmation de suppression
+    - ✅ Le message de confirmation de suppresion doit etre dans un modal et non en bas de page
+    - rajouter une colonne "depuis" ou apparaitra la date de creation du beneficiaire format jj/mm/aa
 
 - [ ] Réorganiser le dossier /src/achats
   - Garder un achats.css pour les classe communes mais attribuer un css pour chaque composant ayant des spécificités

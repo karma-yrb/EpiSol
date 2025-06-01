@@ -50,14 +50,28 @@ function EditBeneficiaire() {
         .catch((error) => console.error('Erreur lors de la récupération des données :', error));
     }
   }, [id]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-  const handleSubmit = (e) => {
+    
+    // Validation spéciale pour le numéro de bénéficiaire
+    if (name === 'numero') {
+      // Autoriser uniquement les chiffres et limiter à 5 caractères
+      const numericValue = value.replace(/[^0-9]/g, '').slice(0, 5);
+      setFormData({ ...formData, [name]: numericValue });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };  const handleSubmit = (e) => {
     e.preventDefault();
     setErrorMsg('');
+    
+    // Validation du numéro de bénéficiaire
+    if (!formData.numero || !/^[0-9]{1,5}$/.test(formData.numero)) {
+      setErrorMsg('Le numéro de bénéficiaire doit contenir uniquement des chiffres (1 à 5 chiffres maximum)');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    
     // Nettoyage strict : on ne garde que les champs attendus côté backend
     const dataToSend = {
       nom: formData.nom || '',

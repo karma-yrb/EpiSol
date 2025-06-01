@@ -79,12 +79,24 @@ function ManageBeneficiaire() {
       passagesByBenef[key] = (passagesByBenef[key] || 0) + 1;
     }
   });
-
   // Colonnes pour le tableau triable
   const columns = [
     { label: '#', key: 'numero', sortable: true },
     { label: 'Bénéficiaire', key: 'prenomNom', sortable: true, render: row => `${row.prenom} ${row.nom}` },
-    { label: 'Rabais (%)', key: 'discount', sortable: true, render: row => (row.discount !== undefined ? Math.round(Number(row.discount)) : 50) },
+    { label: 'Rabais (%)', key: 'discount', sortable: true, render: row => (row.discount !== undefined ? Math.round(Number(row.discount)) : 50) },    { label: 'Depuis', key: 'depuis', sortable: true, render: row => {
+      // Utilisation de la vraie date de création depuis la colonne created_at
+      if (row.created_at) {
+        const creationDate = new Date(row.created_at);
+        
+        // Format jj/mm/aa
+        const day = creationDate.getDate().toString().padStart(2, '0');
+        const month = (creationDate.getMonth() + 1).toString().padStart(2, '0');
+        const year = creationDate.getFullYear().toString().slice(-2);
+        
+        return `${day}/${month}/${year}`;
+      }
+      return 'N/A';
+    } },
     { label: 'Passages', key: 'passages', sortable: true, render: row => {
       const key = `${row.nom}|||${row.prenom}`;
       const passages = passagesByBenef[key] || 0;
@@ -117,15 +129,18 @@ function ManageBeneficiaire() {
           <ActionIconButton type="cart" title="Enregistrer un nouvel achat" onClick={e => e.stopPropagation()} />
         </Link>
       </div>
-    ) },];
-
-  // Ajout d'une clé 'prenomNom' et 'passages' pour le tri
+    ) },];  // Ajout d'une clé 'prenomNom', 'passages' et 'depuis' pour le tri
   const beneficiairesWithPrenomNom = beneficiaires ? beneficiaires.map(b => {
     const key = `${b.nom}|||${b.prenom}`;
+    
+    // Utilisation de la vraie date created_at pour le tri
+    const creationTimestamp = b.created_at ? new Date(b.created_at).getTime() : 0;
+    
     return {
       ...b,
       prenomNom: `${b.prenom} ${b.nom}`.trim(),
-      passages: passagesByBenef[key] || 0
+      passages: passagesByBenef[key] || 0,
+      depuis: creationTimestamp // Timestamp pour le tri
     };
   }) : [];
   return (
