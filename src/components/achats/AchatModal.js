@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
-import AjoutProduitModal from '../produits/AjoutProduitModal';
+import UnifiedProductModal from '../produits/UnifiedProductModal';
 import ProductSearchDropdown from './ProductSearchDropdown';
 import QuantityAndActions from './QuantityAndActions';
-import { useProductCreation } from '../../hooks/useProductCreation';
+import { useUnifiedProductForm } from '../../hooks/useUnifiedProductForm';
 import { useProductDropdown } from '../../hooks/useProductDropdown';
 import './AchatModal.css';
 
@@ -25,27 +25,29 @@ function AchatModal({
   highlightedProduit,
   setHighlightedProduit,
   handleProduitKeyDown
-}) {
-  const modalRef = useRef();
+}) {  const modalRef = useRef();
   const [ajoutAchatError, setAjoutAchatError] = useState("");
 
-  // Hook personnalisé pour la création de produits
+  // Hook unifié pour la création de produits
   const {
-    showAddProduit,
-    newProduitNom,
-    newProduitPrix,
-    newProduitCategorie,
-    addProduitError,
-    addProduitSuccess,
+    showModal: showAddProduit,
+    formData,
+    formError: addProduitError,
+    successMessage: addProduitSuccess,
     categories,
-    setNewProduitNom,
-    setNewProduitPrix,
-    setNewProduitCategorie,
-    handleCreateProduit,
-    openAddProduit,
-    closeAddProduit
-  } = useProductCreation();
-
+    loading: addProduitLoading,
+    handleChange,
+    handleSubmit: handleCreateProduit,
+    openInlineCreation,
+    closeModal: closeAddProduit
+  } = useUnifiedProductForm((produitCree) => {
+    // Callback après création réussie
+    if (produitCree) {
+      setSelectedProduit(produitCree);
+      setProduitSearch(produitCree.nom);
+      setProduitDropdown(false);
+    }
+  });
   // Hook personnalisé pour le dropdown
   useProductDropdown({
     show,
@@ -53,16 +55,6 @@ function AchatModal({
     setProduitDropdown,
     produitInputRef
   });
-
-  // Gestion de la création de produit avec sélection automatique
-  const handleProductCreation = async () => {
-    const produitCree = await handleCreateProduit();
-    if (produitCree) {
-      setSelectedProduit(produitCree);
-      setProduitSearch(produitCree.nom);
-      setProduitDropdown(false);
-    }
-  };
 
   if (!show) return null;
   return (
@@ -81,26 +73,24 @@ function AchatModal({
           produitDropdown={produitDropdown}
           setProduitDropdown={setProduitDropdown}
           produitInputRef={produitInputRef}
-          highlightedProduit={highlightedProduit}
-          setHighlightedProduit={setHighlightedProduit}
+          highlightedProduit={highlightedProduit}          setHighlightedProduit={setHighlightedProduit}
           handleProduitKeyDown={handleProduitKeyDown}
-          onOpenAddProduit={openAddProduit}
+          onOpenAddProduit={openInlineCreation}
           showAddProduit={showAddProduit}
         />
 
         {showAddProduit && (
-          <AjoutProduitModal
-            nom={newProduitNom}
-            setNom={setNewProduitNom}
-            prix={newProduitPrix}
-            setPrix={setNewProduitPrix}
-            categorie={newProduitCategorie}
-            setCategorie={setNewProduitCategorie}
+          <UnifiedProductModal
+            show={showAddProduit}
+            mode="inline"
+            formData={formData}
+            formError={addProduitError}
+            successMessage={addProduitSuccess}
             categories={categories}
-            error={addProduitError}
-            success={addProduitSuccess}
-            onCreate={handleProductCreation}
-            onCancel={closeAddProduit}
+            onSubmit={handleCreateProduit}
+            onChange={handleChange}
+            onClose={closeAddProduit}
+            loading={addProduitLoading}
           />
         )}
 

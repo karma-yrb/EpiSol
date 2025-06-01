@@ -1,0 +1,167 @@
+/* Styles pour UnifiedProductModal */
+
+/* Mode inline (pour AchatModal) */
+.unified-product-modal-inline {
+  background: #f8fff8;
+  border: 1px solid #b6e6b6;
+  border-radius: 8px;
+  padding: 18px 18px 10px 18px;
+  margin: 10px 0 18px 0;
+  text-align: left;
+  position: relative;
+}
+
+.unified-product-modal-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #1a7f1a;
+}
+
+.field-group {
+  margin-bottom: 12px;
+}
+
+.field-group label {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.field-group input,
+.field-group select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-size: 15px;
+  background: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.field-group input:focus,
+.field-group select:focus {
+  outline: none;
+  border-color: #1a7f1a;
+  box-shadow: 0 0 0 2px rgba(26, 127, 26, 0.1);
+}
+
+.field-group input:disabled,
+.field-group select:disabled {
+  background: #f5f5f5;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.inline-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  margin-bottom: 8px;
+}
+
+.inline-actions .create-btn {
+  background: #1a7f1a;
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 7px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.inline-actions .create-btn:hover:not(:disabled) {
+  background: #156f15;
+}
+
+.inline-actions .create-btn:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.inline-actions .cancel-btn {
+  background: #eee;
+  color: #444;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 7px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.inline-actions .cancel-btn:hover:not(:disabled) {
+  background: #ddd;
+  color: #111;
+}
+
+.inline-actions .cancel-btn:disabled {
+  background: #f8f8f8;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.unified-error {
+  color: #c00;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.unified-success {
+  color: #1a7f1a;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Responsive pour mode inline */
+@media (max-width: 395px) {
+  .unified-product-modal-inline {
+    padding: 14px 14px 8px 14px;
+    margin: 8px 0 14px 0;
+  }
+  
+  .inline-actions {
+    gap: 8px;
+  }
+  
+  .inline-actions .create-btn,
+  .inline-actions .cancel-btn {
+    padding: 6px 14px;
+    font-size: 14px;
+  }
+  
+  .field-group input,
+  .field-group select {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+}
+
+/* Amélioration pour le mode modal (hérite de uni-form) */
+.uni-form h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* État de chargement global */
+.unified-product-modal-inline form:has(button:disabled) {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.uni-form:has(button:disabled) {
+  pointer-events: none;
+  opacity: 0.7;
+}

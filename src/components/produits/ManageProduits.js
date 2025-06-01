@@ -10,7 +10,7 @@ import { useProduitsData } from '../../hooks/useProduitsData';
 import { useProduitsForm } from '../../hooks/useProduitsForm';
 import { useGenericDeleteModal } from '../../hooks/useGenericDeleteModal';
 import GenericSearchBar from '../commun/GenericSearchBar';
-import ProduitsFormModal from './ProduitsFormModal';
+import UnifiedProductModal from './UnifiedProductModal';
 
 function ManageProduits() {  const [search, setSearch] = useState('');
   const navigate = useNavigate();
@@ -120,17 +120,16 @@ function ManageProduits() {  const [search, setSearch] = useState('');
           <i className={`fa fa-${notif.type === 'success' ? 'check-circle' : 'exclamation-circle'}`}></i> 
           {notif.message}
         </div>
-      )}
-
-      <ProduitsFormModal
+      )}      <UnifiedProductModal
         show={showForm}
-        formMode={formMode}
+        mode={formMode}
         formData={formData}
         formError={formError}
         categories={categories}
         onSubmit={handleFormSubmit}
         onChange={handleFormChange}
         onClose={handleFormClose}
+        loading={loading}
       />
 
       <ConfirmDeleteModal

@@ -17,7 +17,11 @@ export const useProduitsForm = (categories, onSubmit) => {
 
   const handleEdit = (produit) => {
     setFormMode('edit');
-    setFormData({ nom: produit.nom, categorie_id: produit.categorie_id, prix: produit.prix });
+    setFormData({ 
+      nom: produit.nom, 
+      categorie_id: produit.categorie_id || '', 
+      prix: produit.prix 
+    });
     setFormError('');
     setShowForm(true);
     setEditId(produit.id);
@@ -26,6 +30,7 @@ export const useProduitsForm = (categories, onSubmit) => {
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormData(f => ({ ...f, [name]: value }));
+    setFormError(''); // Clear error when user types
   };
 
   const handleFormSubmit = async (e) => {
@@ -37,15 +42,16 @@ export const useProduitsForm = (categories, onSubmit) => {
       return;
     }
     
-    if (isNaN(Number(formData.prix))) {
-      setFormError('Le prix doit être un nombre.');
+    if (isNaN(Number(formData.prix)) || Number(formData.prix) < 0) {
+      setFormError('Le prix doit être un nombre positif.');
       return;
     }
 
     try {
       await onSubmit(formMode, editId, formData);
       setShowForm(false);
-    } catch {
+      setFormError('');
+    } catch (error) {
       setFormError('Erreur lors de l\'enregistrement du produit.');
     }
   };
