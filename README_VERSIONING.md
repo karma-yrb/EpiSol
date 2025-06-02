@@ -6,9 +6,9 @@ EpiSol utilise un **système de versioning unifié** basé sur [Semantic Version
 
 ## 📋 État Actuel
 
-- **Version actuelle** : `v1.0.2`
-- **Frontend** : `episol-frontend@1.0.2`
-- **Backend** : `episol-backend@1.0.2`
+- **Version actuelle** : `v1.0.3`
+- **Frontend** : `episol-frontend@1.0.3`
+- **Backend** : `episol-backend@1.0.3`
 - **Statut** : ✅ Synchronisé
 
 ## 🚀 Utilisation
