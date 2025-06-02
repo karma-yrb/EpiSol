@@ -7,6 +7,11 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 **Note**: Ce projet utilise un versioning unifié pour le frontend et le backend.
 
+n## [1.0.1] - 2025-06-03
+
+### 🔄 Modifié
+- Mise à jour de version vers v1.0.1
+
 ## [1.0.0] - 2025-06-03
 
 ### 🎉 Version Stable Initiale
@@ -51,6 +56,11 @@ Cette version marque la première release stable de l'application EpiSol avec to
 - **API complète** avec tous les endpoints fonctionnels
 
 ---
+
+n## [1.0.1] - 2025-06-03
+
+### 🔄 Modifié
+- Mise à jour de version vers v1.0.1
 
 ## [0.1.0] - 2024-12-01
 
