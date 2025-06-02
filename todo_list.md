@@ -96,6 +96,13 @@
   - Mise à jour de tous les imports et suppression des doublons
   - Documentation complète dans `achats/README.md`
 
+- ✅ **TERMINÉ** - **Bug page `/categories-management` (Juin 2025)** :
+  - Fonctions d'édition inline manquantes (`handleEdit`, `handleSaveEdit`, `handleCancelEdit`)
+  - Hook `useGenericData` : Ajout des fonctions d'édition inline complètes
+  - Suppression import obsolète `useGenericDeleteModal` dans `ManageCategories`
+  - Résolution conflits CSS globaux avec isolation par attribut `data-page`
+  - Optimisation mobile ≤395px : champ centré 150px, boutons compacts 30x30px
+
 ### 📱 Mobile
 - ✅ **TERMINÉ** - **UX Mobile ≤395px - Page `/achats`** :
   - Alignement des boutons de quantité avec `actions-cell` et réduction de taille mobile

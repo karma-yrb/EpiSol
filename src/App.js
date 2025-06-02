@@ -18,6 +18,7 @@ import Achats from './components/achats/Achats';
 import ListeAchats from './components/achats/lists/ListeAchats';
 import UserLogsPage from './components/users/UserLogsPage';
 import Stocks from './components/stocks/Stocks';
+import VersionInfo from './components/common/VersionInfo';
 
 // Initialize navigate using useNavigate
 function App() {
@@ -95,9 +96,9 @@ function App() {
                 {/* Ajoutez ici d'autres routes protégées si besoin */}
               </Routes>
             </RequireAuth>
-          }
-        />
+          }        />
       </Routes>
+      <VersionInfo position="bottom-right" showBackend={true} />
     </div>
   );
 }
