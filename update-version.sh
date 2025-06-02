@@ -91,6 +91,27 @@ update_package_json() {
     log_success "Mis à jour $(basename "$file") vers v$new_version"
 }
 
+# Fonction pour mettre à jour README_VERSIONING.md
+update_readme_versioning() {
+    local new_version=$1
+    local readme_file="$FRONTEND_DIR/README_VERSIONING.md"
+    
+    if [[ -f "$readme_file" ]]; then
+        log_info "Mise à jour du README_VERSIONING.md..."
+        
+        # Mise à jour de la version actuelle
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            sed -i '' "s/- \*\*Version actuelle\*\* : \`v[0-9]\+\.[0-9]\+\.[0-9]\+\`/- **Version actuelle** : \`v$new_version\`/" "$readme_file"
+        else
+            sed -i "s/- \*\*Version actuelle\*\* : \`v[0-9]\+\.[0-9]\+\.[0-9]\+\`/- **Version actuelle** : \`v$new_version\`/" "$readme_file"
+        fi
+        
+        log_success "Mis à jour README_VERSIONING.md vers v$new_version"
+    else
+        log_warning "README_VERSIONING.md non trouvé"
+    fi
+}
+
 # Fonction principale
 main() {
     local version_type=${1:-"patch"}
@@ -157,6 +178,9 @@ $changelog_entry" "$FRONTEND_DIR/CHANGELOG.md"
     else
         sed -i "/^## \[/i $changelog_entry" "$FRONTEND_DIR/CHANGELOG.md"
     fi
+    
+    # Mise à jour du README_VERSIONING.md
+    update_readme_versioning "$new_version"
     
     # Commit des changements
     log_info "Commit des changements..."
