@@ -7,7 +7,7 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 **Note**: Ce projet utilise un versioning unifié pour le frontend et le backend.
 
-## [1.0.0] - 2024-12-19
+## [1.0.0] - 2025-06-03
 
 ### 🎉 Version Stable Initiale
 

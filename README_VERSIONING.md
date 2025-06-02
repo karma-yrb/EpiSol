@@ -61,7 +61,7 @@ Le composant `VersionInfo` affiche en temps réel :
 {
   "name": "episol-backend",
   "version": "1.0.0",
-  "startTime": "2024-12-19T10:30:00.000Z",
+  "startTime": "2025-06-03T10:30:00.000Z",
   "uptime": 3600,
   "nodeVersion": "v18.17.0",
   "platform": "linux"
@@ -96,7 +96,7 @@ EpiSol/
 
 ## 📝 Historique des Versions
 
-- **v1.0.0** (2024-12-19) : Version stable initiale
+- **v1.0.0** (2025-06-03) : Version stable initiale
   - ✅ Frontend complet (24/24 tâches)
   - ✅ Backend API fonctionnel
   - ✅ Système de versioning unifié
@@ -131,4 +131,4 @@ curl http://localhost:3001/api/version
 - [Git Tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
 
 ---
-*Dernière mise à jour : 2024-12-19*
+*Dernière mise à jour : 2025-06-03*
