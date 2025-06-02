@@ -102,8 +102,12 @@ update_readme_versioning() {
         # Mise à jour de la version actuelle
         if [[ "$OSTYPE" == "darwin"* ]]; then
             sed -i '' "s/- \*\*Version actuelle\*\* : \`v[0-9]\+\.[0-9]\+\.[0-9]\+\`/- **Version actuelle** : \`v$new_version\`/" "$readme_file"
+            sed -i '' "s/- \*\*Frontend\*\* : \`episol-frontend@[0-9]\+\.[0-9]\+\.[0-9]\+\`/- **Frontend** : \`episol-frontend@$new_version\`/" "$readme_file"
+            sed -i '' "s/- \*\*Backend\*\* : \`episol-backend@[0-9]\+\.[0-9]\+\.[0-9]\+\`/- **Backend** : \`episol-backend@$new_version\`/" "$readme_file"
         else
             sed -i "s/- \*\*Version actuelle\*\* : \`v[0-9]\+\.[0-9]\+\.[0-9]\+\`/- **Version actuelle** : \`v$new_version\`/" "$readme_file"
+            sed -i "s/- \*\*Frontend\*\* : \`episol-frontend@[0-9]\+\.[0-9]\+\.[0-9]\+\`/- **Frontend** : \`episol-frontend@$new_version\`/" "$readme_file"
+            sed -i "s/- \*\*Backend\*\* : \`episol-backend@[0-9]\+\.[0-9]\+\.[0-9]\+\`/- **Backend** : \`episol-backend@$new_version\`/" "$readme_file"
         fi
         
         log_success "Mis à jour README_VERSIONING.md vers v$new_version"
