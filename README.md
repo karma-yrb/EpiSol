@@ -9,9 +9,37 @@ Ceci est une consigne permanente pour l'ensemble du projet.
 
 > Note : Par défaut, toutes les commandes (git, npm, etc.) sont à exécuter dans le dossier `frontend/` sauf indication contraire.
 
-# Getting Started with Create React App
+# EpiSol - Application de Gestion
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Application de gestion complète avec frontend React et backend Node.js utilisant un système de versioning unifié.
+
+## 🏷️ Système de Versioning
+
+**Version actuelle : v1.0.3**
+
+EpiSol utilise un système de versioning unifié basé sur [Semantic Versioning](https://semver.org/). Pour plus de détails, consultez :
+- [`README_VERSIONING.md`](./README_VERSIONING.md) - Guide utilisateur complet
+- [`VERSIONING.md`](./VERSIONING.md) - Documentation technique
+- [`CHANGELOG.md`](./CHANGELOG.md) - Historique des versions
+
+### Mise à jour de version rapide
+```bash
+# Correction de bug (patch)
+./update-version.sh patch "Description du fix"
+
+# Nouvelle fonctionnalité (minor)
+./update-version.sh minor "Description de la feature"
+
+# Breaking change (major)
+./update-version.sh major "Description du changement"
+```
+
+### Validation du système
+```bash
+./validate-versioning.sh
+```
+
+## 🚀 Démarrage Rapide
 
 ## Available Scripts
 
