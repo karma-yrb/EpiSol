@@ -15,7 +15,7 @@ EpiSol utilise un **système de versioning unifié** basé sur [Semantic Version
 
 ### Option 1 : Scripts automatisés (RECOMMANDÉ)
 
-#### Bash (Linux/macOS/WSL)
+#### Git Bash (Windows/Linux/macOS)
 ```bash
 # Correction de bug (1.0.0 → 1.0.1)
 ./update-version.sh patch "Correction bug critique"
@@ -25,18 +25,6 @@ EpiSol utilise un **système de versioning unifié** basé sur [Semantic Version
 
 # Breaking change (1.0.0 → 2.0.0)
 ./update-version.sh major "Refactoring architecture"
-```
-
-#### PowerShell (Windows)
-```powershell
-# Correction de bug
-.\update-version.ps1 patch "Correction bug critique"
-
-# Nouvelle fonctionnalité
-.\update-version.ps1 minor "Nouvelle fonctionnalité export"
-
-# Breaking change
-.\update-version.ps1 major "Refactoring architecture"
 ```
 
 ### Option 2 : Manuel
@@ -78,8 +66,7 @@ EpiSol/
 │   ├── src/api/versionApi.js
 │   ├── CHANGELOG.md
 │   ├── VERSIONING.md
-│   ├── update-version.sh
-│   └── update-version.ps1
+│   └── update-version.sh
 └── backend/
     ├── package.json (version: 1.0.0)
     ├── utils/versionInfo.js
