@@ -234,10 +234,11 @@ form.uni-form {
   /* =========================================
      CORRECTION GLOBALE AFFICHAGE MOBILE TABLEAUX
      Suppression des règles problématiques qui causent l'écrasement des colonnes
+     EXCLUSION : La page des bénéficiaires a ses propres règles CSS spécifiques
      ========================================= */
   
-  /* Nouvelles règles saines pour tous les tableaux produits-table */
-  .produits-table {
+  /* Nouvelles règles saines pour tous les tableaux produits-table SAUF bénéficiaires */
+  .produits-table:not([data-page="manage-beneficiaires"] *) {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0;
@@ -251,8 +252,8 @@ form.uni-form {
     word-break: normal !important;
   }
   
-  .produits-table th, 
-  .produits-table td {
+  .produits-table:not([data-page="manage-beneficiaires"] *) th, 
+  .produits-table:not([data-page="manage-beneficiaires"] *) td {
     padding: 6px 3px !important;
     font-size: 11px !important;
     /* CORRECTION CRITIQUE : white-space nowrap sauf pour certaines colonnes */
@@ -261,30 +262,22 @@ form.uni-form {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
   }
-    /* Permettre le retour à la ligne intelligent pour les noms/descriptions */
-  .produits-table td:nth-child(1), /* Première colonne généralement les noms */
-  .produits-table td:nth-child(2) { /* Deuxième colonne */
+  
+  /* Permettre le retour à la ligne intelligent pour les noms/descriptions SAUF bénéficiaires */
+  .produits-table:not([data-page="manage-beneficiaires"] *) td:nth-child(1), /* Première colonne généralement les noms */
+  .produits-table:not([data-page="manage-beneficiaires"] *) td:nth-child(2) { /* Deuxième colonne */
     white-space: normal !important;
     word-break: break-word !important;
     max-width: 120px !important;
   }
   
-  /* Exception : pour les bénéficiaires, la première colonne est le numéro (pas de retour à la ligne) */
-  [data-page="manage-beneficiaires"] .produits-table td:nth-child(1),
-  [data-page="manage-beneficiaires"] .produits-table th:nth-child(1) {
-    white-space: nowrap !important;
-    word-break: normal !important;
-    text-overflow: ellipsis !important;
-    max-width: 60px !important;
-  }
-  
-  /* Optimisation des boutons d'action */
-  .produits-table .actions-cell {
+  /* Optimisation des boutons d'action SAUF bénéficiaires */
+  .produits-table:not([data-page="manage-beneficiaires"] *) .actions-cell {
     gap: 2px !important;
     justify-content: center !important;
   }
   
-  .produits-table .actions-cell .action-icon-btn {
+  .produits-table:not([data-page="manage-beneficiaires"] *) .actions-cell .action-icon-btn {
     margin: 0 !important;
     padding: 3px 5px !important;
     min-width: 26px !important;
