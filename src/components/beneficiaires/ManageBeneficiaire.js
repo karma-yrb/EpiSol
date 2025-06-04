@@ -83,7 +83,18 @@ function ManageBeneficiaire() {
   const columns = [
     { label: '#', key: 'numero', sortable: true },
     { label: 'Bénéficiaire', key: 'prenomNom', sortable: true, render: row => `${row.prenom} ${row.nom}` },
-    { label: 'Rabais (%)', key: 'discount', sortable: true, render: row => (row.discount !== undefined ? Math.round(Number(row.discount)) : 50) },    { label: 'Depuis', key: 'depuis', sortable: true, render: row => {
+    { 
+      label: (
+        <>
+          Rabais
+          <br />
+          (%)
+        </>
+      ), 
+      key: 'discount', 
+      sortable: true, 
+      render: row => (row.discount !== undefined ? Math.round(Number(row.discount)) : 50) 
+    },    { label: 'Depuis', key: 'depuis', sortable: true, render: row => {
       // Utilisation de la vraie date de création depuis la colonne created_at
       if (row.created_at) {
         const creationDate = new Date(row.created_at);

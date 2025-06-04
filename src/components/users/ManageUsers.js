@@ -41,17 +41,16 @@ function ManageUsers({ userConnected }) {
   }, [userConnected, navigate]);
 
   if (loading) {
-    return (
-      <div className="page-centered-container">
+  return (
+    <div className="page-centered-container" data-page="manage-users">
         <div className="loading">
           <i className="fa fa-spinner fa-spin"></i> Chargement...
         </div>
       </div>
     );
   }
-
   return (
-    <div className="page-centered-container">
+    <div className="page-centered-container" data-page="manage-users">
       <h1>
         <i className="fa fa-user icon-blue icon-lg mr-8"></i>
         Gestion des utilisateurs

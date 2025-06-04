@@ -263,37 +263,40 @@ form button[type="submit"]:hover {
     max-width: 150px !important;
     width: 150px !important;
   }
-  
-  /* Optimisation des colonnes du tableau */
+    /* Optimisation des colonnes du tableau avec plus d'espace pour les actions */
   .produits-table th:first-child,
   .produits-table td:first-child {
-    width: 70% !important;
-    max-width: 70% !important;
+    width: 65% !important;
+    max-width: 65% !important;
   }
   
   .produits-table th:last-child,
   .produits-table td:last-child {
-    width: 30% !important;
-    max-width: 30% !important;
+    width: 35% !important;
+    max-width: 35% !important;
   }
-  
-  /* Centrage et optimisation des boutons d'action */
+    /* Centrage et optimisation des boutons d'action */
   .actions-cell {
-    gap: 4px !important;
+    gap: 6px !important;
     margin: auto !important;
     text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
   
-  /* Boutons compacts et optimisés */
+  /* Boutons compacts et optimisés - taille augmentée pour éviter la coupure */
   .actions-cell .edit-btn,
   .actions-cell .delete-btn,
   .actions-cell .save-btn,
   .actions-cell .cancel-btn {
-    max-width: 30px !important;
-    max-height: 30px !important;
+    min-width: 32px !important;
+    max-width: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
     font-size: 1.1em !important;
-    padding: 4px !important;
-    margin: 2px !important;
+    padding: 6px !important;
+    margin: 1px !important;
     border-radius: 4px !important;
   }
   

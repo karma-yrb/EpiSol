@@ -135,7 +135,13 @@
 - ✅ **TERMINÉ** - `/beneficiaires` : La colonne "Numéro bénéficiaire" doit s'appeler "#"
 - ✅ **TERMINÉ** - `/beneficiaires` : La colonne "nom" et "prenom" doit être fusionnée pour ne faire qu'une qui s'appelle "prénom nom"
 - ✅ **TERMINÉ** - Afficher les initiales du user à la place du role pour le bouton d'accès au profil et déconnexion
-- [] Nouvelle façon de choisir les produits : 
+- [] Informations sur la version (numero, date)
+    - Sur la page de login
+    - Dans le menu, ou en bas de page
+    - Mise a jour automatique
+- Verifier que les readme et autre fichiers de docs sont intégralement en français (a part les termes spécifiques)
+- tests unitaires 
+- [] Nouvelle façon de choisir les produits (v1.1.x): 
     - Grille/boutons, icons/image produit
     - Score de sélection (les + choisis), pour faire apparaire en premier. En fonction du beneficiaire ou global
     - Champ de recherche en haut, cache seulement les boutons produits

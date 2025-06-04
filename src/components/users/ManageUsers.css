@@ -83,6 +83,97 @@
   }
 }
 
+/* Responsive pour mobile ≤395px - Optimisation des boutons d'action */
+@media (max-width: 395px) {
+  /* Optimisation des cellules d'actions */
+  .actions-cell {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 2px !important;
+    padding: 4px 2px !important;
+  }
+  
+  /* Boutons d'action compacts et optimisés */
+  .actions-cell .action-icon-btn {
+    min-width: 28px !important;
+    max-width: 28px !important;
+    min-height: 28px !important;
+    max-height: 28px !important;
+    padding: 4px !important;
+    margin: 0 !important;
+    font-size: 12px !important;
+    border-radius: 4px !important;
+  }
+  
+  /* Réduction du padding global pour gagner de l'espace */
+  .produits-table th, 
+  .produits-table td {
+    padding: 6px 3px !important;
+    font-size: 13px !important;
+  }
+  
+  /* Optimisation spécifique de la colonne Actions */
+  .produits-table th:last-child,
+  .produits-table td:last-child {
+    width: 100px !important;
+    min-width: 100px !important;
+    max-width: 100px !important;
+  }
+  
+  /* S'assurer que la table prend toute la largeur */
+  .produits-table {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Responsive mobile ≤395px - Optimisation des boutons d'action pour /users */
+@media (max-width: 395px) {
+  /* Optimisation spécifique pour la page users */
+  [data-page="manage-users"] .produits-table {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Optimisation des boutons d'action dans la colonne Actions */
+  [data-page="manage-users"] .actions-cell {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 4px !important;
+  }
+  
+  /* Boutons d'action compacts et centrés */
+  [data-page="manage-users"] .actions-cell .action-icon-btn {
+    min-width: 28px !important;
+    max-width: 28px !important;
+    min-height: 28px !important;
+    max-height: 28px !important;
+    padding: 4px !important;
+    margin: 0 !important;
+    font-size: 11px !important;
+    border-radius: 4px !important;
+  }
+  
+  /* Réduction du padding des cellules */
+  [data-page="manage-users"] .produits-table th,
+  [data-page="manage-users"] .produits-table td {
+    padding: 8px 4px !important;
+    font-size: 13px !important;
+  }
+  
+  /* Optimisation de la largeur des colonnes */
+  [data-page="manage-users"] .produits-table th:last-child,
+  [data-page="manage-users"] .produits-table td:last-child {
+    width: 120px !important;
+    max-width: 120px !important;
+  }
+}
+
 .manage-users-container {
   padding: 20px;
   background-color: #f4f4f4;
@@ -254,4 +345,68 @@ form.uni-form {
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* ============================================
+   STYLES RESPONSIVE SPÉCIFIQUES UTILISATEURS
+   ============================================ */
+
+/* Styles responsive pour mobile ≤395px - uniquement pour la page users */
+@media (max-width: 395px) {
+  /* SÉLECTEUR SPÉCIFIQUE : uniquement pour la route /users */
+  [data-page="manage-users"] .page-centered-container .produits-table th, 
+  [data-page="manage-users"] .page-centered-container .produits-table td {
+    padding: 8px 4px !important;
+    font-size: 13px !important;
+  }
+  
+  /* Tables doivent prendre 100% largeur sur mobile - uniquement utilisateurs */
+  [data-page="manage-users"] .page-centered-container .produits-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  /* Optimisation des boutons d'action pour les utilisateurs */
+  [data-page="manage-users"] .page-centered-container .actions-cell {
+    gap: 2px !important;
+    padding: 2px !important;
+    width: 80px !important;
+    min-width: 80px !important;
+  }
+  
+  [data-page="manage-users"] .page-centered-container .actions-cell .action-icon-btn {
+    margin: 0 !important;
+    padding: 2px 3px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+    font-size: 10px !important;
+  }
+  
+  /* Colonnes spécifiques pour la page users */
+  [data-page="manage-users"] .page-centered-container .produits-table th:nth-child(1),
+  [data-page="manage-users"] .page-centered-container .produits-table td:nth-child(1) {
+    width: 25% !important;
+    max-width: 25% !important;
+  }
+  
+  [data-page="manage-users"] .page-centered-container .produits-table th:nth-child(2),
+  [data-page="manage-users"] .page-centered-container .produits-table td:nth-child(2) {
+    width: 25% !important;
+    max-width: 25% !important;
+  }
+  
+  [data-page="manage-users"] .page-centered-container .produits-table th:nth-child(3),
+  [data-page="manage-users"] .page-centered-container .produits-table td:nth-child(3) {
+    width: 30% !important;
+    max-width: 30% !important;
+  }
+  
+  [data-page="manage-users"] .page-centered-container .produits-table th:nth-child(4),
+  [data-page="manage-users"] .page-centered-container .produits-table td:nth-child(4) {
+    width: 20% !important;
+    max-width: 20% !important;
+  }
 }
