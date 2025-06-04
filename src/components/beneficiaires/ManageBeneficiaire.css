@@ -68,6 +68,18 @@
     font-size: 13px !important;
   }
   
+  /* Colonne # (numéro) - Empêcher le text wrapping vertical */
+  [data-page="manage-beneficiaires"] .page-centered-container .produits-table th:nth-child(1),
+  [data-page="manage-beneficiaires"] .page-centered-container .produits-table td:nth-child(1) {
+    white-space: nowrap !important;
+    word-break: normal !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+    width: 15% !important;
+    min-width: 40px !important;
+    max-width: 60px !important;
+  }
+  
   /* Tables doivent prendre 100% largeur sur mobile - uniquement bénéficiaires */
   [data-page="manage-beneficiaires"] .page-centered-container .produits-table {
     width: 100% !important;

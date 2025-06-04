@@ -261,13 +261,21 @@ form.uni-form {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
   }
-  
-  /* Permettre le retour à la ligne intelligent pour les noms/descriptions */
+    /* Permettre le retour à la ligne intelligent pour les noms/descriptions */
   .produits-table td:nth-child(1), /* Première colonne généralement les noms */
   .produits-table td:nth-child(2) { /* Deuxième colonne */
     white-space: normal !important;
     word-break: break-word !important;
     max-width: 120px !important;
+  }
+  
+  /* Exception : pour les bénéficiaires, la première colonne est le numéro (pas de retour à la ligne) */
+  [data-page="manage-beneficiaires"] .produits-table td:nth-child(1),
+  [data-page="manage-beneficiaires"] .produits-table th:nth-child(1) {
+    white-space: nowrap !important;
+    word-break: normal !important;
+    text-overflow: ellipsis !important;
+    max-width: 60px !important;
   }
   
   /* Optimisation des boutons d'action */
