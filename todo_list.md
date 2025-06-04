@@ -102,6 +102,8 @@
   - Suppression import obsolète `useGenericDeleteModal` dans `ManageCategories`
   - Résolution conflits CSS globaux avec isolation par attribut `data-page`
   - Optimisation mobile ≤395px : champ centré 150px, boutons compacts 30x30px
+- Verifier que les readme et autre fichiers de docs sont intégralement en français (a part les termes spécifiques)
+- voir pourquoi il y a un dossier "common" et un autre "commun" ?
 
 ### 📱 Mobile
 - ✅ **TERMINÉ** - **UX Mobile ≤395px - Page `/achats`** :
@@ -139,7 +141,6 @@
     - Sur la page de login
     - Dans le menu, ou en bas de page
     - Mise a jour automatique
-- Verifier que les readme et autre fichiers de docs sont intégralement en français (a part les termes spécifiques)
 - tests unitaires 
 - [] Nouvelle façon de choisir les produits (v1.1.x): 
     - Grille/boutons, icons/image produit

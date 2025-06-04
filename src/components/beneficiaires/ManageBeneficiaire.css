@@ -1,4 +1,44 @@
-/* CSS spécifique pour les bénéficiaires */
+/* CSS spécifique pour les bénéficiaires - Pattern identique à AchatsTable */
+
+.beneficiaires-table {
+  width: 100%;
+  background: #fafafa;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+/* Règle complémentaire pour assurer 100% largeur avec les classes combinées */
+.produits-table.beneficiaires-table {
+  width: 100%;
+  background: #fafafa;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.produits-table.beneficiaires-table th,
+.produits-table.beneficiaires-table td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.produits-table.beneficiaires-table th {
+  background: #f5f5f5;
+}
+
+.produits-table.beneficiaires-table td {
+  border-bottom: 1px solid #eee;
+}
+/* Lignes alternées pour le tableau des bénéficiaires */
+.produits-table.beneficiaires-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.produits-table.beneficiaires-table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
 
 /* Override pour l'icône œil des bénéficiaires - doit être bleu sur fond blanc */
 .fa-eye.icon-action.passages-eye {
@@ -45,123 +85,85 @@
 }
 
 /* ============================================
-   STYLES RESPONSIVE SPÉCIFIQUES BÉNÉFICIAIRES
+   STYLES RESPONSIVE POUR LES BÉNÉFICIAIRES
    ============================================ */
 
-/* Styles responsive spécifiques pour la page des bénéficiaires */
-/* IMPORTANT: Utilise des sélecteurs spécifiques pour éviter les conflits avec les autres pages */
+/* Styles responsive pour mobiles */
 @media (max-width: 700px) {
-  /* SÉLECTEUR SPÉCIFIQUE : uniquement pour la route /beneficiaires */
-  [data-page="manage-beneficiaires"] .page-centered-container .produits-table th, 
-  [data-page="manage-beneficiaires"] .page-centered-container .produits-table td {
+  .produits-table.beneficiaires-table th, 
+  .produits-table.beneficiaires-table td {
     padding: 10px 8px !important;
     font-size: 14px !important;
   }
 }
 
-/* Pour les très petits écrans, encore plus compact */
-@media (max-width: 395px) {  /* Conteneur principal optimisé pour mobile */
-  div[data-page="manage-beneficiaires"].page-centered-container {
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    box-sizing: border-box !important;
-    overflow-x: auto !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    margin: 0 !important;
+/* Pour les très petits écrans - optimisation mobile */
+@media (max-width: 395px) {
+  .produits-table.beneficiaires-table {
+    min-width: 300px !important;
+    table-layout: fixed !important;
   }
   
-  /* Tableau optimisé pour mobile avec largeurs fixes */
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table {
-    width: 100% !important;
-    max-width: calc(100vw - 20px) !important;
-    margin: 0 !important;
-    table-layout: fixed !important;
-    border-collapse: collapse !important;
-    min-width: 300px !important;
-  }/* PRIORITÉ MAXIMALE : Forcer les styles spécifiques aux bénéficiaires */
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table th[style], 
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table td[style],
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table th, 
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table td {
+  .produits-table.beneficiaires-table th, 
+  .produits-table.beneficiaires-table td {
     padding: 6px 2px !important;
     font-size: 11px !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    box-sizing: border-box !important;
-    vertical-align: middle !important; /* CENTRER TOUS LES TEXTES VERTICALEMENT */
+    vertical-align: middle !important;
   }
   
-  /* Cache la colonne Rabais sur mobile ≤395px pour gagner de l'espace - PRIORITÉ ABSOLUE */
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table th:nth-child(3),
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table td:nth-child(3) {
+  /* Cache la colonne Rabais sur mobile pour gagner de l'espace */
+  .produits-table.beneficiaires-table th:nth-child(3),
+  .produits-table.beneficiaires-table td:nth-child(3) {
     display: none !important;
-    width: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
   }
-  /* COLONNES AVEC LARGEURS OPTIMISÉES POUR LE CONTENU */  /* Colonne # (numéro) - Largeur pour 6 zéros maximum (000000) */
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table th:nth-child(1),
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table td:nth-child(1) {
+  
+  /* Colonne # (numéro) - Largeur pour 6 chiffres maximum */
+  .produits-table.beneficiaires-table th:nth-child(1),
+  .produits-table.beneficiaires-table td:nth-child(1) {
     width: 60px !important;
-    max-width: 60px !important;
-    min-width: 50px !important;
     white-space: nowrap !important;
-    word-break: normal !important;
-    font-size: 11px !important;
-    vertical-align: middle !important;
   }
   
   /* Colonne Bénéficiaire (nom/prénom) - Peut être sur 2 lignes */
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table th:nth-child(2),
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table td:nth-child(2) {
-    width: calc(100% - 240px) !important; /* Prend l'espace restant après les autres colonnes fixes */
+  .produits-table.beneficiaires-table th:nth-child(2),
+  .produits-table.beneficiaires-table td:nth-child(2) {
+    width: calc(100% - 240px) !important;
     white-space: normal !important;
     word-break: break-word !important;
     line-height: 1.3 !important;
-    font-size: 11px !important;
-    vertical-align: middle !important;
   }
-    /* Colonne Depuis - Taille fixe pour les dates */
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table th:nth-child(4),
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table td:nth-child(4) {
+  
+  /* Colonne Depuis - Taille fixe pour les dates */
+  .produits-table.beneficiaires-table th:nth-child(4),
+  .produits-table.beneficiaires-table td:nth-child(4) {
     width: 70px !important;
-    max-width: 70px !important;
-    min-width: 65px !important;
     font-size: 10px !important;
     white-space: nowrap !important;
-    vertical-align: middle !important;
   }
   
   /* Colonne Passages - Texte complet et centré */
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table th:nth-child(5),
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table td:nth-child(5) {
+  .produits-table.beneficiaires-table th:nth-child(5),
+  .produits-table.beneficiaires-table td:nth-child(5) {
     width: 70px !important;
-    max-width: 70px !important;
-    min-width: 60px !important;
     white-space: nowrap !important;
-    font-size: 11px !important;
-    overflow: visible !important; /* Permettre l'affichage complet du texte */
-    vertical-align: middle !important;
   }
   
-  /* Colonne Actions - Espace suffisant pour 2 boutons */
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table th:nth-child(6),
-  div[data-page="manage-beneficiaires"].page-centered-container table.produits-table td:nth-child(6) {
+  /* Colonne Actions - Espace pour 2 boutons */
+  .produits-table.beneficiaires-table th:nth-child(6),
+  .produits-table.beneficiaires-table td:nth-child(6) {
     width: 80px !important;
-    max-width: 80px !important;
-    min-width: 75px !important;
     white-space: nowrap !important;
-    vertical-align: middle !important;
-  }/* Réduction des marges des boutons d'action - uniquement bénéficiaires */
-  div[data-page="manage-beneficiaires"].page-centered-container .actions-cell {
+  }
+  
+  /* Optimisation des boutons d'action */
+  .produits-table.beneficiaires-table .actions-cell {
     gap: 2px !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
   }
   
-  div[data-page="manage-beneficiaires"].page-centered-container .actions-cell .action-icon-btn {
+  .produits-table.beneficiaires-table .actions-cell .action-icon-btn {
     margin: 0 !important;
     padding: 2px 4px !important;
     min-width: 24px !important;
@@ -172,20 +174,20 @@
     flex-shrink: 0 !important;
   }
   
-  /* Affichage date multi-lignes sur mobile ≤395px */
+  /* Affichage date multi-lignes sur mobile */
   .beneficiaire-date .date-desktop {
     display: none !important;
   }
   
   .beneficiaire-date .date-mobile {
     display: block !important;
-    text-align: center;
-    line-height: 1.1;
+    text-align: center !important;
+    line-height: 1.1 !important;
     font-size: 11px !important;
   }
   
   .beneficiaire-date .date-mobile div {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 }

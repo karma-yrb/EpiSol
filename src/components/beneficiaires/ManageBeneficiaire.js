@@ -186,11 +186,11 @@ function ManageBeneficiaire() {
         <div className="error-message">
           <i className="fa fa-exclamation-triangle"></i> {error}
         </div>
-      ) : (
-        <SortableTable
+      ) : (        <SortableTable
           columns={columns}
           data={beneficiairesWithPrenomNom}
           initialSort={{ col: 'prenomNom', dir: 'asc' }}
+          className="beneficiaires-table"
         />
       )}
         {notif.message && (
