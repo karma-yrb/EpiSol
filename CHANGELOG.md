@@ -22,6 +22,11 @@ n## [1.0.3] - 2025-06-03
 ### 🔄 Modifié
 - Mise à jour de version vers v1.0.3
 
+n## [1.0.4] - 2025-06-05
+
+### 🔄 Modifié
+- Mise à jour de version vers v1.0.4
+
 ## [1.0.0] - 2025-06-03
 
 ### 🎉 Version Stable Initiale
@@ -81,6 +86,11 @@ n## [1.0.3] - 2025-06-03
 
 ### 🔄 Modifié
 - Mise à jour de version vers v1.0.3
+
+n## [1.0.4] - 2025-06-05
+
+### 🔄 Modifié
+- Mise à jour de version vers v1.0.4
 
 ## [0.1.0] - 2024-12-01
 
