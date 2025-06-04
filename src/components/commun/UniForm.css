@@ -231,34 +231,59 @@ form.uni-form {
   }
 }
 @media (max-width: 393px) {
+  /* =========================================
+     CORRECTION GLOBALE AFFICHAGE MOBILE TABLEAUX
+     Suppression des règles problématiques qui causent l'écrasement des colonnes
+     ========================================= */
+  
+  /* Nouvelles règles saines pour tous les tableaux produits-table */
   .produits-table {
-    width: 100vw !important;
-    max-width: 100vw !important;
+    width: 100% !important;
+    max-width: 100% !important;
     min-width: 0;
-    font-size: 0.93em;
-    border-radius: 0;
-    margin: 0;
-    box-shadow: none;
-    table-layout: fixed;
-    word-break: break-word;
+    font-size: 12px !important;
+    border-radius: 8px;
+    margin: 0 auto;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    /* CORRECTION CRITIQUE : table-layout auto pour éviter l'écrasement */
+    table-layout: auto !important;
+    /* CORRECTION CRITIQUE : word-break normal pour éviter la cassure lettre par lettre */
+    word-break: normal !important;
   }
-  .produits-table th, .produits-table td {
-    padding: 8px 4px !important;
-    font-size: 0.9em;
-    word-break: break-word;
-    white-space: normal;
+  
+  .produits-table th, 
+  .produits-table td {
+    padding: 6px 3px !important;
+    font-size: 11px !important;
+    /* CORRECTION CRITIQUE : white-space nowrap sauf pour certaines colonnes */
+    white-space: nowrap !important;
+    word-break: normal !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
-  /* Réduire les marges des boutons d'action pour les petits écrans */
-  .actions-cell {
-    gap: 4px !important;
+  
+  /* Permettre le retour à la ligne intelligent pour les noms/descriptions */
+  .produits-table td:nth-child(1), /* Première colonne généralement les noms */
+  .produits-table td:nth-child(2) { /* Deuxième colonne */
+    white-space: normal !important;
+    word-break: break-word !important;
+    max-width: 120px !important;
   }
-  .actions-cell .action-icon-btn {
+  
+  /* Optimisation des boutons d'action */
+  .produits-table .actions-cell {
+    gap: 2px !important;
+    justify-content: center !important;
+  }
+  
+  .produits-table .actions-cell .action-icon-btn {
     margin: 0 !important;
-    padding: 4px 6px !important;
-    min-width: 28px;
-    min-height: 28px;
-    max-width: 28px;
-    max-height: 28px;
+    padding: 3px 5px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
+    font-size: 10px !important;
   }
 }
 

@@ -199,16 +199,80 @@ table.produits-table.achats-list-table .achats-total-cell-label {
     margin-top: 4px;
     height: 36px;
   }
-}
-
-/* Responsive styles pour mobile ≤395px */
-@media (max-width: 395px) {
-  /* Alignement des boutons de quantité avec actions-cell */
-  .achats-list-table .actions-cell {
-    gap: 2px !important;
-    justify-content: center !important;
+  
+  /* Amélioration responsive pour écrans moyens */
+  .achats-list-table.produits-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 13px !important;
   }
   
+  .achats-list-table.produits-table th,
+  .achats-list-table.produits-table td {
+    padding: 8px 5px !important;
+    font-size: 12px !important;
+  }
+}
+
+/* Pour écrans moyens 396px - 600px */
+@media (max-width: 600px) and (min-width: 396px) {
+  .achats-list-table.produits-table {
+    table-layout: auto !important;
+    word-break: normal !important;
+  }
+  
+  .achats-list-table.produits-table th,
+  .achats-list-table.produits-table td {
+    white-space: nowrap !important;
+    word-break: normal !important;
+    padding: 6px 4px !important;
+    font-size: 11px !important;
+  }
+  
+  /* Permet au nom du bénéficiaire de s'adapter */
+  .achats-list-table.produits-table th:nth-child(2),
+  .achats-list-table.produits-table td:nth-child(2) {
+    white-space: normal !important;
+    word-break: break-word !important;
+    max-width: 120px !important;
+  }
+}
+
+/* Responsive styles pour mobile ≤395px - Règles spécifiques aux achats */
+@media (max-width: 395px) {
+  /* Colonnes spécifiques pour la page liste-achats avec largeurs optimisées */
+  .achats-list-table.produits-table th:nth-child(1), /* Date */
+  .achats-list-table.produits-table td:nth-child(1) {
+    width: 15% !important;
+    min-width: 60px !important;
+  }
+  
+  .achats-list-table.produits-table th:nth-child(2), /* Bénéficiaire */
+  .achats-list-table.produits-table td:nth-child(2) {
+    width: 35% !important;
+    min-width: 80px !important;
+  }
+  
+  .achats-list-table.produits-table th:nth-child(3), /* Quantité */
+  .achats-list-table.produits-table td:nth-child(3) {
+    width: 15% !important;
+    min-width: 50px !important;
+    text-align: center !important;
+  }
+  
+  .achats-list-table.produits-table th:nth-child(4), /* Total */
+  .achats-list-table.produits-table td:nth-child(4) {
+    width: 20% !important;
+    min-width: 60px !important;
+    text-align: right !important;
+  }
+  
+  .achats-list-table.produits-table th:nth-child(5), /* Actions */
+  .achats-list-table.produits-table td:nth-child(5) {
+    width: 15% !important;
+    min-width: 70px !important;
+  }
+
   /* Styles pour la ligne "Total à payer" - police 18px pour le label */
   .achats-list-table .achats-total-final .achats-total-cell-label {
     font-size: 18px !important;
