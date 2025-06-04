@@ -31,14 +31,6 @@
 .produits-table.beneficiaires-table td {
   border-bottom: 1px solid #eee;
 }
-/* Lignes alternées pour le tableau des bénéficiaires */
-.produits-table.beneficiaires-table tbody tr:nth-child(even) {
-  background-color: #f8f9fa;
-}
-
-.produits-table.beneficiaires-table tbody tr:nth-child(odd) {
-  background-color: #ffffff;
-}
 
 /* Override pour l'icône œil des bénéficiaires - doit être bleu sur fond blanc */
 .fa-eye.icon-action.passages-eye {

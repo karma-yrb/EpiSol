@@ -288,6 +288,69 @@ form.uni-form {
   }
 }
 
+/* =========================================
+   RÈGLES D'ALTERNANCE HARMONISÉES POUR TOUS LES TABLEAUX
+   Lignes alternées avec couleurs harmonisées pour toutes les pages
+   ========================================= */
+
+/* Règles d'alternance pour tous les tableaux produits-table */
+.produits-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa !important;
+}
+
+.produits-table tbody tr:nth-child(odd) {
+  background-color: #ffffff !important;
+}
+
+/* Règles d'alternance pour les tableaux achats-list-table */
+.achats-list-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa !important;
+}
+
+.achats-list-table tbody tr:nth-child(odd) {
+  background-color: #ffffff !important;
+}
+
+/* Règles d'alternance pour les tableaux avec classe double (achats-list-table + produits-table) */
+.achats-list-table.produits-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa !important;
+}
+
+.achats-list-table.produits-table tbody tr:nth-child(odd) {
+  background-color: #ffffff !important;
+}
+
+/* Règles d'alternance pour les tableaux bénéficiaires avec spécificité élevée */
+.produits-table.beneficiaires-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa !important;
+}
+
+.produits-table.beneficiaires-table tbody tr:nth-child(odd) {
+  background-color: #ffffff !important;
+}
+
+/* Règles d'alternance pour les autres types de tableaux potentiels */
+.categories-table tbody tr:nth-child(even),
+.users-table tbody tr:nth-child(even),
+.stocks-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa !important;
+}
+
+.categories-table tbody tr:nth-child(odd),
+.users-table tbody tr:nth-child(odd),
+.stocks-table tbody tr:nth-child(odd) {
+  background-color: #ffffff !important;
+}
+
+/* Préservation du style hover avec priorité sur l'alternance */
+.produits-table tr:hover,
+.achats-list-table tr:hover,
+.categories-table tr:hover,
+.users-table tr:hover,
+.stocks-table tr:hover {
+  background-color: #f7fbff !important;
+}
+
 .add-produit-btn {
   margin-left: 24px;
   background: #007bff;
