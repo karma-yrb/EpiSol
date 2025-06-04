@@ -34,6 +34,18 @@
 - ✅ **TERMINÉ** - `/liste-achats` : Régression > Les boutons doivent faire 100% de la largeur en mode mobile, le bouton "edit-btn" ne respecte pas ça
 - ✅ **TERMINÉ** - `/beneficiaires` : Le style n'est pas pris en compte : `@media (max-width: 393px) {.produits-table th, .produits-table td {padding: 10px;}}`
 - ✅ **TERMINÉ** - Menu mobile ne prenant pas toute la largeur
+- ✅ **TERMINÉ** - **Configuration mobile optimisée `/beneficiaires` (Décembre 2024)** :
+  - Correction spécificité CSS avec sélecteurs `.produits-table.beneficiaires-table`
+  - Ajout `!important` pour forcer application des règles mobiles
+  - Configuration responsive finalisée :
+    - Colonne # : 60px (6 chiffres max)
+    - Colonne Bénéficiaire : `calc(100% - 240px)` avec retour ligne
+    - Colonne Rabais : cachée sur mobile ≤395px
+    - Colonnes Depuis/Passages : 70px optimisées
+    - Colonne Actions : 80px avec boutons 24px
+    - Font-size mobile : 11px (≤395px), 14px (≤700px)
+    - Centrage vertical et affichage date adaptatif
+  - ✅ **Résolution définitive du problème d'overflow mobile**
 
 ---
 
@@ -159,10 +171,10 @@
 
 | Catégorie | Global | Mobile | Total |
 |-----------|---------|--------|-------|
-| 🐛 Bugs | 6 | 3 | 9 |
+| 🐛 Bugs | 6 | 4 | 10 |
 | ⚡ Améliorations | 6 + 2 à venir | 4 | 12 |
 | 🚀 Fonctionnalités | 3 | 0 | 3 |
-| **TOTAL** | **16** | **7** | **24** |
+| **TOTAL** | **17** | **8** | **25** |
 
 ### 🏷️ Versioning et Documentation
 - ✅ **TERMINÉ** - Implémentation système de versioning unifié SemVer
