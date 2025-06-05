@@ -18,9 +18,9 @@ Application de gestion complète avec frontend React et backend Node.js utilisan
 **Version actuelle : v1.0.5**
 
 EpiSol utilise un système de versioning unifié basé sur [Semantic Versioning](https://semver.org/). Pour plus de détails, consultez :
-- [`README_VERSIONING.md`](./README_VERSIONING.md) - Guide utilisateur complet
-- [`VERSIONING.md`](./VERSIONING.md) - Documentation technique
-- [`CHANGELOG.md`](./CHANGELOG.md) - Historique des versions
+- [`docs/README_VERSIONING.md`](./docs/README_VERSIONING.md) - Guide utilisateur complet
+- [`docs/VERSIONING.md`](./docs/VERSIONING.md) - Documentation technique
+- [`docs/CHANGELOG.md`](./docs/CHANGELOG.md) - Historique des versions
 
 ### Mise à jour de version rapide
 ```bash
@@ -107,3 +107,14 @@ Cette section a été déplacée ici : [https://facebook.github.io/create-react-
 ### `npm run build` échoue lors de la minification
 
 Cette section a été déplacée ici : [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## 📚 Documentation Complète
+
+Toute la documentation technique et de gestion du projet se trouve dans le dossier [`docs/`](./docs/) :
+
+- **[Todo List Nettoyée](./docs/todo_list_cleaned.md)** - Tâches restantes pour v1.1.x
+- **[Rapport Final v1.0.5](./docs/RAPPORT_FINAL_V1.0.5.md)** - Bilan complet de la version stable
+- **[Changelog](./docs/CHANGELOG.md)** - Historique détaillé des versions
+- **[Documentation Versioning](./docs/VERSIONING.md)** - Système unifié frontend/backend
+
+Consultez le [README de la documentation](./docs/README.md) pour une navigation complète.
