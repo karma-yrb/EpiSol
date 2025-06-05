@@ -13,6 +13,7 @@
 
 .achats-beneficiaire-input-wrapper {
   position: relative;
+  width: 90%;
   max-width: 400px;
   margin: 0 auto;
 }

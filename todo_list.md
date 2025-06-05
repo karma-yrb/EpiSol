@@ -139,6 +139,8 @@
   - Amélioration de la hiérarchie des polices :
     - **"Rabais"** : Police plus petite (14px desktop, 12px mobile)
     - **"Prix total"** : Police plus grande (18px mobile)
+  - **Optimisation largeur (Janvier 2025)** : Carte principale 80% largeur sur tous les écrans, champ bénéficiaire 90% largeur avec margin optimisée
+  - **Optimisation CSS responsive (Janvier 2025)** : Suppression des règles CSS dupliquées et application des largeurs optimisées (80% carte, 90% champ) sur desktop et mobile sans duplication
 
 - ✅ **TERMINÉ** - **UX Mobile ≤395px - Pages `/users` et `/beneficiaires` (Juin 2025)** :
   - Tableaux 100% largeur mobile et réduction marges boutons

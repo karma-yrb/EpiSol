@@ -23,6 +23,7 @@
 }
 
 .achats-main-card {
+  width: 80%;
   max-width: 600px;
   margin: 0 auto;
   background: #fff;
