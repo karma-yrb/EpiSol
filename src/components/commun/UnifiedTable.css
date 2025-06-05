@@ -366,3 +366,39 @@
 .produits-table.beneficiaires-table td {
   border-bottom: 1px solid #eee;
 }
+
+/* ============================================
+   FORMATAGE DES DATES DANS LES TABLEAUX
+   ============================================ */
+
+/* Affichage des dates - Desktop par défaut */
+.beneficiaire-date .date-desktop {
+  display: inline;
+}
+
+.beneficiaire-date .date-mobile {
+  display: none;
+}
+
+/* Affichage des dates - Mobile ≤395px */
+@media (max-width: 395px) {
+  .beneficiaire-date .date-desktop {
+    display: none;
+  }
+  
+  .beneficiaire-date .date-mobile {
+    display: block;
+    text-align: center;
+    line-height: 1.1;
+  }
+  
+  .beneficiaire-date .date-mobile div {
+    margin: 0;
+    padding: 0;
+    font-size: 11px;
+  }
+  
+  .beneficiaire-date .date-mobile div:first-child {
+    font-weight: 600;
+  }
+}
