@@ -7,7 +7,23 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 **Note**: Ce projet utilise un versioning unifié pour le frontend et le backend.
 
-n## [1.0.1] - 2025-06-03
+## [1.0.5] - 2025-06-05
+
+### ✨ Améliorations
+- **Harmonisation complète des tableaux** : Application de `width: 100%` sur toutes les tailles d'écran
+- **Optimisation de l'utilisation de l'espace** : Transition de `width: 80%; max-width: 600px` vers `width: 100%`
+- **Rétrocompatibilité maintenue** : Classe `.produits-table` mise à jour pour cohérence
+
+### 🔧 Technique
+- Modification de `UnifiedTable.css` pour largeur maximale des tableaux
+- Validation CSS réussie avec compilation sans erreurs
+- Documentation mise à jour (`CENTRAGE_TABLEAUX_FIX.md`, `todo_list.md`)
+
+### 📱 Responsive
+- Comportement responsive préservé pour tablettes (≤700px) et mobile (≤395px)
+- Largeur 100% appliquée de manière cohérente sur tous les breakpoints
+
+## [1.0.1] - 2025-06-03
 
 ### 🔄 Modifié
 - Mise à jour de version vers v1.0.1

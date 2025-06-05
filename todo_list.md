@@ -99,6 +99,9 @@
   - **Architecture CSS optimisée** : séparation claire entre styles de base (UnifiedTable.css) et surcharges spécifiques
   - Classes modificatrices : `--full-width`, `--compact`, `--light-bg` pour personnalisation
   - Règles responsive unifiées pour breakpoints 700px et 395px mobile
+  - **Harmonisation centrage** : `text-align: center` appliqué uniformément à toutes les colonnes
+  - **Largeur optimisée** : Migration de `width: 80%; max-width: 600px` vers `width: 100%` sur toutes les tailles d'écran
+  - **Rétrocompatibilité** : Classe `.produits-table` mise à jour pour maintenir la cohérence
   - Standardisation des cellules d'actions et maintien de la compatibilité existante
 
 - ✅ **TERMINÉ** - Dans la page beneficiaires/ 
