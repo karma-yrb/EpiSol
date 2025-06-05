@@ -8,7 +8,7 @@ import ActionIconButton from '../commun/ActionIconButton';
 import SortableTable from '../commun/SortableTable';
 import '../commun/SortableTable.css';
 import { useGenericData } from '../../hooks/useGenericData';
-import './ManageBeneficiaire.css';
+import '../commun/UnifiedTable.css';
 
 function ManageBeneficiaire() {
   const navigate = useNavigate();
