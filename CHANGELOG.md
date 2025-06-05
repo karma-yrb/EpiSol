@@ -92,6 +92,15 @@ n## [1.0.4] - 2025-06-05
 ### 🔄 Modifié
 - Mise à jour de version vers v1.0.4
 
+## [1.0.5] - 2025-06-05
+
+### 🐛 Corrections
+- Harmonisation du modal de suppression dans la gestion des catégories (utilisation de ConfirmDeleteModal)
+- Correction de l'affichage des notifications lors de l'ajout/suppression de catégorie
+- Correction de l'appel à l'API d'ajout de catégorie (paramètre)
+- Correction du système de suppression pour cohérence avec la gestion des produits
+- Correction de bugs d'affichage et d'expérience utilisateur sur la page catégories
+
 ## [0.1.0] - 2024-12-01
 
 ### 🚀 Version Initiale de Développement

@@ -1,0 +1,368 @@
+/* =======================================================
+   SYSTÈME CSS UNIFIÉ POUR TOUS LES TABLEAUX - EpiSol
+   Base commune avec séparation claire des overrides spécifiques
+   ======================================================= */
+
+/* ============================================
+   CLASSES DE BASE OBLIGATOIRES
+   ============================================ */
+
+/* Classe de base pour TOUS les tableaux de l'application */
+.unified-table {
+  width: 80%;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Cellules de base */
+.unified-table th, 
+.unified-table td {
+  padding: 1em 0.7em;
+  text-align: center;
+  font-size: 1.08em;
+  vertical-align: middle;
+}
+
+/* En-têtes de base */
+.unified-table th {
+  background: #f2f6fa;
+  color: #0071bc;
+  font-weight: 700;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* Bordures et hover de base */
+.unified-table tr:not(:last-child) td {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.unified-table tr:hover {
+  background: #f7fbff !important;
+}
+
+/* ============================================
+   ALTERNANCE DES LIGNES (ZEBRA STRIPING)
+   ============================================ */
+
+.unified-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa !important;
+}
+
+.unified-table tbody tr:nth-child(odd) {
+  background-color: #ffffff !important;
+}
+
+/* ============================================
+   CLASSES SPÉCIALISÉES POUR DIFFÉRENTS TYPES
+   ============================================ */
+
+/* Tables étendues (pleine largeur) */
+.unified-table--full-width {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Tables compactes */
+.unified-table--compact th,
+.unified-table--compact td {
+  padding: 0.6em 0.5em;
+  font-size: 0.95em;
+}
+
+/* Tables avec fond spécifique */
+.unified-table--light-bg {
+  background: #fafafa;
+}
+
+.unified-table--light-bg th {
+  background: #f5f5f5;
+}
+
+/* ============================================
+   COLONNES TRIABLES
+   ============================================ */
+
+.unified-table .sortable-col { 
+  cursor: pointer; 
+  position: relative;
+}
+
+.unified-table .sortable-col:hover {
+  background: #e8f2ff;
+}
+
+.unified-table .sortable-col i { 
+  margin-left: 4px; 
+}
+
+/* ============================================
+   CELLULES D'ACTIONS STANDARDISÉES
+   ============================================ */
+
+.unified-table .actions-cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Boutons d'action dans les cellules */
+.unified-table .actions-cell .action-icon-btn {
+  margin: 0;
+  min-width: 1.7em;
+  min-height: 1.7em;
+  max-width: 1.7em;
+  max-height: 1.7em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15em;
+  vertical-align: middle;
+}
+
+/* ============================================
+   RESPONSIVE - TABLETTES (≤700px)
+   ============================================ */
+
+@media (max-width: 700px) {
+  .unified-table {
+    font-size: 0.98em;
+    max-width: 98vw;
+  }
+  
+  .unified-table th, 
+  .unified-table td {
+    padding: 0.7em 0.3em;
+  }
+
+  /* Tables pleine largeur sur tablettes */
+  .unified-table:not(.unified-table--keep-width) {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0;
+  }
+
+  /* Actions sur tablettes */
+  .unified-table .actions-cell {
+    flex-direction: row !important;
+    gap: 8px !important;
+    justify-content: center !important;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE (≤395px)
+   ============================================ */
+
+@media (max-width: 395px) {
+  /* Tables sur mobile : pleine largeur obligatoire */
+  .unified-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0;
+    font-size: 12px !important;
+    border-radius: 8px;
+    margin: 0 auto;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    table-layout: auto !important;
+    word-break: normal !important;
+  }
+
+  /* Cellules sur mobile : padding et police réduits */
+  .unified-table th,
+  .unified-table td {
+    padding: 6px 3px !important;
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    word-break: normal !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* En-têtes : overflow visible pour les icônes de tri */
+  .unified-table th {
+    position: relative;
+    overflow: visible !important;
+    z-index: 1;
+  }
+
+  /* Boutons d'action : taille réduite */
+  .unified-table .actions-cell {
+    gap: 2px !important;
+    justify-content: center !important;
+  }
+
+  .unified-table .actions-cell .action-icon-btn {
+    margin: 0 !important;
+    padding: 3px 5px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
+    font-size: 10px !important;
+  }
+
+  /* Premières colonnes : permet le retour à la ligne pour les noms longs */
+  .unified-table td:nth-child(1),
+  .unified-table td:nth-child(2) {
+    white-space: normal !important;
+    word-break: break-word !important;
+    max-width: 120px !important;
+  }
+}
+
+/* ============================================
+   CLASSES UTILITAIRES
+   ============================================ */
+
+/* Alignement du texte */
+.unified-table .text-center { text-align: center !important; }
+.unified-table .text-right { text-align: right !important; }
+.unified-table .text-left { text-align: left !important; }
+
+/* Largeurs de colonnes spécifiques */
+.unified-table .col-actions { width: 80px; min-width: 80px; }
+.unified-table .col-date { width: 100px; min-width: 100px; }
+.unified-table .col-number { width: 60px; min-width: 60px; text-align: center; }
+
+/* Styles pour les liens et boutons dans les cellules */
+.unified-table .cell-link {
+  color: #0071bc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.unified-table .cell-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Indicateurs visuels */
+.unified-table .status-active { color: #28a745; font-weight: 600; }
+.unified-table .status-inactive { color: #6c757d; }
+.unified-table .status-warning { color: #ffc107; font-weight: 600; }
+.unified-table .status-danger { color: #dc3545; font-weight: 600; }
+
+/* ============================================
+   OVERRIDES POUR TABLES HÉRITÉES
+   ============================================ */
+
+/* Compatibilité avec l'ancienne classe produits-table */
+.produits-table {
+  /* Temporaire : redirection vers la nouvelle classe */
+  width: 80%;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.produits-table th, 
+.produits-table td {
+  padding: 1em 0.7em;
+  text-align: center;
+  font-size: 1.08em;
+}
+
+.produits-table th {
+  background: #f2f6fa;
+  color: #0071bc;
+  font-weight: 700;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.produits-table tr:not(:last-child) td {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.produits-table tr:hover {
+  background: #f7fbff;
+}
+
+/* Alternance pour produits-table */
+.produits-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa !important;
+}
+
+.produits-table tbody tr:nth-child(odd) {
+  background-color: #ffffff !important;
+}
+
+/* Actions dans produits-table */
+.produits-table .actions-cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* ============================================
+   TABLES SPÉCIALISÉES
+   ============================================ */
+
+/* Tables d'achats - conservent le comportement existant */
+.achats-list-table {
+  width: 100%;
+  background: #fafafa;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.achats-list-table th,
+.achats-list-table td {
+  padding: 10px;
+  text-align: center;
+}
+
+.achats-list-table th {
+  background: #f5f5f5;
+}
+
+.achats-list-table td {
+  border-bottom: 1px solid #eee;
+}
+
+/* Tables de bénéficiaires - conservent le comportement existant */
+.beneficiaires-table {
+  width: 100%;
+  background: #fafafa;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.produits-table.beneficiaires-table {
+  width: 100%;
+  background: #fafafa;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.produits-table.beneficiaires-table th,
+.produits-table.beneficiaires-table td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.produits-table.beneficiaires-table th {
+  background: #f5f5f5;
+}
+
+.produits-table.beneficiaires-table td {
+  border-bottom: 1px solid #eee;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/AchatsTable.css';
+import '../../commun/UnifiedTable.css';
 
 /**
  * Composant pour afficher la liste des achats avec totaux et rabais

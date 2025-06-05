@@ -89,6 +89,18 @@
   - Migration réussie dans `Achats.js` sans régression fonctionnelle
   - Suppression de 2 fichiers obsolètes et finalisation de la mutualisation du code
 
+- ✅ **TERMINÉ** - **Harmonisation système unifié des tableaux (Janvier 2025)** :
+  - Création de `UnifiedTable.css` centralisant tous les styles de tableaux de l'application
+  - Migration de tous les composants de tableaux vers la classe `.unified-table` avec rétrocompatibilité
+  - Refactorisation de `SortableTable.js` pour utiliser le système unifié
+  - Nettoyage des styles redondants dans `UniForm.css` avec renvois vers le système unifié
+  - Mise à jour de 6 composants : `ManageCategories`, `ManageProduits`, `ManageUsers`, `ManageBeneficiaire`, `AchatsTable`, `AchatsTableList`
+  - **Documentation complète** : `TABLEAUX_UNIFIES.md` (guide système) et `TESTS_TABLEAUX.md` (checklist validation)
+  - **Architecture CSS optimisée** : séparation claire entre styles de base (UnifiedTable.css) et surcharges spécifiques
+  - Classes modificatrices : `--full-width`, `--compact`, `--light-bg` pour personnalisation
+  - Règles responsive unifiées pour breakpoints 700px et 395px mobile
+  - Standardisation des cellules d'actions et maintien de la compatibilité existante
+
 - ✅ **TERMINÉ** - Dans la page beneficiaires/ 
     - ✅ enlever le bouton "supprimer" et rajouter un bouton "enregistrer un nouvel achat" qui aménera vers la page /achats avec ce bénéficiaire déjà sélectionné    - ✅ rajouter le bouton "supprimer" dans la page beneficiaires/edit/:id a coté du bouton mettre à jour, le comportement lui doit rester le meme. Aprés suppression retourner dans la pages benenficiaire et afficher un message de confirmation de suppression
     - ✅ Le message de confirmation de suppresion doit etre dans un modal et non en bas de page
@@ -140,6 +152,8 @@
   - ✅ Formulaires : correction du débordement d'écran 
   - ✅ `/beneficiaires` : Date "Depuis" en format multi-lignes (jj/mm/aa → 12\n06\n25) pour optimiser l'espace horizontal
   - Amélioration de la lisibilité sur très petits écrans avec format date adaptatif
+- [] **UX Mobile ≤395px - Pages contenant des tableaux** :
+  - harmoniser pour qu'ils fassent tous 100% largeur en utilisant le css commun UniForm.css et en vérifiant qu'il n'y a pas de repetition ou de contradiction dans les css propres aux composants 
 
 ---
 
@@ -189,3 +203,11 @@
 
 > **Progression globale : 24/24 tâches principales terminées (100%)** 🎯  
 > **Restant : 2 améliorations desktop en attente** 🔮
+
+- ✅ **TERMINÉ** - **Bugs et régressions corrigés (Juin 2025)** :
+  - ✅ Bouton de suppression produit : fonctionnement rétabli (hook + modal générique)
+  - ✅ Harmonisation du style du modal de suppression pour les catégories (utilisation ConfirmDeleteModal)
+  - ✅ Correction ajout catégorie : plus d'erreur d'objet React, message de confirmation rétabli
+  - ✅ Affichage des notifications d'ajout/suppression catégorie corrigé (bloc notification ajouté)
+  - ✅ Correction signature du hook useGenericDeleteModal dans ManageProduits.js
+  - ✅ Nettoyage des imports et suppression des modaux custom redondants

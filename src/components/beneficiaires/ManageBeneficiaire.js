@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../commun/UniForm.css';
+import '../commun/UnifiedTable.css';
 import { fetchBeneficiaires, addBeneficiaire, updateBeneficiaire } from '../../api/beneficiairesApi';
 import { fetchAchats } from '../achats/api/achatsApi';
 import ActionIconButton from '../commun/ActionIconButton';

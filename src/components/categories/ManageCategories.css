@@ -78,39 +78,6 @@ form button[type="submit"]:hover {
   background: #158a15;
 }
 
-.produits-table {
-  width: 80%;
-  max-width: 600px;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  overflow: hidden;
-}
-
-.produits-table th, .produits-table td {
-  /* border: 1px solid #e0e0e0; */
-  border: none;
-  padding: 10px 12px;
-  text-align: center;
-}
-
-.produits-table td span i {
-  margin-right: 7px;
-}
-
-.produits-table td input {
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  width: 90%;
-  font-size: 15px;
-}
-
-.produits-table td {
-  border-bottom: 1px solid #eee;
-}
-
 .edit-button, .delete-button {
   border: none;
   border-radius: 6px;
@@ -263,33 +230,25 @@ form button[type="submit"]:hover {
     max-width: 150px !important;
     width: 150px !important;
   }
-    /* Optimisation des colonnes du tableau avec plus d'espace pour les actions */
-  .produits-table th:first-child,
-  .produits-table td:first-child {
+  
+  /* Spécificités pour les catégories : répartition des colonnes */
+  [data-page="categories"] .produits-table th:first-child,
+  [data-page="categories"] .produits-table td:first-child {
     width: 65% !important;
     max-width: 65% !important;
   }
   
-  .produits-table th:last-child,
-  .produits-table td:last-child {
+  [data-page="categories"] .produits-table th:last-child,
+  [data-page="categories"] .produits-table td:last-child {
     width: 35% !important;
     max-width: 35% !important;
   }
-    /* Centrage et optimisation des boutons d'action */
-  .actions-cell {
-    gap: 6px !important;
-    margin: auto !important;
-    text-align: center !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
   
-  /* Boutons compacts et optimisés - taille augmentée pour éviter la coupure */
-  .actions-cell .edit-btn,
-  .actions-cell .delete-btn,
-  .actions-cell .save-btn,
-  .actions-cell .cancel-btn {
+  /* Boutons spécifiques aux catégories (pour les boutons personnalisés) */
+  [data-page="categories"] .actions-cell .edit-btn,
+  [data-page="categories"] .actions-cell .delete-btn,
+  [data-page="categories"] .actions-cell .save-btn,
+  [data-page="categories"] .actions-cell .cancel-btn {
     min-width: 32px !important;
     max-width: 32px !important;
     min-height: 32px !important;
@@ -298,11 +257,5 @@ form button[type="submit"]:hover {
     padding: 6px !important;
     margin: 1px !important;
     border-radius: 4px !important;
-  }
-  
-  /* Réduction du padding global pour gagner de l'espace */
-  .produits-table th, .produits-table td {
-    padding: 8px 4px !important;
-    font-size: 14px !important;
   }
 }

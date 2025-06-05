@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../commun/UniForm.css';
+import '../commun/UnifiedTable.css';
 import './ManageProduits.css';
-import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 import ActionIconButton from '../commun/ActionIconButton';
 import SortableTable from '../commun/SortableTable';
 import '../commun/SortableTable.css';
@@ -42,14 +42,16 @@ function ManageProduits() {  const [search, setSearch] = useState('');
     } else {
       await updateExistingProduit(editId, data);
     }
-  });
-  const {
+  });  const {
     showDeleteModal,
     deleteStatus,
     deleteMsg,
     handleDelete,
     confirmDelete,
-    cancelDelete  } = useGenericDeleteModal(deleteExistingProduit, {
+    cancelDelete,
+    ModalComponent
+  } = useGenericDeleteModal({
+    deleteFunction: deleteExistingProduit,
     successMessage: 'Produit supprimé avec succès.',
     errorMessage: 'Erreur lors de la suppression du produit.',
     successDelay: 1000,
@@ -86,7 +88,7 @@ function ManageProduits() {  const [search, setSearch] = useState('');
     ) },
   ];
   return (
-    <div className="page-centered-container">
+    <div className="page-centered-container" data-page="manage-produits">
       <h1 className="page-title">
         <i className="fa fa-shopping-basket icon-blue icon-lg mr-8"></i>
         Gestion des produits
@@ -130,19 +132,7 @@ function ManageProduits() {  const [search, setSearch] = useState('');
         onChange={handleFormChange}
         onClose={handleFormClose}
         loading={loading}
-      />
-
-      <ConfirmDeleteModal
-        show={showDeleteModal}
-        onConfirm={confirmDelete}
-        onCancel={cancelDelete}
-        status={deleteStatus}
-        message={deleteMsg}
-        confirmLabel="Supprimer"
-        cancelLabel="Annuler"
-        title="Confirmer la suppression du produit ?"
-        icon={<i className="fa fa-exclamation-triangle icon-red mr-8"></i>}
-      />
+      />      <ModalComponent />
 
       {loading ? (
         <div className="loading centered-text">

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './SortableTable.css';
+import './UnifiedTable.css';
 
 /**
  * columns: [
@@ -36,9 +37,8 @@ function SortableTable({ columns, data, initialSort, className = '' }) {
       return 0;
     });
   }, [data, sortCol, sortDir, columns]);
-
   return (
-    <table className={`produits-table ${className}`}>
+    <table className={`unified-table produits-table ${className}`}>
       <thead>
         <tr>
           {columns.map((col) => (

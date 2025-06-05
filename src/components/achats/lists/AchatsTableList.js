@@ -1,5 +1,6 @@
 import React from 'react';
 import ActionIconButton from '../../commun/ActionIconButton';
+import '../../commun/UnifiedTable.css';
 
 /**
  * Fonction utilitaire pour formater la date jj mmm aaaa
