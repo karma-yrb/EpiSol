@@ -9,8 +9,8 @@
 
 /* Classe de base pour TOUS les tableaux de l'application */
 .unified-table {
-  width: 80%;
-  max-width: 600px;
+  width: 100%;
+  max-width: 100%;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
@@ -257,8 +257,8 @@
 /* Compatibilité avec l'ancienne classe produits-table */
 .produits-table {
   /* Temporaire : redirection vers la nouvelle classe */
-  width: 80%;
-  max-width: 600px;
+  width: 100%;
+  max-width: 100%;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
