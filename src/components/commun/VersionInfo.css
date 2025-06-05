@@ -36,6 +36,12 @@
   left: 16px;
 }
 
+[data-page="version"] .version-info--bottom-center {
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 [data-page="version"] .version-info--top-right {
   top: 16px;
   right: 16px;

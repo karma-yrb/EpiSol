@@ -224,6 +224,7 @@
   background: #ffeaea;
   color: #a00;
 }
+
 @media (max-width: 700px) {
   .user-menu-wrapper {
     right: 12px;

@@ -18,7 +18,7 @@ import Achats from './components/achats/Achats';
 import ListeAchats from './components/achats/lists/ListeAchats';
 import UserLogsPage from './components/users/UserLogsPage';
 import Stocks from './components/stocks/Stocks';
-import VersionInfo from './components/common/VersionInfo';
+import VersionInfo from './components/commun/VersionInfo';
 
 // Initialize navigate using useNavigate
 function App() {

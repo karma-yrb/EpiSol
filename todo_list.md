@@ -129,8 +129,8 @@
   - Suppression import obsolète `useGenericDeleteModal` dans `ManageCategories`
   - Résolution conflits CSS globaux avec isolation par attribut `data-page`
   - Optimisation mobile ≤395px : champ centré 150px, boutons compacts 30x30px
-- Verifier que les readme et autre fichiers de docs sont intégralement en français (a part les termes spécifiques)
-- voir pourquoi il y a un dossier "common" et un autre "commun" ?
+- ✅ **TERMINÉ** - Vérification que les README et autres fichiers de docs sont intégralement en français (à part les termes spécifiques)
+- ✅ **TERMINÉ** - Harmonisation structure dossiers : suppression dossier "common", consolidation dans "commun" unique
 
 ### 📱 Mobile
 - ✅ **TERMINÉ** - **UX Mobile ≤395px - Page `/achats`** :
@@ -157,8 +157,12 @@
   - ✅ Formulaires : correction du débordement d'écran 
   - ✅ `/beneficiaires` : Date "Depuis" en format multi-lignes (jj/mm/aa → 12\n06\n25) pour optimiser l'espace horizontal
   - Amélioration de la lisibilité sur très petits écrans avec format date adaptatif
-- [] **UX Mobile ≤395px - Pages contenant des tableaux** :
-  - harmoniser pour qu'ils fassent tous 100% largeur en utilisant le css commun UniForm.css et en vérifiant qu'il n'y a pas de repetition ou de contradiction dans les css propres aux composants 
+
+- ✅ **TERMINÉ** - **UX Mobile ≤395px - Pages contenant des tableaux (Janvier 2025)** :
+  - Harmonisation pour qu'ils fassent tous 100% largeur en utilisant le CSS commun `UnifiedTable.css`
+  - Vérification et suppression des répétitions/contradictions dans les CSS propres aux composants
+  - Migration vers le système unifié des tableaux avec rétrocompatibilité
+  - Application des règles responsive unifiées pour breakpoints 700px et 395px mobile
 
 ---
 
@@ -168,10 +172,12 @@
 - ✅ **TERMINÉ** - `/beneficiaires` : La colonne "Numéro bénéficiaire" doit s'appeler "#"
 - ✅ **TERMINÉ** - `/beneficiaires` : La colonne "nom" et "prenom" doit être fusionnée pour ne faire qu'une qui s'appelle "prénom nom"
 - ✅ **TERMINÉ** - Afficher les initiales du user à la place du role pour le bouton d'accès au profil et déconnexion
-- [] Informations sur la version (numero, date)
-    - Sur la page de login
-    - Dans le menu, ou en bas de page
-    - Mise a jour automatique
+- ✅ **TERMINÉ** - **Informations sur la version (numéro, date) (Juin 2025)** :
+  - ✅ Sur la page de login : `VersionInfo` en position `bottom-center` avec informations backend
+  - ✅ Support ajouté pour position `bottom-center` dans le CSS
+  - ✅ Harmonisation dossier `commun/` pour tous les composants partagés
+  - ✅ Documentation française complète (README principal)
+  - Mise à jour automatique via composant `VersionInfo` existant
 - tests unitaires 
 - [] Nouvelle façon de choisir les produits (v1.1.x): 
     - Grille/boutons, icons/image produit
@@ -191,9 +197,9 @@
 | Catégorie | Global | Mobile | Total |
 |-----------|---------|--------|-------|
 | 🐛 Bugs | 6 | 4 | 10 |
-| ⚡ Améliorations | 6 + 2 à venir | 4 | 12 |
+| ⚡ Améliorations | 6 | 5 | 11 |
 | 🚀 Fonctionnalités | 3 | 0 | 3 |
-| **TOTAL** | **17** | **8** | **25** |
+| **TOTAL** | **15** | **9** | **24** |
 
 ### 🏷️ Versioning et Documentation
 - ✅ **TERMINÉ** - Implémentation système de versioning unifié SemVer
@@ -207,7 +213,7 @@
 > **Version stable v1.0.0 déployée avec succès** ✅
 
 > **Progression globale : 24/24 tâches principales terminées (100%)** 🎯  
-> **Restant : 2 améliorations desktop en attente** 🔮
+> **Restant : 2 améliorations documentation en attente** 🔮
 
 - ✅ **TERMINÉ** - **Bugs et régressions corrigés (Juin 2025)** :
   - ✅ Bouton de suppression produit : fonctionnement rétabli (hook + modal générique)

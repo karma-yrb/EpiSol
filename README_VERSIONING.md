@@ -62,7 +62,7 @@ Le composant `VersionInfo` affiche en temps réel :
 EpiSol/
 ├── frontend/
 │   ├── package.json (version: 1.0.0)
-│   ├── src/components/common/VersionInfo.js
+│   ├── src/components/commun/VersionInfo.js
 │   ├── src/api/versionApi.js
 │   ├── CHANGELOG.md
 │   ├── VERSIONING.md

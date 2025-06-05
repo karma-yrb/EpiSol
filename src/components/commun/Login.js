@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import VersionInfo from './VersionInfo';
 import './UniForm.css';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || '';
@@ -71,7 +72,6 @@ function Login({ onLogin }) {
       setLoading(false);
     }
   };
-
   return (
     <div className="uni-form-container">
       <div className="login-warning" style={{
@@ -130,6 +130,9 @@ function Login({ onLogin }) {
           {loading ? <span><i className="fa fa-spinner fa-spin" /> Connexion...</span> : 'Se connecter'}
         </button>
       </form>
+      
+      {/* Affichage des informations de version en bas de page */}
+      <VersionInfo position="bottom-center" showBackend={true} />
     </div>
   );
 }

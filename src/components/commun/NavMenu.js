@@ -44,8 +44,7 @@ function NavMenu({ user }) {
         <span className="bar"></span>
         <span className="bar"></span>
         <span className="bar"></span>
-      </button>
-      <nav className={`nav-menu${open ? ' open' : ''}`}
+      </button>      <nav className={`nav-menu${open ? ' open' : ''}`}
         role="navigation"
         aria-label="Menu principal"
       >
@@ -60,9 +59,8 @@ function NavMenu({ user }) {
                 <span>{link.label}</span>
               </Link>
             </li>
-          ))}
-        </ul>
-      </nav>      {/* Menu utilisateur déroulant à droite */}
+          ))}        </ul>
+      </nav>{/* Menu utilisateur déroulant à droite */}
       <div className="user-menu-wrapper">
         <button className="user-menu-btn" onClick={() => setUserMenuOpen(v => !v)}>
           {userInitials ? (
