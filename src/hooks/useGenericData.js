@@ -125,11 +125,9 @@ export function useGenericData(config, options = {}) {
     if (!editValue.trim()) {
       setNotif({ type: 'error', message: `Le nom du ${entityName} ne peut pas être vide.` });
       return;
-    }
-
-    try {
+    }    try {
       if (updateFunction) {
-        const updatedItem = await updateFunction(editId, { nom: editValue });
+        const updatedItem = await updateFunction(editId, editValue);
         updateItem(editId, updatedItem);
         setNotif({ type: 'success', message: `${entityName} modifié avec succès.` });
       } else {
