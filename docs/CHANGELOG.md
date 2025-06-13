@@ -7,6 +7,21 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 **Note**: Ce projet utilise un versioning unifié pour le frontend et le backend.
 
+## [1.0.6] - 2025-06-13
+
+### 🐛 Corrections Critiques
+- **Fix React Error #31** : Résolution de l'erreur "Minified React error #31" lors de la modification des catégories
+- **Sécurisation des types de données** : Ajout de validations `parseInt()` et `String()` dans `categoriesApi.js`
+- **Amélioration de la robustesse** : Protection contre les objets passés comme enfants React
+- **Hook useGenericData** : Ajout de `trim()` pour nettoyer les données d'entrée
+- **Composant ManageCategories** : Conversion explicite avec `String()` pour éviter les erreurs de rendu
+
+### 🔧 Technique
+- Modification de `src/api/categoriesApi.js` pour formatter les réponses API
+- Mise à jour de `src/hooks/useGenericData.js` avec validation des données
+- Correction de `src/components/categories/ManageCategories.js` pour le rendu sécurisé
+- Tests de régression validés : modification des catégories fonctionne sans erreur
+
 ## [1.0.5] - 2025-06-05
 
 ### ✨ Améliorations
