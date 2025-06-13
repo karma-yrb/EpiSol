@@ -120,14 +120,15 @@ export function useGenericData(config, options = {}) {
     setEditId(id);
     setEditValue(currentValue);
   };
-
   const handleSaveEdit = async () => {
     if (!editValue.trim()) {
       setNotif({ type: 'error', message: `Le nom du ${entityName} ne peut pas être vide.` });
       return;
-    }    try {
+    }
+
+    try {
       if (updateFunction) {
-        const updatedItem = await updateFunction(editId, editValue);
+        const updatedItem = await updateFunction(editId, editValue.trim());
         updateItem(editId, updatedItem);
         setNotif({ type: 'success', message: `${entityName} modifié avec succès.` });
       } else {

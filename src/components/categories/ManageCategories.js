@@ -56,7 +56,6 @@ function ManageCategories() {
       setNotif({ type: 'error', message: 'Erreur lors de l\'ajout de la catégorie.' });
     }
   };
-
   // Colonnes pour le tableau triable
   const columns = [
     { label: 'Nom', key: 'nom', sortable: true, render: (row) => (
@@ -65,7 +64,7 @@ function ManageCategories() {
           <input value={editValue} onChange={e => setEditValue(e.target.value)} className="category-row-input" autoFocus />
         </form>
       ) : (
-        row.nom
+        String(row.nom || '')
       )
     ) },
     { label: 'Actions', key: 'actions', sortable: false, render: (row) => (

@@ -5,7 +5,13 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 export async function fetchCategories() {
   const res = await fetch(`${API_BASE_URL}/api/categories`);
   if (!res.ok) throw new Error('Erreur lors du chargement des catégories');
-  return await res.json();
+  const result = await res.json();
+  
+  // S'assurer que tous les objets sont bien formatés
+  return result.map(cat => ({
+    id: parseInt(cat.id, 10),
+    nom: String(cat.nom || '')
+  }));
 }
 
 export async function addCategory(nom) {
@@ -15,7 +21,13 @@ export async function addCategory(nom) {
     body: JSON.stringify({ nom })
   });
   if (!res.ok) throw new Error('Erreur lors de l\'ajout');
-  return await res.json();
+  const result = await res.json();
+  
+  // S'assurer que l'objet retourné est bien formaté
+  return {
+    id: parseInt(result.id, 10),
+    nom: String(result.nom || '')
+  };
 }
 
 export async function updateCategory(id, nom) {
@@ -25,7 +37,13 @@ export async function updateCategory(id, nom) {
     body: JSON.stringify({ nom })
   });
   if (!res.ok) throw new Error('Erreur lors de la modification');
-  return await res.json();
+  const result = await res.json();
+  
+  // S'assurer que l'id est un nombre et que nom est une chaîne
+  return {
+    id: parseInt(result.id, 10),
+    nom: String(result.nom || '')
+  };
 }
 
 export async function deleteCategory(id) {
