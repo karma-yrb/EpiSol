@@ -92,8 +92,8 @@ function ManageUsers({ userConnected }) {
         <i className="fa fa-user icon-blue icon-lg mr-8"></i>
         Gestion des utilisateurs
       </h1>
-      {/* Masquer le bouton d'ajout si admin simple */}
-      {userRole !== 'admin' && (
+      {/* Afficher le bouton d'ajout pour admin et superadmin */}
+      {(userRole === 'admin' || userRole === 'superadmin') && (
         <Link to="/users/add">
           <button className="create-button"><i className="fa fa-plus mr-6"></i>Ajouter un utilisateur</button>
         </Link>

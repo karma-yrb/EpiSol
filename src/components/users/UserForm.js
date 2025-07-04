@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../commun/UniForm.css';
 
-function UserForm({ formData, handleChange, id, hidePasswordField }) {
+function UserForm({ formData, handleChange, id, hidePasswordField, userRole }) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -44,12 +44,17 @@ function UserForm({ formData, handleChange, id, hidePasswordField }) {
         </>
       )}
 
-      <label>Rôle</label>
-      <select name="role" value={formData.role} onChange={handleChange}>
-        <option value="">Sélectionnez un rôle</option>
-        <option value="admin">Admin</option>
-        <option value="user">Utilisateur</option>
-      </select>
+      {/* Afficher le champ rôle sauf si création par admin */}
+      {!(userRole === 'admin' && !id) && (
+        <>
+          <label>Rôle</label>
+          <select name="role" value={formData.role} onChange={handleChange}>
+            <option value="">Sélectionnez un rôle</option>
+            <option value="admin">Admin</option>
+            <option value="user">Utilisateur</option>
+          </select>
+        </>
+      )}
     </>
   );
 }

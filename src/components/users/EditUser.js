@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import UserForm from './UserForm';
+import { AuthContext } from '../../context/AuthContext';
 
 function EditUser() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { userRole } = useContext(AuthContext);
   const [user, setUser] = useState({
     nom: '',
     prenom: '',
@@ -52,11 +54,15 @@ function EditUser() {
     const method = id ? 'PUT' : 'POST';
     const apiUrl = process.env.REACT_APP_API_URL || '';
     const url = id ? `${apiUrl}/api/users/${id}` : `${apiUrl}/api/users`;
-
+    // Si création par un admin, forcer le rôle à 'user'
+    const userToSend = { ...user };
+    if (!id && userRole === 'admin') {
+      userToSend.role = 'user';
+    }
     fetch(url, {
       method,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(user),
+      body: JSON.stringify(userToSend),
     })
       .then((response) => {
         if (!response.ok) throw new Error('Erreur lors de la mise à jour');
@@ -89,6 +95,8 @@ function EditUser() {
           formData={user}
           handleChange={(e) => setUser({ ...user, [e.target.name]: e.target.value })}
           id={id}
+          hidePasswordField={false}
+          userRole={userRole}
         />
         <button type="submit">{id ? 'Mettre à jour' : 'Créer'}</button>
         {successMsg && (
