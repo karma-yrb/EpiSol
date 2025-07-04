@@ -33,8 +33,6 @@ function App() {
       if (parts.length !== 3) return null;
       const payload = JSON.parse(atob(parts[1]));
       if (payload.exp * 1000 < Date.now()) return null;
-      // Met à jour le rôle dans le contexte
-      setUserRole && setUserRole(payload.role || 'user');
       return payload.username;
     } catch {
       return null;
@@ -42,6 +40,20 @@ function App() {
   });
   const navigate = useNavigate();
   const [showLogout, setShowLogout] = useState(false);
+
+  // Initialisation du rôle utilisateur dans un useEffect (évite le setState dans le rendu)
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const parts = token.split('.');
+        if (parts.length === 3) {
+          const payload = JSON.parse(atob(parts[1]));
+          setUserRole && setUserRole(payload.role || 'user');
+        }
+      } catch {}
+    }
+  }, [setUserRole]);
 
   // Met à jour le rôle lors du login
   const handleLogin = (token, username) => {

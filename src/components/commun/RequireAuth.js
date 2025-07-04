@@ -30,9 +30,16 @@ function RequireAuth({ children, requiredRole }) {
       return <Navigate to="/login" replace />;
     }
     // Vérifie le rôle si nécessaire
-    if (requiredRole && payload.role !== requiredRole) {
-      console.warn(`Accès refusé : rôle requis = ${requiredRole}, rôle utilisateur = ${payload.role}`);
-      return <Navigate to="/access-denied" replace />;
+    if (requiredRole) {
+      if (requiredRole === 'admin') {
+        if (payload.role !== 'admin' && payload.role !== 'superadmin') {
+          console.warn(`Accès refusé : rôle requis = admin ou superadmin, rôle utilisateur = ${payload.role}`);
+          return <Navigate to="/access-denied" replace />;
+        }
+      } else if (payload.role !== requiredRole) {
+        console.warn(`Accès refusé : rôle requis = ${requiredRole}, rôle utilisateur = ${payload.role}`);
+        return <Navigate to="/access-denied" replace />;
+      }
     }
   } catch (error) {
     console.error('Erreur lors de la validation du token :', error);
