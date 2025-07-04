@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import ManageBeneficiaire from './components/beneficiaires/ManageBeneficiaire';
 import Home from './components/commun/Home';
@@ -19,9 +19,11 @@ import ListeAchats from './components/achats/lists/ListeAchats';
 import UserLogsPage from './components/users/UserLogsPage';
 import Stocks from './components/stocks/Stocks';
 import VersionInfo from './components/commun/VersionInfo';
+import { AuthContext } from './context/AuthContext';
 
 // Initialize navigate using useNavigate
 function App() {
+  const { setUserRole } = useContext(AuthContext);
   const [user, setUser] = useState(() => {
     // Vérifie le token au chargement initial (pour le refresh)
     const token = localStorage.getItem('token');
@@ -31,6 +33,8 @@ function App() {
       if (parts.length !== 3) return null;
       const payload = JSON.parse(atob(parts[1]));
       if (payload.exp * 1000 < Date.now()) return null;
+      // Met à jour le rôle dans le contexte
+      setUserRole && setUserRole(payload.role || 'user');
       return payload.username;
     } catch {
       return null;
@@ -39,9 +43,17 @@ function App() {
   const navigate = useNavigate();
   const [showLogout, setShowLogout] = useState(false);
 
+  // Met à jour le rôle lors du login
   const handleLogin = (token, username) => {
     localStorage.setItem('token', token);
     setUser(username);
+    try {
+      const parts = token.split('.');
+      if (parts.length === 3) {
+        const payload = JSON.parse(atob(parts[1]));
+        setUserRole && setUserRole(payload.role || 'user');
+      }
+    } catch {}
   };
 
   const handleLogout = () => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../commun/UniForm.css';
 import '../commun/UnifiedTable.css';
@@ -10,8 +10,10 @@ import SortableTable from '../commun/SortableTable';
 import '../commun/SortableTable.css';
 import UserLastLogin from './UserLastLogin';
 import { useGenericData } from '../../hooks/useGenericData';
+import { AuthContext } from '../../context/AuthContext';
 
 function ManageUsers({ userConnected }) {
+  const { userRole } = useContext(AuthContext);
   const navigate = useNavigate();
   // Utilisation du hook générique avec options personnalisées
   const {
@@ -26,10 +28,11 @@ function ManageUsers({ userConnected }) {
   } = useGenericData({
     fetchFunction: async () => {
       const data = await fetchUsers();
-      // Exclure l'utilisateur connecté et l'utilisateur "Admin"
-      return data.filter(
-        (user) => user.username !== userConnected && user.username !== 'admin'
-      );
+      // Filtrage côté UI pour plus de sécurité (en plus du backend)
+      if (userRole === 'admin') {
+        return data.filter(user => user.role !== 'admin' && user.role !== 'superadmin');
+      }
+      return data;
     },
     deleteFunction: deleteUser,
     entityName: 'utilisateur',
@@ -51,10 +54,15 @@ function ManageUsers({ userConnected }) {
     ) },
     { label: 'Actions', key: 'actions', sortable: false, render: (row) => (
       <div className="actions-cell">
-        <Link to={`/users/edit/${row.id}`} className="edit-link">
-          <ActionIconButton type="edit" title="Éditer" onClick={e => e.stopPropagation()} />
-        </Link>
-        <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(row.id)} />
+        {/* Masquer édition/suppression si admin simple et cible admin/superadmin */}
+        {!(userRole === 'admin' && (row.role === 'admin' || row.role === 'superadmin')) && (
+          <Link to={`/users/edit/${row.id}`} className="edit-link">
+            <ActionIconButton type="edit" title="Éditer" onClick={e => e.stopPropagation()} />
+          </Link>
+        )}
+        {!(userRole === 'admin' && (row.role === 'admin' || row.role === 'superadmin')) && (
+          <ActionIconButton type="delete" title="Supprimer" onClick={() => handleDelete(row.id)} />
+        )}
         <ActionIconButton type="view" title="Voir logs" onClick={() => window.location.href = `/users/${row.id}/logs`} />
       </div>
     ) },
@@ -74,9 +82,13 @@ function ManageUsers({ userConnected }) {
       <h1>
         <i className="fa fa-user icon-blue icon-lg mr-8"></i>
         Gestion des utilisateurs
-      </h1>      <Link to="/users/add">
-        <button className="create-button"><i className="fa fa-plus mr-6"></i>Ajouter un utilisateur</button>
-      </Link>
+      </h1>
+      {/* Masquer le bouton d'ajout si admin simple */}
+      {userRole !== 'admin' && (
+        <Link to="/users/add">
+          <button className="create-button"><i className="fa fa-plus mr-6"></i>Ajouter un utilisateur</button>
+        </Link>
+      )}
 
       {loading ? (
         <div className="loading centered-text">

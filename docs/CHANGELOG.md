@@ -7,6 +7,15 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 **Note**: Ce projet utilise un versioning unifié pour le frontend et le backend.
 
+## [1.0.7] - 2025-07-04
+
+### ✨ Ajout : Séparation complète des rôles admin/superadmin côté frontend
+- Le contexte d'authentification (`AuthContext`) expose désormais le rôle de l'utilisateur (`userRole`) dans toute l'application.
+- Le rôle est extrait du token JWT au chargement et lors de la connexion, puis stocké dans le contexte.
+- Les composants sensibles (ex : gestion des utilisateurs) utilisent directement ce rôle pour appliquer les restrictions d'UI (affichage, actions, filtrage).
+- Plus besoin de passer le rôle en prop : tout est centralisé et cohérent.
+- L'UI est donc parfaitement alignée avec la sécurité backend pour la gestion des droits admin/superadmin.
+
 ## [1.0.6] - 2025-06-13
 
 ### 🐛 Corrections Critiques
