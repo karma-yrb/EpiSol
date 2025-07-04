@@ -16,6 +16,11 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Plus besoin de passer le rôle en prop : tout est centralisé et cohérent.
 - L'UI est donc parfaitement alignée avec la sécurité backend pour la gestion des droits admin/superadmin.
 
+### Correctifs et améliorations
+- Le menu "Utilisateurs" est désormais visible pour les rôles "admin" ET "superadmin".
+- Un admin ne voit plus son propre profil dans la liste des utilisateurs.
+- Sécurité et expérience utilisateur renforcées pour la gestion des droits.
+
 ## [1.0.6] - 2025-06-13
 
 ### 🐛 Corrections Critiques

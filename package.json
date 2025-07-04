@@ -1,5 +1,5 @@
 {  "name": "episol-frontend",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": true,
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
