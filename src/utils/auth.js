@@ -16,7 +16,8 @@ export function getUserRoleFromToken() {
 }
 
 export function isAdminFromToken() {
-  return getUserRoleFromToken() === 'admin';
+  const role = getUserRoleFromToken();
+  return role === 'admin' || role === 'superadmin';
 }
 
 // Helper pour extraire toutes les informations utilisateur du token

@@ -11,10 +11,14 @@ import '../commun/SortableTable.css';
 import UserLastLogin from './UserLastLogin';
 import { useGenericData } from '../../hooks/useGenericData';
 import { AuthContext } from '../../context/AuthContext';
+import { getUserFromToken } from '../../utils/auth';
 
 function ManageUsers({ userConnected }) {
   const { userRole } = useContext(AuthContext);
   const navigate = useNavigate();
+  // Récupérer l'id de l'utilisateur connecté depuis le token
+  const currentUser = getUserFromToken();
+  const currentUserId = currentUser ? currentUser.id : null;
   // Utilisation du hook générique avec options personnalisées
   const {
     data: users,
@@ -29,10 +33,15 @@ function ManageUsers({ userConnected }) {
     fetchFunction: async () => {
       const data = await fetchUsers();
       // Filtrage côté UI pour plus de sécurité (en plus du backend)
+      let filtered = data;
       if (userRole === 'admin') {
-        return data.filter(user => user.role !== 'admin' && user.role !== 'superadmin');
+        filtered = data.filter(user => user.role !== 'admin' && user.role !== 'superadmin');
       }
-      return data;
+      // Exclure l'utilisateur connecté de la liste
+      if (currentUserId) {
+        filtered = filtered.filter(user => user.id !== currentUserId);
+      }
+      return filtered;
     },
     deleteFunction: deleteUser,
     entityName: 'utilisateur',
